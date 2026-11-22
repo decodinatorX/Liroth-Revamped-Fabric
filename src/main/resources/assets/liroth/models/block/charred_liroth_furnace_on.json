@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "liroth:block/charred_liroth_furnace_top",
+    "front": "liroth:block/charred_liroth_furnace_front_on",
+    "side": "liroth:block/charred_liroth_furnace_side"
+  }
+}

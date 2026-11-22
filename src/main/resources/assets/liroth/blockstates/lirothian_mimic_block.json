@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "liroth:block/lirothian_mimic_block"
+    },
+    "facing=east": {
+      "model": "liroth:block/lirothian_mimic_block",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "liroth:block/lirothian_mimic_block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "liroth:block/lirothian_mimic_block",
+      "y": 270
+    }
+  }
+}

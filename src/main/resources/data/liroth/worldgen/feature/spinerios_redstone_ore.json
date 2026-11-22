@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:ore",
+  "size": 8,
+  "discard_chance_on_air_exposure": 0,
+  "targets": [
+    {
+      "target": {
+        "predicate_type": "minecraft:tag_match",
+        "tag": "liroth:dirt_ore_replaceables"
+      },
+      "state": {
+        "id": "liroth:spinerios_redstone_ore",
+        "properties": {
+          "lit": "false"
+        }
+      }
+    }
+  ]
+}

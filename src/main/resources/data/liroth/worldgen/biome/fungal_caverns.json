@@ -38,8 +38,8 @@
       {
         "type": "liroth:fungal_fiend",
         "weight": 100,
-        "minCount": 4,
-        "maxCount": 4
+        "minCount": 1,
+        "maxCount": 2
       }
     ],
     "creature": [],
@@ -65,23 +65,27 @@
     [],
     [],
     [],
-    [],
     [
       "liroth:spinerios_ancient_debris",
-      "liroth:spinerios_stone_tourmaline_ore",
+      "liroth:spinerios_stone_tourmaline_ore"
+    ],
+    [
       "minecraft:underwater_magma"
+    ],
+    [
+      "minecraft:spring_water",
+      "minecraft:spring_lava"
     ],
     [
       "minecraft:patch_tall_grass_2",
       "minecraft:patch_grass_plain",
       "liroth:trees_damnation",
-      "liroth:patch_fungus_mushroom"
-    ],
-    [
+      "liroth:patch_fungus_mushroom",
       "liroth:damnation_vines",
       "liroth:damnation_fungus",
       "liroth:fungal_patch",
       "liroth:fungal_patch_ceiling"
-    ]
+    ],
+    []
   ]
 }

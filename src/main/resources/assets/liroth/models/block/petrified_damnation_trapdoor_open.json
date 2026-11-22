@@ -1,7 +1,8 @@
 {
   "parent": "block/template_orientable_trapdoor_open",
+  "render_type": "cutout",
   "textures": {
-    "texture": "liroth:blocks/petrified_damnation_trapdoor",
-    "particle": "liroth:blocks/petrified_damnation_trapdoor"
+    "texture": "liroth:block/petrified_damnation_trapdoor",
+    "particle": "liroth:block/petrified_damnation_trapdoor"
   }
 }

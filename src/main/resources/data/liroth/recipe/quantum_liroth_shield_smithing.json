@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "liroth:quantum_upgrade_smithing_template"
+  },
+  "base": {
+    "item": "liroth:liroth_shield"
+  },
+  "addition": {
+    "item": "liroth:quantum_plate"
+  },
+  "result": {
+    "id": "liroth:quantum_liroth_shield"
+  }
+}

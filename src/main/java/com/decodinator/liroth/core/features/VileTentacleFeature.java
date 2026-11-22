@@ -1,6 +1,6 @@
 package com.decodinator.liroth.core.features;
 
-import com.decodinator.liroth.core.LirothBlocks;
+import com.decodinator.liroth.core.registry.LirothBlocks;
 import com.decodinator.liroth.core.blocks.CustomKelpBlock;
 import com.mojang.serialization.Codec;
 
@@ -28,12 +28,12 @@ extends Feature<NoneFeatureConfiguration> {
         RandomSource random = context.random();
         int j = structureWorldAccess.getHeight(Heightmap.Types.OCEAN_FLOOR, blockPos.getX(), blockPos.getZ());
         BlockPos blockPos2 = new BlockPos(blockPos.getX(), j, blockPos.getZ());
-        if (structureWorldAccess.getBlockState(blockPos2).is(LirothBlocks.LIROTH_FLUID)) {
+        if (structureWorldAccess.getBlockState(blockPos2).is(LirothBlocks.LIROTH_FLUID_BLOCK)) {
             BlockState blockState = LirothBlocks.VILE_TENTACLE_TIP.defaultBlockState();
             BlockState blockState2 = LirothBlocks.VILE_TENTACLE.defaultBlockState();
             int k = 1 + random.nextInt(10);
             for (int l = 0; l <= k; ++l) {
-                if (structureWorldAccess.getBlockState(blockPos2).is(LirothBlocks.LIROTH_FLUID) && structureWorldAccess.getBlockState(blockPos2.above()).is(LirothBlocks.LIROTH_FLUID) && blockState2.canSurvive(structureWorldAccess, blockPos2)) {
+                if (structureWorldAccess.getBlockState(blockPos2).is(LirothBlocks.LIROTH_FLUID_BLOCK) && structureWorldAccess.getBlockState(blockPos2.above()).is(LirothBlocks.LIROTH_FLUID_BLOCK) && blockState2.canSurvive(structureWorldAccess, blockPos2)) {
                     if (l == k) {
                         structureWorldAccess.setBlock(blockPos2, (BlockState)blockState.setValue(CustomKelpBlock.AGE, random.nextInt(4) + 20), Block.UPDATE_NEIGHBORS);
                         ++i;

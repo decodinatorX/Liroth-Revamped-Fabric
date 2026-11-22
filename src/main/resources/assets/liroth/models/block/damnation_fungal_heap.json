@@ -1,7 +1,8 @@
 {
   "parent": "block/cross",
+  "render_type": "cutout",
   "textures": {
-    "cross": "liroth:blocks/damnation_fungal_heap",
-    "particle": "liroth:blocks/damnation_fungal_heap"
+    "cross": "liroth:block/damnation_fungal_heap",
+    "particle": "liroth:block/damnation_fungal_heap"
   }
 }

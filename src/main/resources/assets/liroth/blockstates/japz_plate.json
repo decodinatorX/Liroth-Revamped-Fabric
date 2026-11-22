@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "liroth:block/japz_pressure_plate"
+    },
+    "powered=true": {
+      "model": "liroth:block/japz_pressure_plate_down"
+    }
+  }
+}

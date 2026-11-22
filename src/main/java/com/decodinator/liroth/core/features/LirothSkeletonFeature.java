@@ -1,6 +1,6 @@
 package com.decodinator.liroth.core.features;
 
-import com.decodinator.liroth.core.LirothBlocks;
+import com.decodinator.liroth.core.registry.LirothBlocks;
 import com.mojang.serialization.Codec;
 
 import net.minecraft.core.BlockPos;
@@ -33,7 +33,7 @@ extends Feature<NoneFeatureConfiguration> {
     protected boolean generateCoralPiece(LevelAccessor world, RandomSource random, BlockPos pos, BlockState state) {
         BlockPos blockPos = pos.above();
         BlockState blockState = world.getBlockState(pos);
-        if (!blockState.is(LirothBlocks.LIROTH_FLUID) && !blockState.is(LirothBlocks.LIROTH_BONE_BLOCK) || !world.getBlockState(blockPos).is(LirothBlocks.LIROTH_FLUID)) {
+        if (!blockState.is(LirothBlocks.LIROTH_FLUID_BLOCK) && !blockState.is(LirothBlocks.LIROTH_BONE_BLOCK) || !world.getBlockState(blockPos).is(LirothBlocks.LIROTH_FLUID_BLOCK)) {
             return false;
         }
         world.setBlock(pos, state, Block.UPDATE_NEIGHBORS);

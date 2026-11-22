@@ -1,7 +1,8 @@
 {
   "parent": "block/template_glass_pane_side_alt",
+  "render_type": "translucent",
   "textures": {
-    "edge": "liroth:blocks/forcefield",
-    "pane": "liroth:blocks/forcefield"
+    "edge": "liroth:block/forcefield",
+    "pane": "liroth:block/forcefield"
   }
 }

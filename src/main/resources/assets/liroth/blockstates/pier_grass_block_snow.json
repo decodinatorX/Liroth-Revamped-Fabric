@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "liroth:block/pier_grass_top",
+    "bottom": "liroth:block/pier_dirt",
+    "side": "liroth:block/snowy_pier_grass_side",
+    "particle": "liroth:block/pier_dirt"
+  }
+}

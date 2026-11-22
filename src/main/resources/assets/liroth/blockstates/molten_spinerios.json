@@ -1,7 +1,6 @@
 {
-  "variants": {
-    "": {
-      "model": "liroth:block/molten_spinerios"
+    "textures": {
+        "particle": "liroth:block/molten_spinerios_still"
     }
-  }
 }
+

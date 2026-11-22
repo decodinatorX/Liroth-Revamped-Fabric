@@ -1,0 +1,37 @@
+{
+  "parent": "liroth:diamond_tools",
+  "display": {
+    "icon": {
+      "id": "liroth:tourmaline_ingot"
+    },
+    "title": {
+      "translate": "liroth:advancements.story.mine_tourmaline.title"
+    },
+    "description": {
+      "translate": "liroth:advancements.story.mine_tourmaline.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "tourmaline_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "liroth:tourmaline_ingot"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tourmaline_ingot"
+    ]
+  ]
+}

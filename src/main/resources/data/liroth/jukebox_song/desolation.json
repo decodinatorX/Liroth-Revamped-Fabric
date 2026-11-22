@@ -1,0 +1,8 @@
+{
+  "comparator_output": 7,
+  "description": {
+    "translate": "jukebox_song.liroth.desolation"
+  },
+  "length_in_seconds": 144.0,
+  "sound_event": "liroth:music.liroth.desolate"
+}

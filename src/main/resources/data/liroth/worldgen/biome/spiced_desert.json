@@ -27,8 +27,14 @@
       {
         "type": "liroth:soul_arachnid",
         "weight": 100,
-        "minCount": 4,
-        "maxCount": 4
+        "minCount": 1,
+        "maxCount": 2
+      },
+      {
+        "type": "liroth:vile_shark",
+        "weight": 10,
+        "minCount": 1,
+        "maxCount": 1
       }
     ],
     "creature": [],
@@ -51,20 +57,22 @@
     [],
     [],
     [],
+    [
+      "liroth:lirothian_liroth_gem_ore",
+      "liroth:lirothian_cobalt_ore",
+      "liroth:lirothian_petroleum_ore",
+      "liroth:charred_lirothian_liroth_gem_ore"
+    ],
     [],
     [],
     [
       "minecraft:patch_tall_grass",
       "liroth:trees_spiced",
       "minecraft:patch_grass_savanna",
-      "liroth:lirothian_liroth_gem_ore",
-      "liroth:lirothian_cobalt_ore",
-      "liroth:lirothian_petroleum_ore",
-      "liroth:charred_lirothian_liroth_gem_ore",
+      "liroth:vile_tentacle",
       "liroth:liroth_bone_claw",
       "liroth:liroth_bone_mushroom",
-      "liroth:liroth_bone_tree",
-      "liroth:vile_tentacle"
+      "liroth:liroth_bone_tree"
     ],
     []
   ]

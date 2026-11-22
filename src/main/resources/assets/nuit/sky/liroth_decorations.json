@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "type": "decorations",
+  "sun": "liroth:textures/sky/sun.png",
+  "moon": "liroth:textures/sky/liroth_moon_phases.png",
+  "showSun": true,
+  "showMoon": true,
+  "blend": { "type": "decorations" },
+  "properties": { "layer": 1, "rotation": { "skyboxRotation": false, "axis": { "0": [90.0, 0.0, 0.0] } } },
+  "conditions": {
+    "dimensions": { "entries": ["liroth:liroth_dimension"] },
+    "biomes": { "entries": ["liroth:liroth_biome", "liroth:spiced_desert", "liroth:tallpier", "liroth:vile_sea"] }
+  }
+}

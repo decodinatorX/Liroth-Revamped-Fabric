@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    " 7 "
+  ],
+  "key": {
+    "0": {
+      "item": "liroth:liroth_gem_ingot"
+    },
+    "1": {
+      "item": "minecraft:diamond"
+    },
+    "2": {
+      "item": "liroth:liroth_gem_ingot"
+    },
+    "3": {
+      "item": "liroth:liroth_gem_ingot"
+    },
+    "4": {
+      "item": "liroth:liroth_gem_ingot"
+    },
+    "5": {
+      "item": "liroth:liroth_gem_ingot"
+    },
+    "7": {
+      "item": "liroth:liroth_gem_ingot"
+    }
+  },
+  "result": {
+    "id": "liroth:liroth_shield",
+    "count": 1
+  }
+}

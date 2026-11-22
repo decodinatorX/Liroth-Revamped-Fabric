@@ -53,9 +53,7 @@
       "minecraft:lake_lava_underground",
       "minecraft:lake_lava_surface"
     ],
-    [
-      "minecraft:amethyst_geode"
-    ],
+    [],
     [
       "minecraft:monster_room",
       "minecraft:monster_room_deep",
@@ -65,7 +63,20 @@
     [],
     [
       "minecraft:ore_dirt",
-      "minecraft:ore_gravel"
+      "minecraft:ore_gravel",
+      "liroth:spinerios_coal_ore",
+      "liroth:spinerios_copper_ore",
+      "liroth:spinerios_diamond_ore",
+      "liroth:spinerios_emerald_ore",
+      "liroth:spinerios_gold_ore",
+      "liroth:spinerios_iron_ore",
+      "liroth:spinerios_lapis_ore",
+      "liroth:spinerios_liroth_ore",
+      "liroth:spinerios_tourmaline_ore",
+      "liroth:spinerios_jalsphire_ore",
+      "liroth:spinerios_quartz_ore",
+      "liroth:spinerios_redstone_ore",
+      "liroth:spinerios_stone_ore"
     ],
     [
       "minecraft:glow_lichen",
@@ -89,20 +100,7 @@
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",
       "minecraft:patch_sugar_cane",
-      "minecraft:patch_pumpkin",
-      "liroth:spinerios_coal_ore",
-      "liroth:spinerios_copper_ore",
-      "liroth:spinerios_diamond_ore",
-      "liroth:spinerios_emerald_ore",
-      "liroth:spinerios_gold_ore",
-      "liroth:spinerios_iron_ore",
-      "liroth:spinerios_lapis_ore",
-      "liroth:spinerios_liroth_ore",
-      "liroth:spinerios_tourmaline_ore",
-      "liroth:spinerios_jalsphire_ore",
-      "liroth:spinerios_quartz_ore",
-      "liroth:spinerios_redstone_ore",
-      "liroth:spinerios_stone_ore"
+      "minecraft:patch_pumpkin"
     ],
     [
       "minecraft:freeze_top_layer"

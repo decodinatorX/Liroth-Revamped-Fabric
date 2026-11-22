@@ -3,6 +3,6 @@
   "textures": {
     "layer0": "minecraft:item/leather_boots",
     "layer1": "minecraft:item/leather_boots_overlay",
-    "layer2": "liroth:trims/items/boots_trim_potestium"
+    "layer2": "minecraft:trims/items/boots_trim_potestium"
   }
 }

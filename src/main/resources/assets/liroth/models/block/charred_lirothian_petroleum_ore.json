@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "liroth:block/charred_lirothian_petroleum_ore"
+  }
+}

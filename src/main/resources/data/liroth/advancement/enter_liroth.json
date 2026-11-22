@@ -1,0 +1,31 @@
+{
+  "parent": "liroth:root",
+  "display": {
+    "icon": {
+      "id": "liroth:dimensional_communicator"
+    },
+    "title": {
+      "translate": "liroth:advancements.story.enter_liroth.title"
+    },
+    "description": {
+      "translate": "liroth:advancements.story.enter_liroth.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enter_liroth": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "liroth:liroth_dimension"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_liroth"
+    ]
+  ]
+}

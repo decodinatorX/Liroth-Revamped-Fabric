@@ -1,0 +1,6 @@
+{
+  "parent": "bclib:block/chest_item",
+  "textures": {
+	"texture": "liroth:block/chest/japz_chest"
+    }
+}

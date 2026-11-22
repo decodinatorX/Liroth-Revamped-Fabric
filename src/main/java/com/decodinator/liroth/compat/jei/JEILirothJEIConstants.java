@@ -16,6 +16,6 @@ public class JEILirothJEIConstants {
 
 	public static final String TEXTURE_GUI_VANILLA = TEXTURE_GUI_PATH + "gui_liroth.png";
 
-	public static final ResourceLocation RECIPE_GUI_LIROTH_MOD = new ResourceLocation(RESOURCE_DOMAIN, TEXTURE_GUI_VANILLA);
+	public static final ResourceLocation RECIPE_GUI_LIROTH_MOD = ResourceLocation.fromNamespaceAndPath(RESOURCE_DOMAIN, TEXTURE_GUI_VANILLA);
 
 }

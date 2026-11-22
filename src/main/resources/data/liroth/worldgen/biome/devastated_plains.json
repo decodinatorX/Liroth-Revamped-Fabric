@@ -71,8 +71,19 @@
     ],
     [],
     [],
-    [],
-    [],
+    [
+      "liroth:quantum_diamond_ore",
+      "liroth:ruby_ore",
+      "liroth:potestium_ore"
+    ],
+    [
+      "liroth:blackstone_patch_ceiling",
+      "liroth:petrified_moss_patch_ceiling",
+      "liroth:petrified_vine",
+      "liroth:petrified_lush_caves_vegetation",
+      "liroth:petrified_fungus",
+      "liroth:disk_blackstone"
+    ],
     [
       "minecraft:spring_water",
       "minecraft:spring_lava"
@@ -81,17 +92,7 @@
       "minecraft:patch_tall_grass_2",
       "minecraft:patch_grass_plain",
       "liroth:trees_devastated",
-      "liroth:quantum_diamond_ore",
-      "liroth:ruby_ore",
-      "liroth:potestium_ore",
       "liroth:obsidian_spike",
-      "liroth:petrified_crystal_cluster",
-      "liroth:blackstone_patch_ceiling",
-      "liroth:petrified_moss_patch_ceiling",
-      "liroth:petrified_vine",
-      "liroth:petrified_lush_caves_vegetation",
-      "liroth:petrified_fungus",
-      "liroth:disk_blackstone",
       "minecraft:classic_vines_cave_feature"
     ],
     []

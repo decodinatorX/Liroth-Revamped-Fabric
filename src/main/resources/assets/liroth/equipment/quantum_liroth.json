@@ -1,0 +1,9 @@
+{
+  "layers": {
+    "humanoid": [{"texture": "liroth:quantum_liroth"}],
+    "humanoid_leggings": [{"texture": "liroth:quantum_liroth"}],
+    "humanoid_baby": [{"texture": "liroth:quantum_liroth"}],
+    "horse_body": [{"texture": "liroth:horse_armor_quantum_liroth"}],
+    "nautilus_body": [{"texture": "liroth:quantum_liroth"}]
+  }
+}

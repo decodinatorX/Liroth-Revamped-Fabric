@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 1 ",
+    "101",
+    " 1 "
+  ],
+  "key": {
+    "0": {
+      "item": "liroth:spinerios_stone"
+    },
+    "1": {
+      "item": "liroth:jalsphire_gem"
+    }
+  },
+  "result": {
+    "id": "liroth:haunted_throughfare_block",
+    "count": 1
+  }
+}

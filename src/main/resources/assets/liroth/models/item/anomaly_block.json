@@ -1,6 +1,5 @@
 {
   "parent": "liroth:block/anomaly_block",
-    "gui_light": "front",
   "display": {
     "thirdperson": {
       "rotation": [

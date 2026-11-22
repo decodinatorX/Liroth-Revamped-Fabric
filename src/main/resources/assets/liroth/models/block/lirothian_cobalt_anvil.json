@@ -1,0 +1,6 @@
+{
+  "parent": "liroth:block/template_anvil",
+  "textures": {
+    "top": "liroth:block/lirothian_cobalt_anvil_top"
+  }
+}

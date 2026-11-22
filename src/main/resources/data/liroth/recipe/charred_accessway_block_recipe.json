@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 1 ",
+    "101",
+    " 1 "
+  ],
+  "key": {
+    "0": {
+      "item": "liroth:charred_liroth_cobblestone"
+    },
+    "1": {
+      "item": "liroth:liroth_gem_ingot"
+    }
+  },
+  "result": {
+    "id": "liroth:charred_accessway_block",
+    "count": 1
+  }
+}

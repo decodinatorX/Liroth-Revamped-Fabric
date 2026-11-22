@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "group": "diamond",
+  "ingredient": {
+    "item": "liroth:tourmaline_ore"
+  },
+  "result": {
+    "id": "liroth:tourmaline_ingot"
+  },
+  "experience": 1.0,
+  "cookingtime": 200
+}

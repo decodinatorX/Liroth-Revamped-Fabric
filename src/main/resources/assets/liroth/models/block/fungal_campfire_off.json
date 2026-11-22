@@ -1,5 +1,6 @@
 {
     "parent": "block/block",
+  	"render_type": "cutout",
     "display": {
         "head": {
             "rotation": [ 0, 0, 0 ],
@@ -8,8 +9,8 @@
         }
     },
     "textures": {
-        "particle": "liroth:blocks/fungal_campfire_log",
-        "log": "liroth:blocks/fungal_campfire_log"
+        "particle": "liroth:block/fungal_campfire_log",
+        "log": "liroth:block/fungal_campfire_log"
     },
     "elements": [
         {

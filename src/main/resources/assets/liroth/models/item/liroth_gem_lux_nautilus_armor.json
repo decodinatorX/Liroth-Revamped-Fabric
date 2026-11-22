@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "liroth:item/liroth_lux_nautilus_armor"
+  }
+}

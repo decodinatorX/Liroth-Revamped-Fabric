@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": "liroth:liroth_upgrade_smithing_template",
+  "base": "minecraft:netherite_spear",
+  "addition": "liroth:liroth_gem_ingot",
+  "result": {
+    "id": "liroth:liroth_spear"
+  }
+}

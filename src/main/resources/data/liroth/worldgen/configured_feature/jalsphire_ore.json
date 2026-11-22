@@ -12,6 +12,15 @@
         "state": {
           "Name": "liroth:jalsphire_stone_ore"
         }
+      },
+      {
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:deepslate_ore_replaceables"
+        },
+        "state": {
+          "Name": "liroth:jalsphire_deepslate_ore"
+        }
       }
     ]
   }

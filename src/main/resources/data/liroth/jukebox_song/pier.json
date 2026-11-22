@@ -1,0 +1,8 @@
+{
+  "comparator_output": 2,
+  "description": {
+    "translate": "jukebox_song.liroth.pier"
+  },
+  "length_in_seconds": 148.0,
+  "sound_event": "liroth:music.liroth.tallpier_biome"
+}

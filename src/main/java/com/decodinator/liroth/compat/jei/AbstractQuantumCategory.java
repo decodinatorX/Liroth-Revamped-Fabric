@@ -1,13 +1,12 @@
 package com.decodinator.liroth.compat.jei;
 
 import com.decodinator.liroth.Liroth;
-import com.decodinator.liroth.core.LirothBlocks;
-import com.decodinator.liroth.core.helpers.AbstractQuantumRecipe;
-import com.decodinator.liroth.core.helpers.QuantumRecipe;
+import com.decodinator.liroth.core.recipetypes.AbstractQuantumRecipe;
+import com.decodinator.liroth.core.recipetypes.QuantumRecipe;
+import com.decodinator.liroth.core.registry.LirothBlocks;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.mojang.blaze3d.vertex.PoseStack;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -20,6 +19,7 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import net.minecraft.client.resources.language.I18n;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -60,10 +60,6 @@ public abstract class AbstractQuantumCategory<T extends AbstractQuantumRecipe> e
 					}
 				});	}
 
-	@Override
-	public IDrawable getBackground() {
-		return background;
-	}
 
 	@Override
 	public IDrawable getIcon() {
@@ -73,6 +69,21 @@ public abstract class AbstractQuantumCategory<T extends AbstractQuantumRecipe> e
 	@Override
 	public Component getTitle() {
 		return title;
+	}
+
+	@Override
+	public int getWidth() {
+		return background.getWidth();
+	}
+
+	@Override
+	public int getHeight() {
+		return background.getHeight();
+	}
+
+	@Override
+	public void draw(T recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+		background.draw(guiGraphics, 0, 0);
 	}
 	
 	protected IDrawableAnimated getArrow(AbstractQuantumRecipe recipe) {

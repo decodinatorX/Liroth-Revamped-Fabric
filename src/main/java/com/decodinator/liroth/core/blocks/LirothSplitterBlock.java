@@ -2,17 +2,18 @@ package com.decodinator.liroth.core.blocks;
 
 
 import com.decodinator.liroth.Liroth;
-import com.decodinator.liroth.core.LirothParticles;
-import com.decodinator.liroth.core.blocks.entity.LirothSplitterBlockEntity;
-import com.decodinator.liroth.core.blocks.entity.SplitterBlockEntity;
+import com.decodinator.liroth.core.registry.LirothBlockEntities;
+import com.decodinator.liroth.core.registry.LirothParticles;
+import com.decodinator.liroth.core.blockentities.LirothSplitterBlockEntity;
+import com.decodinator.liroth.core.blockentities.SplitterBlockEntity;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -34,6 +35,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 public class LirothSplitterBlock extends BaseEntityBlock {
+    public static final MapCodec<LirothSplitterBlock> CODEC = simpleCodec(LirothSplitterBlock::new);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
@@ -41,7 +43,12 @@ public class LirothSplitterBlock extends BaseEntityBlock {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false)));
 	}
- 
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_48725_) {
         p_48725_.add(FACING, LIT);
@@ -58,17 +65,16 @@ public class LirothSplitterBlock extends BaseEntityBlock {
      }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
-            Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        		if (!pLevel.isClientSide) {
-        			MenuProvider screenHandlerFactory = pState.getMenuProvider(pLevel, pPos);
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        		if (!level.isClientSide) {
+        			MenuProvider screenHandlerFactory = state.getMenuProvider(level, pos);
 
         			if (screenHandlerFactory != null) {
-        				pPlayer.openMenu(screenHandlerFactory);
+        				player.openMenu(screenHandlerFactory);
         			}
         		}
 
-    			return InteractionResult.sidedSuccess(pLevel.isClientSide());
+    			return InteractionResult.sidedSuccess(level.isClientSide());
     	}
 
     @Override
@@ -91,7 +97,7 @@ public class LirothSplitterBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, Liroth.LIROTH_SPLITTER_BLOCK_ENTITY, LirothSplitterBlockEntity::serverTick);
+        return createTickerHelper(type, LirothBlockEntities.LIROTH_SPLITTER, LirothSplitterBlockEntity::serverTick);
     }
     
     @Override

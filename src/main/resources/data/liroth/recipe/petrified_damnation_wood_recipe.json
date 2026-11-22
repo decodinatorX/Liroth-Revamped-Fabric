@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "01",
+    "23"
+  ],
+  "key": {
+    "0": {
+      "item": "liroth:petrified_damnation_log"
+    },
+    "1": {
+      "item": "liroth:petrified_damnation_log"
+    },
+    "2": {
+      "item": "liroth:petrified_damnation_log"
+    },
+    "3": {
+      "item": "liroth:petrified_damnation_log"
+    }
+  },
+  "result": {
+    "id": "liroth:petrified_damnation_bark",
+    "count": 4
+  }
+}

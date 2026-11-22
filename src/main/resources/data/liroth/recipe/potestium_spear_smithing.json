@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": "liroth:quantum_upgrade_smithing_template",
+  "base": "liroth:quantum_spear",
+  "addition": "liroth:potestium_plate",
+  "result": {
+    "id": "liroth:potestium_spear"
+  }
+}

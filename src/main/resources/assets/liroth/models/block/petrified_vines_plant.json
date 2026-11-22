@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/cross",
+  "render_type": "cutout",
   "textures": {
-    "cross": "liroth:blocks/petrified_vines_plant"
+    "cross": "liroth:block/petrified_vines_plant"
   }
 }

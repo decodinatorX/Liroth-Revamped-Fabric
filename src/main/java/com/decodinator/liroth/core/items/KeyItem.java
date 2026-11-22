@@ -1,12 +1,12 @@
 package com.decodinator.liroth.core.items;
 
-import com.decodinator.liroth.core.LirothBlocks;
-
+import com.decodinator.liroth.core.registry.LirothBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
@@ -14,27 +14,54 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 
-public class KeyItem extends Item {
+import java.util.ArrayDeque;
+import java.util.HashSet;
+import java.util.Set;
 
-	public KeyItem(Properties settings) {
-        super(settings);
+public class KeyItem extends Item {
+    public KeyItem() {
+        super(new Item.Properties().durability(1));
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext context) {
-        BlockPos blockPos;
-        Player playerEntity = context.getPlayer();
-        Level world = context.getLevel();
-        BlockState blockState = world.getBlockState(blockPos = context.getClickedPos());
-        if (blockState.is(LirothBlocks.CHARRED_LIROTH_STONE_BRICK_LOCK)) {
-            world.playSound(playerEntity, blockPos, SoundEvents.LODESTONE_COMPASS_LOCK, SoundSource.BLOCKS, 1.0f, world.getRandom().nextFloat() * 0.4f + 0.8f);
-            world.destroyBlock(blockPos, canBeDepleted());
-            world.gameEvent((Entity)playerEntity, GameEvent.BLOCK_DESTROY, blockPos);
-            if (playerEntity != null) {
-                context.getItemInHand().hurtAndBreak(1, playerEntity, p -> p.broadcastBreakEvent(context.getHand()));
+    public InteractionResult useOn(UseOnContext use) {
+        BlockPos pos = use.getClickedPos();
+        Player player = use.getPlayer();
+        Level level = use.getLevel();
+        BlockState state = level.getBlockState(pos);
+
+        if (state.is(LirothBlocks.CHARRED_LIROTH_STONE_BRICK_LOCK)) {
+            level.playSound(player, pos, SoundEvents.LODESTONE_COMPASS_LOCK, SoundSource.BLOCKS, 1.0f, level.getRandom().nextFloat() * 0.4f + 0.8f);
+            destroyConnectedLocks(level, player, pos);
+            if (player != null) {
+                use.getItemInHand().hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
             }
-            return InteractionResult.sidedSuccess(world.isClientSide());
+            return InteractionResult.sidedSuccess(level.isClientSide());
         }
-        return InteractionResult.FAIL;
+        return  InteractionResult.FAIL;
+    }
+
+    private void destroyConnectedLocks(Level level, Player player, BlockPos start) {
+        ArrayDeque<BlockPos> pending = new ArrayDeque<>();
+        Set<BlockPos> visited = new HashSet<>();
+        pending.add(start);
+
+        while (!pending.isEmpty()) {
+            BlockPos pos = pending.removeFirst();
+            if (!visited.add(pos) || !level.getBlockState(pos).is(LirothBlocks.CHARRED_LIROTH_STONE_BRICK_LOCK)) {
+                continue;
+            }
+
+            level.destroyBlock(pos, false);
+            level.gameEvent(player, GameEvent.BLOCK_DESTROY, pos);
+
+            for (Direction direction : Direction.values()) {
+                BlockPos neighbor = pos.relative(direction);
+                if (!visited.contains(neighbor)
+                        && level.getBlockState(neighbor).is(LirothBlocks.CHARRED_LIROTH_STONE_BRICK_LOCK)) {
+                    pending.addLast(neighbor);
+                }
+            }
+        }
     }
 }

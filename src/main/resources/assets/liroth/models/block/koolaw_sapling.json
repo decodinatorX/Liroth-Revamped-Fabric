@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/cross",
+  "render_type": "cutout",
   "textures": {
-    "cross": "liroth:blocks/koolaw_sapling"
+    "cross": "liroth:block/koolaw_sapling"
   }
 }

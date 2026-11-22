@@ -32,7 +32,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "liroth:nova_tower/beta/lirothian_fountain_normal",
+        "location": "liroth:nova_tower/beta/lirothian_tower_fountain_normal",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -68,7 +68,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "liroth:nova_tower/beta/lirothian_fountain_destroyed",
+        "location": "liroth:nova_tower/beta/lirothian_tower_fountain_destroyed",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

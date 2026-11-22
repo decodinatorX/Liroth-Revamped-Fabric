@@ -2,7 +2,7 @@ package com.decodinator.liroth.core.features;
 
 import java.util.function.Consumer;
 
-import com.decodinator.liroth.core.LirothBlocks;
+import com.decodinator.liroth.core.registry.LirothBlocks;
 import com.decodinator.liroth.core.blocks.PointedPetrifiedCrystal;
 
 import net.minecraft.core.BlockPos;

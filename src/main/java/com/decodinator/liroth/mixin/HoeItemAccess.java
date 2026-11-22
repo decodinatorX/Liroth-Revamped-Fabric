@@ -22,7 +22,7 @@ import java.util.function.Predicate;
 public interface HoeItemAccess {
 
     @Invoker("<init>")
-    static HoeItem create(Tier tier, int i, float f, Properties properties) {
+    static HoeItem create(Tier tier, Properties properties) {
         throw new Error("Mixin did not apply");
     }
 

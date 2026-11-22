@@ -5,3 +5,8 @@ accessible field net/minecraft/client/gui/components/LogoRenderer showEasterEgg 
 accessible field net/minecraft/client/gui/components/LogoRenderer keepLogoThroughFade Z
 
 #Methods
+
+
+#Classes
+extendable class net/minecraft/world/level/block/grower/TreeGrower
+extendable class net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator

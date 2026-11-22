@@ -1,0 +1,21 @@
+{
+  "group": "liroth",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 0",
+    " 3 ",
+    "0 0"
+  ],
+  "key": {
+    "0": {
+      "item": "liroth:liroth_gem_ansalum_ingot"
+    },
+    "3": {
+      "item": "liroth:damnation_charge"
+    }
+  },
+  "result": {
+    "id": "liroth:jantiro_charge",
+    "count": 1
+  }
+}

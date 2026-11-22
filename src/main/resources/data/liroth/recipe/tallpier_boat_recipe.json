@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "liroth:tallpier_planks"
+    }
+  },
+  "result": {
+    "id": "liroth:tallpier_boat"
+  }
+}

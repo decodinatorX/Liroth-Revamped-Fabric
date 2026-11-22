@@ -5,7 +5,7 @@ import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 
-import com.decodinator.liroth.core.LirothBlocks;
+import com.decodinator.liroth.core.registry.LirothBlocks;
 import com.google.common.annotations.VisibleForTesting;
 
 import net.minecraft.core.BlockPos;

@@ -1,13 +1,15 @@
 package com.decodinator.liroth.core.blocks;
 
 
-import com.decodinator.liroth.core.LirothBlocks;
-import com.decodinator.liroth.core.LirothFluids;
+import com.decodinator.liroth.core.registry.LirothBlocks;
+import com.decodinator.liroth.core.registry.LirothFluids;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -19,11 +21,10 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class CustomKelpBlock  extends GrowingPlantHeadBlock implements LiquidBlockContainer {
+public class CustomKelpBlock extends GrowingPlantHeadBlock implements LiquidBlockContainer {
 	   protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D);
 	   private static final double GROW_PER_TICK_PROBABILITY = 0.14D;
 
@@ -32,7 +33,7 @@ public class CustomKelpBlock  extends GrowingPlantHeadBlock implements LiquidBlo
 	   }
 
 	   protected boolean canGrowInto(BlockState p_54321_) {
-	      return p_54321_.is(LirothBlocks.LIROTH_FLUID);
+	      return p_54321_.is(LirothBlocks.LIROTH_FLUID_BLOCK);
 	   }
 
 	   protected Block getBodyBlock() {
@@ -43,15 +44,21 @@ public class CustomKelpBlock  extends GrowingPlantHeadBlock implements LiquidBlo
 	      return !p_153455_.is(Blocks.MAGMA_BLOCK);
 	   }
 
-	   public boolean canPlaceLiquid(BlockGetter p_54304_, BlockPos p_54305_, BlockState p_54306_, Fluid p_54307_) {
+	@Override
+	public boolean canPlaceLiquid(@Nullable Player player, BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, Fluid fluid) {
+		return false;
+	}
+
+	public boolean placeLiquid(LevelAccessor p_54309_, BlockPos p_54310_, BlockState p_54311_, FluidState p_54312_) {
 	      return false;
 	   }
 
-	   public boolean placeLiquid(LevelAccessor p_54309_, BlockPos p_54310_, BlockState p_54311_, FluidState p_54312_) {
-	      return false;
-	   }
+	@Override
+	protected MapCodec<? extends GrowingPlantHeadBlock> codec() {
+		return null;
+	}
 
-	   protected int getBlocksToGrowWhenBonemealed(RandomSource p_221366_) {
+	protected int getBlocksToGrowWhenBonemealed(RandomSource p_221366_) {
 	      return 1;
 	   }
 

@@ -16,7 +16,7 @@ import java.util.Map;
 public interface AxeItemAccess {
 
     @Invoker("<init>")
-    static AxeItem create(Tier tier, float f, float g, Properties properties) {
+    static AxeItem create(Tier tier, Properties properties) {
         throw new Error("Mixin did not apply");
     }
 

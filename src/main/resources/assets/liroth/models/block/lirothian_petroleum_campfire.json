@@ -1,7 +1,8 @@
 {
   "parent": "liroth:block/lirothian_petroleum_campfire_template",
+  "render_type": "cutout",
   "textures": {
-    "fire": "liroth:blocks/lirothian_petroleum_campfire_fire",
-    "lit_log": "liroth:blocks/lirothian_petroleum_campfire_log_lit"
+    "fire": "liroth:block/lirothian_petroleum_campfire_fire",
+    "lit_log": "liroth:block/lirothian_petroleum_campfire_log_lit"
   }
 }

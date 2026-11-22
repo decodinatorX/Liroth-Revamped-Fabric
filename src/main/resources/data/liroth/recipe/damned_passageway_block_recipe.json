@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 1 ",
+    "101",
+    " 1 "
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "1": {
+      "item": "liroth:damnation_fungus"
+    }
+  },
+  "result": {
+    "id": "liroth:damned_passageway",
+    "count": 1
+  }
+}

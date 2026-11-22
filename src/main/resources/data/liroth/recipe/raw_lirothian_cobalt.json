@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "liroth:raw_lirothian_cobalt"
+    }
+  ],
+  "result": {
+    "id": "liroth:lirothian_cobalt_raw",
+    "count": 9
+  }
+}

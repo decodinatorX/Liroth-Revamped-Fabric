@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/cross",
+  "render_type": "cutout",
   "textures": {
-    "cross": "liroth:blocks/liroth_sapling"
+    "cross": "liroth:block/liroth_sapling"
   }
 }

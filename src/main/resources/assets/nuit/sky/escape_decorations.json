@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "type": "decorations",
+  "sun": "liroth:textures/sky/jantiro_sun.png",
+  "moon": "liroth:textures/sky/jantiro_moon_phases.png",
+  "showSun": true,
+  "showMoon": true,
+  "blend": { "type": "decorations" },
+  "properties": { "layer": 1, "rotation": { "skyboxRotation": false, "axis": { "0": [90.0, 0.0, 0.0] } } },
+  "conditions": {
+    "dimensions": { "entries": ["liroth:jantiros_escape_dimension"] },
+    "biomes": { "entries": ["liroth:jantiros_biome", "liroth:japz_lush_caves", "liroth:petrified_desert"] }
+  }
+}

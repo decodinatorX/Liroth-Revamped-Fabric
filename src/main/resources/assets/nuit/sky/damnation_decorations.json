@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "type": "decorations",
+  "sun": "liroth:textures/sky/damnation_sun.png",
+  "moon": "liroth:textures/sky/damnation_moon_phases.png",
+  "showSun": true,
+  "showMoon": true,
+  "blend": { "type": "decorations" },
+  "properties": { "layer": 1, "rotation": { "skyboxRotation": false, "axis": { "0": [90.0, 0.0, 0.0] } } },
+  "conditions": {
+    "dimensions": { "entries": ["liroth:damnation"] },
+    "biomes": { "entries": ["liroth:damnation_biome", "liroth:fungal_caverns"] }
+  }
+}

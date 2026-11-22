@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "type": "minecraft:weighted",
+    "entries": [
+      {
+        "weight": 4,
+        "data": {
+          "id": "minecraft:short_grass"
+        }
+      },
+      {
+        "weight": 7,
+        "data": {
+          "id": "minecraft:short_grass"
+        }
+      },
+      {
+        "weight": 25,
+        "data": {
+          "id": "liroth:petrified_moss_carpet"
+        }
+      },
+      {
+        "weight": 50,
+        "data": {
+          "id": "minecraft:short_grass"
+        }
+      },
+      {
+        "weight": 10,
+        "data": {
+          "id": "minecraft:tall_grass",
+          "properties": {
+            "half": "lower"
+          }
+        }
+      }
+    ]
+  }
+}

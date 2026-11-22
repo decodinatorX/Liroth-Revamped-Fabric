@@ -1,7 +1,7 @@
 package com.decodinator.liroth.core.blocks;
 
 
-import com.decodinator.liroth.core.LirothFluids;
+import com.decodinator.liroth.core.registry.LirothFluids;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

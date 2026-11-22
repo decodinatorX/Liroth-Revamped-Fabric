@@ -1,0 +1,8 @@
+{
+  "comparator_output": 3,
+  "description": {
+    "translate": "jukebox_song.liroth.spiced"
+  },
+  "length_in_seconds": 482.0,
+  "sound_event": "liroth:music.liroth.spiced_desert"
+}

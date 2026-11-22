@@ -1,0 +1,76 @@
+{
+  "type": "minecraft:simple_random_selector",
+  "features": [
+    {
+      "feature": {
+        "type": "liroth:pointed_gleemstone_shard",
+        "chance_of_taller_dripstone": 0.35,
+        "chance_of_directional_spread": 0.8,
+        "chance_of_spread_radius2": 0.6,
+        "chance_of_spread_radius3": 0.5
+      },
+      "placement": [
+        {
+          "type": "minecraft:environment_scan",
+          "direction_of_search": "down",
+          "max_steps": 12,
+          "target_condition": {
+            "type": "minecraft:solid"
+          },
+          "allowed_search_condition": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [
+              "minecraft:air",
+              "minecraft:water"
+            ]
+          }
+        },
+        {
+          "type": "minecraft:offset",
+          "x": 0,
+          "y": {
+            "type": "minecraft:uniform",
+            "min_inclusive": -1,
+            "max_inclusive": 1
+          },
+          "z": 0
+        }
+      ]
+    },
+    {
+      "feature": {
+        "type": "liroth:pointed_gleemstone_shard",
+        "chance_of_taller_dripstone": 0.35,
+        "chance_of_directional_spread": 0.8,
+        "chance_of_spread_radius2": 0.6,
+        "chance_of_spread_radius3": 0.5
+      },
+      "placement": [
+        {
+          "type": "minecraft:environment_scan",
+          "direction_of_search": "up",
+          "max_steps": 12,
+          "target_condition": {
+            "type": "minecraft:solid"
+          },
+          "allowed_search_condition": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [
+              "minecraft:air",
+              "minecraft:water"
+            ]
+          }
+        },
+        {
+          "type": "minecraft:offset",
+          "x": 0,
+          "y": {
+            "type": "minecraft:constant",
+            "value": -1
+          },
+          "z": 0
+        }
+      ]
+    }
+  ]
+}

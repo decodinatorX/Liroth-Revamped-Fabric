@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "liroth:block/liroth_portal_frame"
+    },
+    "lit=true": {
+      "model": "liroth:block/liroth_portal_frame_active"
+    }
+  }
+}

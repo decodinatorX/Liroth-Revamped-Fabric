@@ -1,8 +1,8 @@
 package com.decodinator.liroth.core.fluids;
 
-import com.decodinator.liroth.core.LirothBlocks;
-import com.decodinator.liroth.core.LirothFluids;
-import com.decodinator.liroth.core.LirothItems;
+import com.decodinator.liroth.core.registry.LirothBlocks;
+import com.decodinator.liroth.core.registry.LirothFluids;
+import com.decodinator.liroth.core.registry.LirothItems;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
@@ -30,7 +30,7 @@ public abstract class LirothFluid extends WaterTypeFluid {
  
 	@Override
 	protected BlockState createLegacyBlock(FluidState fluidState) {
-		return LirothBlocks.LIROTH_FLUID.defaultBlockState().setValue(LiquidBlock.LEVEL, getLegacyLevel(fluidState));
+		return LirothBlocks.LIROTH_FLUID_BLOCK.defaultBlockState().setValue(LiquidBlock.LEVEL, getLegacyLevel(fluidState));
 	}
  
 	public static class Flowing extends LirothFluid {

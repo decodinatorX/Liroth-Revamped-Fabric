@@ -1,7 +1,8 @@
 {
   "type": "liroth:damnation",
   "generator": {
-    "type": "minecraft:noise",
+    "type": "liroth:dimension_seeded",
+    "seed_salt": 4918543167209,
     "settings": "liroth:damnation",
     "biome_source": {
       "type": "minecraft:multi_noise",

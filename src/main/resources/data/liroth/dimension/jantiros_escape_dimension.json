@@ -1,7 +1,8 @@
 {
   "type": "liroth:jantiros_escape_dimension",
   "generator": {
-    "type": "minecraft:noise",
+    "type": "liroth:dimension_seeded",
+    "seed_salt": 6841729351027,
     "settings": "liroth:jantiros_escape_dimension",
     "biome_source": {
       "type": "minecraft:multi_noise",

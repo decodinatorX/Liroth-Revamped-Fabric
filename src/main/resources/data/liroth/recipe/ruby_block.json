@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "liroth:ruby_ingot"
+    }
+  },
+  "result": {
+    "id": "liroth:ruby_block"
+  }
+}

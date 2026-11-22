@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " ! ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "!": {
+      "item": "liroth:damnation_fungus"
+    }
+  },
+  "result": {
+    "id": "liroth:fungal_torch",
+    "count": 4
+  }
+}

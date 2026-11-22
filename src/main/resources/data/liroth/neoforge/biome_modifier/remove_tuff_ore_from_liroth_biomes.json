@@ -1,0 +1,18 @@
+{
+  "type": "neoforge:remove_features",
+  "biomes": [
+    "liroth:liroth_biome",
+    "liroth:damnation_biome",
+    "liroth:devastated_plains",
+    "liroth:fungal_caverns",
+    "liroth:jalsphire_plains",
+    "liroth:jantiros_biome",
+    "liroth:japz_lush_caves",
+    "liroth:petrified_desert",
+    "liroth:spiced_desert",
+    "liroth:tallpier",
+    "liroth:vile_sea"
+  ],
+  "features": "minecraft:ore_tuff",
+  "steps": "underground_ores"
+}

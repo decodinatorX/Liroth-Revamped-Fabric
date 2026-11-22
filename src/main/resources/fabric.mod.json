@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "liroth",
-  "version": "1.3.4",
+  "version": "2.0.0",
 
   "name": "Liroth",
   "description": "The Revamped Version of Liroth: The Mod Of Alternate Dimensions!",
@@ -10,40 +10,38 @@
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/decodinatorX/Liroth-1.18.1"
+    "sources": "https://github.com/decodinatorX/Liroth-Revamped-Fabric"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/liroth/icon.png",
+  "icon": "icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
       "com.decodinator.liroth.Liroth"
     ],
-    "client": [ 
-    	"com.decodinator.liroth.LirothClient"
+    "client": [
+      "com.decodinator.liroth.client.LirothClient"
     ],
   	"jei_mod_plugin": [
     	"com.decodinator.liroth.compat.jei.LirothJEI"
-  	],
-    "modmenu": [
-      	"com.decodinator.liroth.LirothModMenuIntegration"
-    ]
+  	]
   },
   "accessWidener" : "liroth.accesswidener",
   "mixins": [
     "liroth.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.9",
+    "fabricloader": ">=0.19.5",
     "fabric": "*",
-    "minecraft": "~1.20.1",
+    "minecraft": "~1.21.1",
     "java": ">=17",
-	"bclib": "3.0.x"
+	"bclib": "21.0.x",
+    "geckolib": ">=4.5.8",
+    "nuit": ">=1.0.0-beta.6"
   },
   "suggests": {
-    "fabricskyboxes": ">=0.5.8",
-    "patchouli": ">=76"
+    "patchouli": ">=87"
   }
 }

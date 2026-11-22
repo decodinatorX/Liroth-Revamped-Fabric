@@ -1,0 +1,12 @@
+{
+
+  "type": "minecraft:smelting",
+  "experience": 0,
+  "cookingtime": 200,
+  "ingredient": {
+    "item": "liroth:liroth_dust_salem"
+  },
+  "result": {
+    "id":  "liroth:liroth_gem_salem_ingot"
+  }
+}

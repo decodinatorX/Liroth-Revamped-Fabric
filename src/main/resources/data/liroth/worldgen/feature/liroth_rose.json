@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "type": "minecraft:noise",
+    "seed": 2345,
+    "noise": {
+      "base_octave": 0,
+      "amplitudes": [
+        1
+      ]
+    },
+    "scale": 0.020833334,
+    "states": [
+      {
+        "id": "liroth:liroth_rose"
+      }
+    ]
+  }
+}

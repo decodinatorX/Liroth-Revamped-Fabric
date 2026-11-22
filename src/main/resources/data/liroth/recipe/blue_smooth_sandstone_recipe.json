@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "01",
+    "23"
+  ],
+  "key": {
+    "0": {
+      "item": "liroth:blue_sandstone"
+    },
+    "1": {
+      "item": "liroth:blue_sandstone"
+    },
+    "2": {
+      "item": "liroth:blue_sandstone"
+    },
+    "3": {
+      "item": "liroth:blue_sandstone"
+    }
+  },
+  "result": {
+    "id": "liroth:smooth_blue_sandstone",
+    "count": 4
+  }
+}

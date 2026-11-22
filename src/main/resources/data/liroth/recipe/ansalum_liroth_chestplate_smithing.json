@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "liroth:liroth_upgrade_smithing_template"
+  },
+  "base": {
+    "item": "liroth:liroth_gem_chestplate"
+  },
+  "addition": {
+    "item": "liroth:liroth_gem_ansalum_ingot"
+  },
+  "result": {
+    "id": "liroth:liroth_gem_ansalum_chestplate"
+  }
+}

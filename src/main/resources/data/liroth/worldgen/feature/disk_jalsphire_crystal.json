@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:disk",
+  "half_height": 2,
+  "radius": {
+    "type": "minecraft:uniform",
+    "max_inclusive": 3,
+    "min_inclusive": 2
+  },
+  "state_provider": {
+    "id": "liroth:jalsphire_crystal_block"
+  },
+  "target": {
+    "type": "minecraft:matching_blocks",
+    "blocks": [
+      "liroth:spinerios_stone"
+    ]
+  }
+}

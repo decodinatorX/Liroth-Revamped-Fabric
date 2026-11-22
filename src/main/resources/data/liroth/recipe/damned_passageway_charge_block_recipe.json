@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "212",
+    "101",
+    "212"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "1": {
+      "item": "liroth:damnation_fungus"
+    },
+    "2": {
+      "item": "liroth:purpetuated_amethyst_shard"
+    }
+  },
+  "result": {
+    "id": "liroth:jantiro_portal_frame",
+    "count": 1
+  }
+}

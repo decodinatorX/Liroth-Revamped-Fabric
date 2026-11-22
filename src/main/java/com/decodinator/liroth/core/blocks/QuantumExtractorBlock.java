@@ -2,15 +2,16 @@ package com.decodinator.liroth.core.blocks;
 
 
 import com.decodinator.liroth.Liroth;
-import com.decodinator.liroth.core.blocks.entity.QuantumBlockEntity;
-import com.decodinator.liroth.core.blocks.entity.QuantumExtractorBlockEntity;
+import com.decodinator.liroth.core.blockentities.QuantumBlockEntity;
+import com.decodinator.liroth.core.blockentities.QuantumExtractorBlockEntity;
 
+import com.decodinator.liroth.core.registry.LirothBlockEntities;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -33,6 +34,7 @@ import org.jetbrains.annotations.Nullable;
 
 
 public class QuantumExtractorBlock extends BaseEntityBlock {
+    public static final MapCodec<QuantumExtractorBlock> CODEC = simpleCodec(QuantumExtractorBlock::new);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
@@ -40,7 +42,12 @@ public class QuantumExtractorBlock extends BaseEntityBlock {
         super(settings);
         registerDefaultState(this.stateDefinition.any().setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).setValue(LIT, false));
 	}
- 
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, LIT);
@@ -57,17 +64,16 @@ public class QuantumExtractorBlock extends BaseEntityBlock {
      }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
-            Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        		if (!pLevel.isClientSide) {
-        			MenuProvider screenHandlerFactory = pState.getMenuProvider(pLevel, pPos);
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        		if (!level.isClientSide) {
+        			MenuProvider screenHandlerFactory = state.getMenuProvider(level, pos);
 
         			if (screenHandlerFactory != null) {
-        				pPlayer.openMenu(screenHandlerFactory);
+        				player.openMenu(screenHandlerFactory);
         			}
         		}
 
-    			return InteractionResult.sidedSuccess(pLevel.isClientSide());
+    			return InteractionResult.sidedSuccess(level.isClientSide());
     	}
 
     @Override
@@ -90,7 +96,7 @@ public class QuantumExtractorBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, Liroth.QUANTUM_EXTRACTOR_BLOCK_ENTITY, QuantumExtractorBlockEntity::serverTick);
+        return createTickerHelper(type, LirothBlockEntities.QUANTUM_EXTRACTOR, QuantumExtractorBlockEntity::serverTick);
     }
     
     @Override

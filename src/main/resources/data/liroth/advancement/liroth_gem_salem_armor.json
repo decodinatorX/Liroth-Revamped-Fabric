@@ -1,0 +1,77 @@
+{
+  "parent": "liroth:liroth_gem_salem",
+  "display": {
+    "icon": {
+      "id": "liroth:liroth_gem_salem_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "liroth:advancements.liroth.liroth_gem_salem_armor.title"
+    },
+    "description": {
+      "translate": "liroth:advancements.liroth.liroth_gem_salem_armor.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "liroth_gem_salem_helmet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "liroth:liroth_gem_salem_helmet"
+            ]
+          }
+        ]
+      }
+    },
+    "liroth_gem_salem_chestplate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "liroth:liroth_gem_salem_chestplate"
+            ]
+          }
+        ]
+      }
+    },
+    "liroth_gem_salem_leggings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "liroth:liroth_gem_salem_leggings"
+            ]
+          }
+        ]
+      }
+    },
+    "liroth_gem_salem_boots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "liroth:liroth_gem_salem_boots"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "liroth_gem_salem_helmet",
+      "liroth_gem_salem_chestplate",
+      "liroth_gem_salem_leggings",
+      "liroth_gem_salem_boots"
+    ]
+  ]
+}

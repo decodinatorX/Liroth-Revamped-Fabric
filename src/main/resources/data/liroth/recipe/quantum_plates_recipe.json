@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "liroth:quantum_plate_block"
+    }
+  ],
+  "result": {
+    "id": "liroth:quantum_plate",
+    "count": 9
+  }
+}

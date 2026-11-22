@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:spring_feature",
+  "state": {
+    "id": "minecraft:lava",
+    "properties": {
+      "falling": "true"
+    }
+  },
+  "rock_count": 4,
+  "hole_count": 1,
+  "requires_block_below": true,
+  "valid_blocks": [
+    "liroth:liroth_stone",
+    "liroth:liroth_soul_sand",
+    "liroth:liroth_soul_sand",
+    "minecraft:magma_block",
+    "minecraft:blackstone"
+  ]
+}

@@ -1,6 +1,12 @@
 {
   "type": "minecraft:disk",
   "config": {
+    "half_height": 2,
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 5,
+      "min_inclusive": 2
+    },
     "state_provider": {
       "fallback": {
         "type": "minecraft:simple_state_provider",
@@ -16,14 +22,6 @@
         "liroth:liroth_dirt",
         "liroth:liroth_grass_block"
       ]
-    },
-    "radius": {
-      "type": "minecraft:uniform",
-      "value": {
-        "min_inclusive": 2,
-        "max_inclusive": 5
-      }
-    },
-    "half_height": 2
+    }
   }
 }

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "liroth:purpetuated_amethyst_shard",
+      "count": 4
+    }
+  ],
+  "result": {
+    "id": "liroth:gatway_block",
+    "count": 1
+  }
+}

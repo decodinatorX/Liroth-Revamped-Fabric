@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "type": "square-textured",
+  "texture": "liroth:textures/sky/petrified_nuit.png",
+  "blend": { "type": "normal" },
+  "properties": { "layer": 0 },
+  "conditions": {
+    "dimensions": { "entries": ["liroth:devastated_plains"] },
+    "biomes": { "entries": ["liroth:devastated_plains"] }
+  }
+}

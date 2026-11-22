@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "liroth:liroth_planks"
+    }
+  },
+  "result": {
+    "id": "liroth:liroth_boat"
+  }
+}

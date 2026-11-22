@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "type": "square-textured",
+  "texture": "liroth:textures/sky/liroth_nuit.png",
+  "blend": { "type": "normal" },
+  "properties": { "layer": 0 },
+  "conditions": {
+    "dimensions": { "entries": ["liroth:liroth_dimension"] },
+    "biomes": { "entries": ["liroth:liroth_biome", "liroth:spiced_desert", "liroth:tallpier", "liroth:vile_sea"] }
+  }
+}

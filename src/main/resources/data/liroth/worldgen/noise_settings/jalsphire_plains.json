@@ -1,7 +1,7 @@
 {
-  "sea_level": 63,
+  "sea_level": -64,
   "disable_mob_generation": false,
-  "aquifers_enabled": true,
+  "aquifers_enabled": false,
   "ore_veins_enabled": true,
   "legacy_random_source": false,
   "default_block": {
@@ -62,7 +62,7 @@
       "shift_y": 0,
       "shift_z": "minecraft:shift_z"
     },
-    "continents": "minecraft:overworld/continents",
+    "continents": 1.0,
     "erosion": "minecraft:overworld/erosion",
     "depth": "minecraft:overworld/depth",
     "ridges": "minecraft:overworld/ridges",

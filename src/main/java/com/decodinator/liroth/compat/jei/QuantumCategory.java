@@ -1,7 +1,7 @@
 package com.decodinator.liroth.compat.jei;
 
-import com.decodinator.liroth.core.LirothBlocks;
-import com.decodinator.liroth.core.helpers.QuantumRecipe;
+import com.decodinator.liroth.core.registry.LirothBlocks;
+import com.decodinator.liroth.core.recipetypes.QuantumRecipe;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.RecipeType;
 

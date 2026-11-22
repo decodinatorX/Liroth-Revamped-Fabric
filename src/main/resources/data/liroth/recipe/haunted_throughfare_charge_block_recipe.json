@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "212",
+    "101",
+    "212"
+  ],
+  "key": {
+    "0": {
+      "item": "liroth:spinerios_stone"
+    },
+    "1": {
+      "item": "liroth:jalsphire_gem"
+    },
+    "2": {
+      "item": "liroth:purpetuated_amethyst_shard"
+    }
+  },
+  "result": {
+    "id": "liroth:jalsphire_portal_frame",
+    "count": 1
+  }
+}

@@ -40,8 +40,14 @@
       {
         "type": "liroth:pier_peep",
         "weight": 100,
-        "minCount": 5,
-        "maxCount": 25
+        "minCount": 1,
+        "maxCount": 2
+      },
+      {
+        "type": "liroth:vile_shark",
+        "weight": 10,
+        "minCount": 1,
+        "maxCount": 2
       }
     ],
     "creature": [],
@@ -64,19 +70,21 @@
     [],
     [],
     [],
+    [
+      "liroth:lirothian_liroth_gem_ore",
+      "liroth:lirothian_cobalt_ore",
+      "liroth:lirothian_petroleum_ore",
+      "liroth:charred_lirothian_liroth_gem_ore"
+    ],
     [],
     [],
     [
       "liroth:trees_tallpier",
       "minecraft:patch_grass_jungle",
-      "liroth:lirothian_liroth_gem_ore",
-      "liroth:lirothian_cobalt_ore",
-      "liroth:lirothian_petroleum_ore",
-      "liroth:charred_lirothian_liroth_gem_ore",
+      "liroth:vile_tentacle",
       "liroth:liroth_bone_claw",
       "liroth:liroth_bone_mushroom",
-      "liroth:liroth_bone_tree",
-      "liroth:vile_tentacle"
+      "liroth:liroth_bone_tree"
     ],
     []
   ]

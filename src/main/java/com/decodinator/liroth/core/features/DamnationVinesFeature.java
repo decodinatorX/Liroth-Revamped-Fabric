@@ -19,7 +19,7 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 public class DamnationVinesFeature
-extends Feature<NoneFeatureConfiguration> {
+        extends Feature<NoneFeatureConfiguration> {
     private static final Direction[] DIRECTIONS = Direction.values();
 
     public DamnationVinesFeature(Codec<NoneFeatureConfiguration> codec) {
@@ -28,7 +28,7 @@ extends Feature<NoneFeatureConfiguration> {
 
     @Override
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-    	WorldGenLevel structureWorldAccess = context.level();
+        WorldGenLevel structureWorldAccess = context.level();
         BlockPos blockPos = context.origin();
         RandomSource random = context.random();
         if (!structureWorldAccess.isEmptyBlock(blockPos)) {
@@ -63,7 +63,7 @@ extends Feature<NoneFeatureConfiguration> {
     }
 
     private void generateVinesInArea(LevelAccessor world, RandomSource random, BlockPos pos) {
-    	MutableBlockPos mutable = new MutableBlockPos();
+        MutableBlockPos mutable = new MutableBlockPos();
         for (int i = 0; i < 100; ++i) {
             BlockState blockState;
             mutable.setWithOffset(pos, random.nextInt(8) - random.nextInt(8), random.nextInt(2) - random.nextInt(7), random.nextInt(8) - random.nextInt(8));

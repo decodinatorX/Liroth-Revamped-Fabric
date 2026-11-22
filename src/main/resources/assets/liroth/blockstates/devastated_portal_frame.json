@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "liroth:block/devastated_portal_frame"
+    },
+    "lit=true": {
+      "model": "liroth:block/devastated_portal_frame_active"
+    }
+  }
+}

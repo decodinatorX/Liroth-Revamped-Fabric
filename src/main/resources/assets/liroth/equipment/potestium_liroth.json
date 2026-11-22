@@ -1,0 +1,9 @@
+{
+  "layers": {
+    "humanoid": [{"texture": "liroth:potestium_liroth"}],
+    "humanoid_leggings": [{"texture": "liroth:potestium_liroth"}],
+    "humanoid_baby": [{"texture": "liroth:potestium_liroth"}],
+    "horse_body": [{"texture": "liroth:horse_armor_potestium_liroth"}],
+    "nautilus_body": [{"texture": "liroth:potestium_liroth"}]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "type": "liroth:zenith",
+  "texture": "liroth:textures/sky/jantiro_sky_dome.png",
+  "blend": { "type": "normal" },
+  "properties": { "layer": 0 },
+  "conditions": {
+    "dimensions": { "entries": ["liroth:jantiros_escape_dimension"] },
+    "biomes": { "entries": ["liroth:jantiros_biome", "liroth:japz_lush_caves", "liroth:petrified_desert"] }
+  }
+}

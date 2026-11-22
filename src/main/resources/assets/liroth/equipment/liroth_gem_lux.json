@@ -1,0 +1,8 @@
+{
+  "layers": {
+    "humanoid": [{"texture": "liroth:liroth_gem_lux"}],
+    "humanoid_leggings": [{"texture": "liroth:liroth_gem_lux"}],
+    "humanoid_baby": [{"texture": "liroth:liroth_gem_lux"}],
+    "nautilus_body": [{"texture": "liroth:liroth_gem_lux"}]
+  }
+}

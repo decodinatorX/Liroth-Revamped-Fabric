@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "liroth:block/lirothian_cobalt_anvil",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "liroth:block/lirothian_cobalt_anvil",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "liroth:block/lirothian_cobalt_anvil"
+    },
+    "facing=west": {
+      "model": "liroth:block/lirothian_cobalt_anvil",
+      "y": 90
+    }
+  }
+}

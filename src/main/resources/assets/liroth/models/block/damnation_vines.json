@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/cross",
+  "render_type": "cutout",
   "textures": {
-    "cross": "liroth:blocks/damnation_vines"
+    "cross": "liroth:block/damnation_vines"
   }
 }

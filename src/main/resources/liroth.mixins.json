@@ -5,20 +5,14 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AxeItemAccess",
-    "ClientPlayerEntityMixin",
-    "CropBlockMixin",
-    "DirtPathBlockAccess",
-    "DoorBlockAccess",
+    "ChunkGeneratorMixin",
+    "ExplosionMixin",
     "HoeItemAccess",
     "ItemBlockRenderTypeAccess",
-    "PressurePlateBlockAccess",
-    "ShovelItemAccess",
-    "StairBlockAccess",
-    "TrapDoorBlockAccess",
-    "WoodButtonBlockAccess"
+    "RandomStateAccessor",
+    "ShovelItemAccess"
   ],
   "client": [
-    "RedirectTitleScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

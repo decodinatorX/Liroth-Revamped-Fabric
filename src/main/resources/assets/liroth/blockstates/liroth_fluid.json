@@ -1,7 +1,9 @@
 {
-  "variants": {
-    "": {
-      "model": "liroth:block/liroth_fluid"
+  "multipart": [
+    {
+      "apply": {
+        "model": "minecraft:block/air"
+      }
     }
-  }
+  ]
 }

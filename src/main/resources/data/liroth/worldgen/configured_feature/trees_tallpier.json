@@ -15,6 +15,6 @@
         "feature": "liroth:tallpier_checked"
       }
     ],
-    "default": "liroth:tallpier_tree"
+    "default": "liroth:tallpier_checked"
   }
 }

@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "liroth:damnation_portal_frame"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "liroth:damnation_charge",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "liroth:damnation_portal_frame",
+              "properties": { "lit": "true" }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

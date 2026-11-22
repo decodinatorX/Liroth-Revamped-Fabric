@@ -1,0 +1,12 @@
+{
+
+  "type": "minecraft:smelting",
+  "experience": 0,
+  "cookingtime": 200,
+  "ingredient": {
+    "item": "liroth:liroth_gem_raw"
+  },
+  "result":  {
+    "id": "liroth:liroth_gem_ingot"
+  }
+}

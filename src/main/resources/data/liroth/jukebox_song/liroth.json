@@ -1,0 +1,8 @@
+{
+  "comparator_output": 1,
+  "description": {
+    "translate": "jukebox_song.liroth.liroth"
+  },
+  "length_in_seconds": 158.0,
+  "sound_event": "liroth:music.liroth.liroth_biome"
+}

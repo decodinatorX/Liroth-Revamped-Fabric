@@ -1,10 +1,12 @@
 package com.decodinator.liroth.compat.jei;
 
 import com.decodinator.liroth.Liroth;
-import com.decodinator.liroth.core.LirothBlocks;
-import com.decodinator.liroth.core.LirothRecipeTypes;
-import com.decodinator.liroth.core.blocks.entity.LirothSplitterScreen;
-import com.decodinator.liroth.core.blocks.entity.QuantumExtractorScreen;
+import com.decodinator.liroth.core.recipetypes.QuantumRecipe;
+import com.decodinator.liroth.core.recipetypes.SplitterRecipe;
+import com.decodinator.liroth.core.registry.LirothBlocks;
+import com.decodinator.liroth.core.registry.LirothRecipeTypes;
+import com.decodinator.liroth.client.screens.LirothSplitterScreen;
+import com.decodinator.liroth.client.screens.QuantumExtractorScreen;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -14,16 +16,16 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
-import mezz.jei.api.runtime.IIngredientManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 public class LirothJEI implements IModPlugin {
-    public final static ResourceLocation PLUGIN_ID = new ResourceLocation(Liroth.MOD_ID, "jei_plugin");
+    public final static ResourceLocation PLUGIN_ID = ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "jei_plugin");
 
-	public void registerCategories(IRecipeCategoryRegistration registration) {
+    @Override
+    public void registerCategories(IRecipeCategoryRegistration registration) {
         IModPlugin.super.registerCategories(registration);
 
         IJeiHelpers jeiHelpers = registration.getJeiHelpers();
@@ -37,13 +39,14 @@ public class LirothJEI implements IModPlugin {
 	@Override
     public void registerRecipes(IRecipeRegistration registration) {
         Minecraft minecraft = Minecraft.getInstance();
-        ClientLevel world = minecraft.level;
-        var recipeManager = world.getRecipeManager();
-        IIngredientManager ingredientManager = registration.getIngredientManager();
-
         IModPlugin.super.registerRecipes(registration);
-        registration.addRecipes(QuantumCategory.TYPE, recipeManager.getAllRecipesFor(LirothRecipeTypes.QUANTUM_EXTRACTION));
-        registration.addRecipes(SplitterCategory.TYPE, recipeManager.getAllRecipesFor(LirothRecipeTypes.LIROTH_SPLITTING));
+        ClientLevel world = minecraft.level;
+        if (world == null) {
+            return;
+        }
+        var recipeManager = world.getRecipeManager();
+        registration.addRecipes(QuantumCategory.TYPE, recipeManager.getAllRecipesFor(LirothRecipeTypes.QUANTUM_EXTRACTION).stream().map(holder -> (QuantumRecipe) holder.value()).toList());
+        registration.addRecipes(SplitterCategory.TYPE, recipeManager.getAllRecipesFor(LirothRecipeTypes.LIROTH_SPLITTING).stream().map(holder -> (SplitterRecipe) holder.value()).toList());
     }
     
     @Override

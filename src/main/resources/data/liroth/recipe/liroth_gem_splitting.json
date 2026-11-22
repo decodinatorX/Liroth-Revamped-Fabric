@@ -1,0 +1,27 @@
+{
+  "type": "liroth:liroth_splitting",
+  "id": "liroth:liroth_gem_splitting",
+  "ingredient": {
+    "item": "liroth:liroth_gem_ingot"
+  },
+  "result": {
+    "id": "liroth:liroth_dust_ansalum",
+    "count": 1
+  },
+  "bonus": {
+    "percent": 100,
+    "bonus": {
+      "id": "liroth:liroth_dust_lux",
+      "count": 1
+    }
+  },
+  "bonus2": {
+    "percent": 100,
+    "bonus": {
+      "id": "liroth:liroth_dust_salem",
+      "count": 1
+    }
+  },
+  "experience": 0.0,
+  "cookingtime": 200
+}

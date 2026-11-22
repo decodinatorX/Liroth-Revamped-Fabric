@@ -1,0 +1,6 @@
+{
+  "parent": "block/button",
+  "textures": {
+    "texture": "liroth:block/charred_liroth_stone"
+  }
+}

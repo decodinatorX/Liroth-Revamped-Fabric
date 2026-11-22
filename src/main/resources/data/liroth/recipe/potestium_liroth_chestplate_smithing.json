@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "liroth:quantum_upgrade_smithing_template"
+  },
+  "base": {
+    "item": "liroth:liroth_gem_chestplate"
+  },
+  "addition": {
+    "item": "liroth:potestium_plate"
+  },
+  "result": {
+    "id": "liroth:potestium_liroth_chestplate"
+  }
+}
