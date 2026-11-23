@@ -2,7 +2,7 @@
   "parent": "liroth:enter_liroth",
   "display": {
     "icon": {
-      "id": "liroth:vile_tentacle"
+      "id": "liroth:vile_shark_spawn_egg"
     },
     "title": {
       "translate": "liroth:advancements.story.vile_shark.title"

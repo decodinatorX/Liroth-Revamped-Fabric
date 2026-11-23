@@ -2,7 +2,7 @@
   "parent": "liroth:liroth_gem_ansalum",
   "display": {
     "icon": {
-      "id": "liroth:ansalum_liroth_axe"
+      "id": "liroth:liroth_gem_ansalum_axe"
     },
     "title": {
       "translate": "liroth:advancements.liroth.liroth_gem_ansalum_axe.title"
@@ -22,7 +22,7 @@
         "items": [
           {
             "items": [
-              "liroth:ansalum_liroth_axe"
+              "liroth:liroth_gem_ansalum_axe"
             ]
           }
         ]

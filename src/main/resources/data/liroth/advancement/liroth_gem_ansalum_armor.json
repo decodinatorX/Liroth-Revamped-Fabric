@@ -2,7 +2,7 @@
   "parent": "liroth:liroth_gem_ansalum",
   "display": {
     "icon": {
-      "id": "liroth:liroth_gem_anslaum_chestplate",
+      "id": "liroth:liroth_gem_ansalum_chestplate",
       "nbt": "{Damage:0}"
     },
     "title": {
@@ -17,49 +17,49 @@
     "hidden": false
   },
   "criteria": {
-    "liroth_gem_anslaum_helmet": {
+    "liroth_gem_ansalum_helmet": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "liroth:liroth_gem_anslaum_helmet"
+              "liroth:liroth_gem_ansalum_helmet"
             ]
           }
         ]
       }
     },
-    "liroth_gem_anslaum_chestplate": {
+    "liroth_gem_ansalum_chestplate": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "liroth:liroth_gem_anslaum_chestplate"
+              "liroth:liroth_gem_ansalum_chestplate"
             ]
           }
         ]
       }
     },
-    "liroth_gem_anslaum_leggings": {
+    "liroth_gem_ansalum_leggings": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "liroth:liroth_gem_anslaum_leggings"
+              "liroth:liroth_gem_ansalum_leggings"
             ]
           }
         ]
       }
     },
-    "liroth_gem_anslaum_boots": {
+    "liroth_gem_ansalum_boots": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "liroth:liroth_gem_anslaum_boots"
+              "liroth:liroth_gem_ansalum_boots"
             ]
           }
         ]
@@ -68,10 +68,10 @@
   },
   "requirements": [
     [
-      "liroth_gem_anslaum_helmet",
-      "liroth_gem_anslaum_chestplate",
-      "liroth_gem_anslaum_leggings",
-      "liroth_gem_anslaum_boots"
+      "liroth_gem_ansalum_helmet",
+      "liroth_gem_ansalum_chestplate",
+      "liroth_gem_ansalum_leggings",
+      "liroth_gem_ansalum_boots"
     ]
   ]
 }

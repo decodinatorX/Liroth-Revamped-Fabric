@@ -3,7 +3,7 @@
   "id": "liroth:liroth_gem_to_liroth_gem_variants",
   "group": "liroth_gem",
   "ingredient": {
-    "item": "liroth:liroth_gem"
+    "item": "liroth:liroth_gem_ingot"
   },
   "result": {"id":"liroth:liroth_dust_ansalum"},
   "bonus": {

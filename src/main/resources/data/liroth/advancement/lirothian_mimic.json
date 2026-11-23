@@ -2,7 +2,7 @@
   "parent": "liroth:enter_liroth",
   "display": {
     "icon": {
-      "id": "liroth:liroth_chest"
+      "id": "liroth:lirothian_mimic_spawn_egg"
     },
     "title": {
       "translate": "liroth:advancements.story.lirothian_mimic.title"

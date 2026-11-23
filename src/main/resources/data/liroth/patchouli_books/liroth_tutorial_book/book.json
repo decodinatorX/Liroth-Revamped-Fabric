@@ -1,10 +1,10 @@
 {
 	"name": "Liroth Tutorial Book",
-	"landing_text": " I've constructed this book in a timely fashion with the help of that odd rose I found.",
-	"version": 1,
+	"landing_text": "   Upon creating this book, you've discovered that words that you did not write have made themselves at home, words not from your own mind or hand, someone else is writing these entries... someone elsewhere?",
+	"version": "1",
 	"book_texture": "patchouli:textures/gui/book_purple.png",
     "model": "liroth:liroth_tutorial_book",
-	"creative_tab": "liroth:itemgroup.liroth.liroth_items",
+	"creative_tab": "liroth:liroth_items",
 	"show_progress": false,
 	"use_resource_pack": true
 }

@@ -2,7 +2,7 @@
   "parent": "liroth:enter_liroth",
   "display": {
     "icon": {
-      "id": "liroth:liroth_soul_dust"
+      "id": "liroth:forsaken_corpse_spawn_egg"
     },
     "title": {
       "translate": "liroth:advancements.story.forsaken_corpse.title"

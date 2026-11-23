@@ -2,7 +2,7 @@
   "parent": "liroth:enter_damnation",
   "display": {
     "icon": {
-      "id": "liroth:fungal_torch"
+      "id": "liroth:fungal_fiend_spawn_egg"
     },
     "title": {
       "translate": "liroth:advancements.story.fungal_fiend.title"

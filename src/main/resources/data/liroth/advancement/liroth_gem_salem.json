@@ -2,7 +2,7 @@
   "parent": "liroth:liroth_split_dusts",
   "display": {
     "icon": {
-      "id": "liroth:liroth_gem_salem"
+      "id": "liroth:liroth_gem_salem_ingot"
     },
     "title": {
       "translate": "liroth:advancements.liroth.liroth_gem_salem.title"
@@ -22,7 +22,7 @@
         "items": [
           {
             "items": [
-              "liroth:liroth_gem_salem"
+              "liroth:liroth_gem_salem_ingot"
             ]
           }
         ]

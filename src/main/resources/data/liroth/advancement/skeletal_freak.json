@@ -2,7 +2,7 @@
   "parent": "liroth:enter_liroth",
   "display": {
     "icon": {
-      "id": "liroth:liroth_bone"
+      "id": "liroth:skeletal_freak_spawn_egg"
     },
     "title": {
       "translate": "liroth:advancements.story.skeletal_freak.title"

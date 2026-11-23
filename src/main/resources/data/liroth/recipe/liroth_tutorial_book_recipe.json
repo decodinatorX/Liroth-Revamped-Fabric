@@ -1,6 +1,13 @@
 {
-
-  "type": "patchouli:shapeless_book_recipe",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "patchouli"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "liroth:wilting_liroth_rose"
@@ -9,5 +16,11 @@
       "item": "minecraft:book"
     }
   ],
-  "book": "liroth:liroth_tutorial_book"
+  "result": {
+    "id": "patchouli:guide_book",
+    "count": 1,
+    "components": {
+      "patchouli:book": "liroth:liroth_tutorial_book"
+    }
+  }
 }

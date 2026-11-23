@@ -2,7 +2,7 @@
   "parent": "liroth:liroth_split_dusts",
   "display": {
     "icon": {
-      "id": "liroth:liroth_gem_lux"
+      "id": "liroth:liroth_gem_lux_ingot"
     },
     "title": {
       "translate": "liroth:advancements.liroth.liroth_gem_lux.title"
@@ -22,7 +22,7 @@
         "items": [
           {
             "items": [
-              "liroth:liroth_gem_lux"
+              "liroth:liroth_gem_lux_ingot"
             ]
           }
         ]

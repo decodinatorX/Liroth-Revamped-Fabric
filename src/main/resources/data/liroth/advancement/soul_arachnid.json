@@ -2,7 +2,7 @@
   "parent": "liroth:enter_liroth",
   "display": {
     "icon": {
-      "id": "liroth:liroth_soul_dust"
+      "id": "liroth:soul_arachnid_spawn_egg"
     },
     "title": {
       "translate": "liroth:advancements.story.soul_arachnid.title"

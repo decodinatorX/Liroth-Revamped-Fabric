@@ -2,7 +2,7 @@
   "parent": "liroth:enter_liroth",
   "display": {
     "icon": {
-      "id": "liroth:liroth_tear"
+      "id": "liroth:pier_peep_spawn_egg"
     },
     "title": {
       "translate": "liroth:advancements.story.pier_peep.title"

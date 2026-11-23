@@ -2,7 +2,7 @@
   "parent": "liroth:enter_desolation",
   "display": {
     "icon": {
-      "id": "liroth:liroth_bone"
+      "id": "liroth:freakshow_spawn_egg"
     },
     "title": {
       "translate": "liroth:advancements.story.freakshow.title"

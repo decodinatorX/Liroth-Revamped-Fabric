@@ -3,11 +3,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "liroth:liroth_gem"
+      "item": "liroth:liroth_gem_ingot"
     }
   ],
   "result": {
-    "id": "liroth:liroth_gem_dust",
-    "count": 9
+    "id": "liroth:liroth_gem_nugget",
+    "count": 4
   }
 }

@@ -2,7 +2,7 @@
   "parent": "liroth:enter_escape",
   "display": {
     "icon": {
-      "id": "minecraft:bedrock"
+      "id": "liroth:shade_spawn_egg"
     },
     "title": {
       "translate": "liroth:advancements.story.shade.title"

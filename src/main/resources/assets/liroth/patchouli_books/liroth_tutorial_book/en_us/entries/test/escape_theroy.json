@@ -5,30 +5,41 @@
     "category": "liroth:liroth_intro",
     "pages": [
     	{
-    		"type": "crafting",
+    		"type": "patchouli:crafting",
     		"recipe": "liroth:damned_passageway_block_recipe",
-    		"text": " These realms' existence have been so unclear to me, why is it only now that I seem to have discovered them?"
-    	},
-    	{ 
-    		"type": "text",
-    		"text": " The recipe calls for the stone of this fungal heap mixed with the logs of the fungus trees."
+    		"text": "   These realms' existence have been so unclear to me, why is it only now that I seem to have discovered them?"
     	},
 		{
-		"type": "multiblock",
-			"text": " The blueprint for the gateway are as follows:",
+			"type": "patchouli:crafting",
+			"recipe": "liroth:damned_passageway_charge_block_recipe",
+			"text": "   The same tech(?) required for the warping, a charge block with another different type of charge."
+		},
+		{
+			"type": "patchouli:crafting",
+			"recipe": "liroth:jantiro_charge",
+			"text": "   Lirothian Ansalum Gems with a Damnation Charge is this frame's key."
+		},
+    	{ 
+    		"type": "patchouli:text",
+    		"text": "   The frame's recipe calls for the very source of this fungal heap mixed with a singular ingot of the hell's past... curious..."
+    	},
+		{
+		"type": "patchouli:multiblock",
+			"text": "",
 			"name": "The Escape Portal",
 			"multiblock": {
 				"pattern": [
 					[ 
-					"_AA_",
-					"A__A",
-					"A_0A",
-					"_AA_"
+					"_AAA_",
+					"A___A",
+					"A_0_A",
+					"A___A",
+					"_ABA_"
 					]
 				],
 				"mapping": {
 					"A": "liroth:damned_passageway",
-					"B": "minecraft:diamond_block",
+					"B": "liroth:jantiro_portal_frame",
 					"C": "minecraft:gold_block",
 					"D": "minecraft:emerald_block",
 					"E": "minecraft:redstone_block",

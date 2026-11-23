@@ -2,7 +2,7 @@
   "parent": "liroth:liroth_gem_salem",
   "display": {
     "icon": {
-      "id": "liroth:salem_liroth_falchion"
+      "id": "liroth:liroth_gem_salem_sword"
     },
     "title": {
       "translate": "liroth:advancements.liroth.liroth_gem_salem_sword.title"
@@ -22,7 +22,7 @@
         "items": [
           {
             "items": [
-              "liroth:salem_liroth_falchion"
+              "liroth:liroth_gem_salem_sword"
             ]
           }
         ]

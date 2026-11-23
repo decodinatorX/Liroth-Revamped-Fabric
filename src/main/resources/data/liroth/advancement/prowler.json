@@ -2,7 +2,7 @@
   "parent": "liroth:enter_jalsphire",
   "display": {
     "icon": {
-      "id": "liroth:liroth_tear"
+      "id": "liroth:prowler_spawn_egg"
     },
     "title": {
       "translate": "liroth:advancements.story.prowler.title"
