@@ -1,5 +1,3 @@
-Two Years Ago, I sent in a mod to CurseForge that would send me down a slippery slope of understanding Minecraft Mods. From the reason of why people weren't going about certain tasks such as making a certain BlockEntity or creating a whole new dimension with randomly generating structures, or possibly creating a complex boss through the code they were so familiar with. This mod offers new BlockEntities, new Dimensions and structures, no bosses however, as that is a difficult task in of itself to make a unique boss that doesn't directly copy from the vanilla game itself, of course the mod does copy a lot of vanilla code, after all it is a modification of the game and not it's own game. But with this small backstory of this mod out of the way, it is officially time to get to the introduction/description of what this mod is and how it has changed from it's Legacy version.
-
 ![image](https://user-images.githubusercontent.com/16389833/158951578-e282ad06-a480-462f-8b03-ed6d6b1233e4.png)
 
 Ladies, Gentlemen and others, I bring to you:
