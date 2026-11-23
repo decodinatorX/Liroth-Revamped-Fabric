@@ -1,7 +1,6 @@
 package com.decodinator.liroth.core.blocks;
 
 
-import com.decodinator.liroth.Liroth;
 import com.decodinator.liroth.core.registry.LirothBlockEntities;
 import com.decodinator.liroth.core.registry.LirothParticles;
 import com.decodinator.liroth.core.blockentities.LirothSplitterBlockEntity;
@@ -32,6 +31,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class LirothSplitterBlock extends BaseEntityBlock {
@@ -41,11 +41,11 @@ public class LirothSplitterBlock extends BaseEntityBlock {
 
     public LirothSplitterBlock(Block.Properties settings) {
         super(settings);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false)));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.FALSE));
 	}
 
     @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
+    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
 
@@ -60,22 +60,20 @@ public class LirothSplitterBlock extends BaseEntityBlock {
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState p_48727_) {
+    public @NotNull RenderShape getRenderShape(BlockState p_48727_) {
         return RenderShape.MODEL;
      }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        		if (!level.isClientSide) {
-        			MenuProvider screenHandlerFactory = state.getMenuProvider(level, pos);
-
-        			if (screenHandlerFactory != null) {
-        				player.openMenu(screenHandlerFactory);
-        			}
-        		}
-
-    			return InteractionResult.sidedSuccess(level.isClientSide());
-    	}
+    protected @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+       		if (!level.isClientSide) {
+       			MenuProvider screenHandlerFactory = state.getMenuProvider(level, pos);
+        		if (screenHandlerFactory != null) {
+       				player.openMenu(screenHandlerFactory);
+       			}
+        	}
+         return InteractionResult.sidedSuccess(level.isClientSide());
+    }
 
     @Override
     public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
@@ -102,7 +100,7 @@ public class LirothSplitterBlock extends BaseEntityBlock {
     
     @Override
     public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
-        if (!state.getValue(LIT).booleanValue()) {
+        if (!state.getValue(LIT)) {
             return;
         }
         double d = (double)pos.getX() + 0.5;
@@ -113,7 +111,6 @@ public class LirothSplitterBlock extends BaseEntityBlock {
         }
         Direction direction = state.getValue(FACING);
         Direction.Axis axis = direction.getAxis();
-        double g = 0.52;
         double h = random.nextDouble() * 0.6 - 0.3;
         double i = axis == Direction.Axis.X ? (double)direction.getStepX() * 0.52 : h;
         double j = random.nextDouble() * 6.0 / 16.0;

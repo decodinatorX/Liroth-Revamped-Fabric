@@ -24,7 +24,7 @@ extends Feature<NoneFeatureConfiguration> {
         RandomSource random = context.random();
         WorldGenLevel structureWorldAccess = context.level();
         BlockPos blockPos = context.origin();
-        BlockState blockState = (BlockState)LirothBlocks.LIROTH_BONE_BLOCK.defaultBlockState();
+        BlockState blockState = LirothBlocks.LIROTH_BONE_BLOCK.defaultBlockState();
         return this.generateCoral(structureWorldAccess, random, blockPos, blockState);
     }
 
@@ -38,9 +38,9 @@ extends Feature<NoneFeatureConfiguration> {
         }
         world.setBlock(pos, state, Block.UPDATE_NEIGHBORS);
         if (random.nextFloat() < 0.25f) {
-            world.setBlock(blockPos, (BlockState)LirothBlocks.LIROTH_BONE_BLOCK.defaultBlockState(), Block.UPDATE_NEIGHBORS);
+            world.setBlock(blockPos, LirothBlocks.LIROTH_BONE_BLOCK.defaultBlockState(), Block.UPDATE_NEIGHBORS);
         } else if (random.nextFloat() < 0.05f) {
-            world.setBlock(blockPos, (BlockState)LirothBlocks.SEA_EYE.defaultBlockState(), Block.UPDATE_NEIGHBORS);
+            world.setBlock(blockPos, LirothBlocks.SEA_EYE.defaultBlockState(), Block.UPDATE_NEIGHBORS);
         }
         return true;
     }

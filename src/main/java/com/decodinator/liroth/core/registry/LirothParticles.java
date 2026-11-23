@@ -2,12 +2,10 @@ package com.decodinator.liroth.core.registry;
 
 import com.decodinator.liroth.Liroth;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.kyrptonaught.customportalapi.client.CustomPortalParticle;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import vazkii.patchouli.fabric.common.FabricModInitializer;
 
 public class LirothParticles {
     public static final SimpleParticleType GREEN_SPORE = FabricParticleTypes.simple();

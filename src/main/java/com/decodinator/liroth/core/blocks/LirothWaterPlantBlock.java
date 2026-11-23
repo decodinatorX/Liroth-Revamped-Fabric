@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.shapes.Shapes;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class LirothWaterPlantBlock extends GrowingPlantBodyBlock implements LiquidBlockContainer {
@@ -25,20 +26,16 @@ public class LirothWaterPlantBlock extends GrowingPlantBodyBlock implements Liqu
         this.tipBlock = tip;
     }
 
-    protected GrowingPlantHeadBlock getHeadBlock() {
+    protected @NotNull GrowingPlantHeadBlock getHeadBlock() {
         return (GrowingPlantHeadBlock)tipBlock;
     }
 
-    public FluidState getFluidState(BlockState p_54336_) {
+    public @NotNull FluidState getFluidState(BlockState p_54336_) {
         return LirothFluids.LIROTH_FLUID_STILL.getSource().defaultFluidState();
     }
 
     protected boolean canAttachTo(BlockState p_153457_) {
         return true;
-    }
-
-    public boolean canPlaceLiquid(BlockGetter p_54325_, BlockPos p_54326_, BlockState p_54327_, Fluid p_54328_) {
-        return false;
     }
 
     @Override

@@ -1,15 +1,12 @@
 package com.decodinator.liroth.core.complexmaterials;
 
-import com.decodinator.liroth.Liroth;
-import com.decodinator.liroth.core.items.LirothArmorItem;
 import com.decodinator.liroth.core.registry.LirothBlocks;
 import com.decodinator.liroth.core.registry.LirothItems;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
+import net.minecraft.core.Holder;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -22,9 +19,6 @@ import org.betterx.bclib.items.ModelProviderItem;
 import org.betterx.bclib.items.tool.*;
 import org.betterx.wover.complex.api.equipment.ArmorSlot;
 import org.betterx.wover.complex.api.equipment.ArmorTier;
-import org.betterx.wover.recipe.api.RecipeBuilder;
-import org.betterx.wover.tag.api.event.context.ItemTagBootstrapContext;
-import org.betterx.wover.tag.api.event.context.TagBootstrapContext;
 
 import java.util.function.Supplier;
 
@@ -59,17 +53,19 @@ public class GemMaterial implements MaterialManager.Material {
             String name,
             MapColor color,
             Tier material,
-            ArmorTier armor,
+            Holder<ArmorMaterial> armor,
+            ArmorTier tier,
             int anvilLevel
     ) {
-        return makeNormal(name, color, material, armor, anvilLevel, SoundType.STONE);
+        return makeNormal(name, color, material, armor, tier, anvilLevel, SoundType.STONE);
     }
 
     public static GemMaterial makeNormal(
             String name,
             MapColor color,
             Tier material,
-            ArmorTier armor,
+            Holder<ArmorMaterial> armor,
+            ArmorTier tier,
             int anvilLevel,
             SoundType oreSound
     ) {
@@ -85,6 +81,7 @@ public class GemMaterial implements MaterialManager.Material {
                 LirothItems::makeItemSettings,
                 material,
                 armor,
+                tier,
                 anvilLevel,
                 oreSound
         );
@@ -94,7 +91,8 @@ public class GemMaterial implements MaterialManager.Material {
             String name,
             MapColor color,
             Tier material,
-            ArmorTier armor,
+            Holder<ArmorMaterial> armor,
+            ArmorTier tier,
             int anvilLevel
     ) {
         return new GemMaterial(
@@ -109,34 +107,7 @@ public class GemMaterial implements MaterialManager.Material {
                 LirothItems::makeItemSettings,
                 material,
                 armor,
-                anvilLevel,
-                SoundType.STONE
-        );
-    }
-
-    public static GemMaterial makeOreless(
-            String name,
-            MapColor color,
-            float hardness,
-            float resistance,
-            Tier material,
-            ArmorTier armor,
-            int anvilLevel
-    ) {
-        return new GemMaterial(
-                name,
-                false,
-                true,
-                true,
-                false,
-                () -> BlockBehaviour.Properties
-                        .ofFullCopy(Blocks.IRON_BLOCK)
-                        .mapColor(color)
-                        .destroyTime(hardness)
-                        .explosionResistance(resistance),
-                LirothItems::makeItemSettings,
-                material,
-                armor,
+                tier,
                 anvilLevel,
                 SoundType.STONE
         );
@@ -151,7 +122,8 @@ public class GemMaterial implements MaterialManager.Material {
             Supplier<BlockBehaviour.Properties> settingsSupplier,
             Supplier<Properties> itemSettings,
             Tier material,
-            ArmorTier armor,
+            Holder<ArmorMaterial> armor,
+            ArmorTier tier,
             int anvilLevel,
             SoundType oreSound
     ) {
@@ -181,19 +153,19 @@ public class GemMaterial implements MaterialManager.Material {
 
         helmet = LirothItems.registerArmorItem(
                 name + "_helmet",
-                new LirothArmorItem(armor, ArmorSlot.HELMET_SLOT, newArmorSettings(ArmorSlot.HELMET_SLOT, armor))
+                new ArmorItem(armor, ArmorItem.Type.HELMET, newArmorSettings(ArmorSlot.HELMET_SLOT, tier))
         );
         chestplate = LirothItems.registerArmorItem(
                 name + "_chestplate",
-                new LirothArmorItem(armor, ArmorSlot.CHESTPLATE_SLOT, newArmorSettings(ArmorSlot.CHESTPLATE_SLOT, armor))
+                new ArmorItem(armor, ArmorItem.Type.CHESTPLATE, newArmorSettings(ArmorSlot.CHESTPLATE_SLOT, tier))
         );
         leggings = LirothItems.registerArmorItem(
                 name + "_leggings",
-                new LirothArmorItem(armor, ArmorSlot.LEGGINGS_SLOT, newArmorSettings(ArmorSlot.LEGGINGS_SLOT, armor))
+                new ArmorItem(armor, ArmorItem.Type.LEGGINGS, newArmorSettings(ArmorSlot.LEGGINGS_SLOT, tier))
         );
         boots = LirothItems.registerArmorItem(
                 name + "_boots",
-                new LirothArmorItem(armor, ArmorSlot.BOOTS_SLOT, newArmorSettings(ArmorSlot.BOOTS_SLOT, armor))
+                new ArmorItem(armor, ArmorItem.Type.BOOTS, newArmorSettings(ArmorSlot.BOOTS_SLOT, tier))
         );
 
         MaterialManager.register(this);
@@ -211,130 +183,4 @@ public class GemMaterial implements MaterialManager.Material {
         return newItemSettings().durability(slot.armorType.getDurability(values.durability()));
     }
 
-    @Override
-    public void registerRecipes(RecipeOutput context) {
-        if (hasOre) {
-            RecipeBuilder.blasting(Liroth.C.mk(name + "_ingot_furnace_ore"), ingot)
-                    .input(ore)
-                    .build(context);
-            RecipeBuilder.blasting(Liroth.C.mk(name + "_ingot_furnace_raw"), ingot)
-                    .input(rawOre)
-                    .build(context);
-        }
-
-        // Basic recipes
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_ingot_from_nuggets"), ingot)
-                .shape("###", "###", "###")
-                .addMaterial('#', nugget)
-                .group("liroth_metal_ingots_nug")
-                .build(context);
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_nuggets_from_ingot"), nugget)
-                .outputCount(9)
-                .shapeless()
-                .addMaterial('#', ingot)
-                .group("liroth_metal_nuggets_ing")
-                .build(context);
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_block"), block)
-                .shape("###", "###", "###")
-                .addMaterial('#', ingot)
-                .group("liroth_metal_blocks")
-                .build(context);
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_ingot_from_block"), ingot)
-                .outputCount(9)
-                .shapeless()
-                .addMaterial('#', block)
-                .group("liroth_metal_ingots")
-                .build(context);
-
-        // Tools & armor into nuggets
-        RecipeBuilder.blasting(Liroth.C.mk(name + "_axe_nugget"), nugget)
-                .input(axe)
-                .build(context);
-        RecipeBuilder.blasting(Liroth.C.mk(name + "_hoe_nugget"), nugget)
-                .input(hoe)
-                .build(context);
-        RecipeBuilder.blasting(Liroth.C.mk(name + "_pickaxe_nugget"), nugget)
-                .input(pickaxe)
-                .build(context);
-        RecipeBuilder.blasting(Liroth.C.mk(name + "_sword_nugget"), nugget)
-                .input(sword)
-                .build(context);
-        RecipeBuilder.blasting(Liroth.C.mk(name + "_helmet_nugget"), nugget)
-                .input(helmet)
-                .build(context);
-        RecipeBuilder.blasting(Liroth.C.mk(name + "_chestplate_nugget"), nugget)
-                .input(chestplate)
-                .build(context);
-        RecipeBuilder.blasting(Liroth.C.mk(name + "_leggings_nugget"), nugget)
-                .input(leggings)
-                .build(context);
-        RecipeBuilder.blasting(Liroth.C.mk(name + "_boots_nugget"), nugget)
-                .input(boots)
-                .build(context);
-
-        // Tool crafting
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_sword"), sword)
-                .shape(" # ", " # ", " ! ")
-                .addMaterial('#', ingot)
-                .addMaterial('!', Items.STICK)
-                .group("liroth_swords")
-                .build(context);
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_shovel"), shovel)
-                .shape(" # ", " ! ", " ! ")
-                .addMaterial('#', ingot)
-                .addMaterial('!', Items.STICK)
-                .group("liroth_shovels")
-                .build(context);
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_pickaxe"), pickaxe)
-                .shape("###", " ! ", " ! ")
-                .addMaterial('#', ingot)
-                .addMaterial('!', Items.STICK)
-                .group("liroth_pickaxes")
-                .build(context);
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_axe"), axe)
-                .shape("## ", "#! ", " ! ")
-                .addMaterial('#', ingot)
-                .addMaterial('!', Items.STICK)
-                .group("liroth_axes")
-                .build(context);
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_hoe"), hoe)
-                .shape("## ", " ! ", " ! ")
-                .addMaterial('#', ingot)
-                .addMaterial('!', Items.STICK)
-                .group("liroth_hoes")
-                .build(context);
-
-        // Armor crafting
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_helmet"), helmet)
-                .shape("###", "# #")
-                .addMaterial('#', ingot)
-                .group("liroth_helmets")
-                .build(context);
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_chestplate"), chestplate)
-                .shape("# #", "###", "###")
-                .addMaterial('#', ingot)
-                .group("liroth_chestplates")
-                .build(context);
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_leggings"), leggings)
-                .shape("###", "# #", "# #")
-                .addMaterial('#', ingot)
-                .group("liroth_leggings")
-                .build(context);
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_boots"), boots)
-                .shape("# #", "# #")
-                .addMaterial('#', ingot)
-                .group("liroth_boots")
-                .build(context);
-
-    }
-
-    @Override
-    public void registerBlockTags(TagBootstrapContext<Block> context) {
-        context.add(BlockTags.BEACON_BASE_BLOCKS, block);
-    }
-
-    @Override
-    public void registerItemTags(ItemTagBootstrapContext context) {
-        context.add(ItemTags.BEACON_PAYMENT_ITEMS, ingot);
-    }
 }

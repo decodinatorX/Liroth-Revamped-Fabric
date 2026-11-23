@@ -21,6 +21,7 @@ import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.pools.alias.PoolAliasLookup;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
+import org.jetbrains.annotations.NotNull;
 
 public class LirothFortressStructure extends Structure {
 
@@ -78,7 +79,7 @@ public class LirothFortressStructure extends Structure {
     }
 
     @Override
-    public Optional<Structure.GenerationStub> findGenerationPoint(Structure.GenerationContext context) {
+    public @NotNull Optional<Structure.GenerationStub> findGenerationPoint(Structure.GenerationContext context) {
 
         if (!LirothFortressStructure.extraSpawningChecks(context)) {
             return Optional.empty();
@@ -89,25 +90,22 @@ public class LirothFortressStructure extends Structure {
         ChunkPos chunkPos = context.chunkPos();
         BlockPos blockPos = new BlockPos(chunkPos.getMinBlockX(), startY, chunkPos.getMinBlockZ());
 
-        Optional<Structure.GenerationStub> structurePiecesGenerator =
-                JigsawPlacement.addPieces(
-                        context,
-                        this.startPool,
-                        this.startJigsawName,
-                        this.size,
-                        blockPos,
-                        false,
-                        this.projectStartToHeightmap,
-                        this.maxDistanceFromCenter,
-                        PoolAliasLookup.EMPTY,
-                        this.dimensionPadding,
-                        this.liquidSettings);
-
-        return structurePiecesGenerator;
+        return JigsawPlacement.addPieces(
+                context,
+                this.startPool,
+                this.startJigsawName,
+                this.size,
+                blockPos,
+                false,
+                this.projectStartToHeightmap,
+                this.maxDistanceFromCenter,
+                PoolAliasLookup.EMPTY,
+                this.dimensionPadding,
+                this.liquidSettings);
     }
 
     @Override
-    public StructureType<?> type() {
+    public @NotNull StructureType<?> type() {
         return LirothStructures.LIROTH_FORTRESS;
     }
 }

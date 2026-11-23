@@ -17,7 +17,7 @@ public abstract class ExplosionMixin {
     private Level level;
 
     @Inject(method = "finalizeExplosion", at = @At("TAIL"))
-    private void liroth$applyFungalFiendEffect(boolean spawnParticles, CallbackInfo ci) {
+    private void FungalFart(boolean spawnParticles, CallbackInfo ci) {
         FungalFiendExplosionHandler.onFungalFiendExplosion(this.level, (Explosion) (Object) this);
     }
 }

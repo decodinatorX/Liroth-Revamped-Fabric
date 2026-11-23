@@ -24,7 +24,7 @@ public class CustomRod extends EndRodBlock {
         double d0 = (double)pos.getX() + 0.55D - (double)(source.nextFloat() * 0.1F);
         double d1 = (double)pos.getY() + 0.55D - (double)(source.nextFloat() * 0.1F);
         double d2 = (double)pos.getZ() + 0.55D - (double)(source.nextFloat() * 0.1F);
-        double d3 = (double)(0.4F - (source.nextFloat() + source.nextFloat()) * 0.4F);
+        double d3 = 0.4F - (source.nextFloat() + source.nextFloat()) * 0.4F;
         if (source.nextInt(5) == 0) {
             level.addParticle(particle.get(), d0 + (double)direction.getStepX() * d3, d1 + (double)direction.getStepY() * d3, d2 + (double)direction.getStepZ() * d3, source.nextGaussian() * 0.005D, source.nextGaussian() * 0.005D, source.nextGaussian() * 0.005D);
         }

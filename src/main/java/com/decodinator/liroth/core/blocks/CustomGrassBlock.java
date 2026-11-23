@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import com.decodinator.liroth.core.blocks.basis.CustomSpreadableBlock;
+import com.decodinator.liroth.core.blocks.basis.FabricToolModifiedBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -23,6 +24,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import org.jetbrains.annotations.NotNull;
 
 public class CustomGrassBlock extends CustomSpreadableBlock implements BonemealableBlock, FabricToolModifiedBlock {
     public Supplier<Block> tilled;
@@ -35,7 +37,7 @@ public class CustomGrassBlock extends CustomSpreadableBlock implements Bonemeala
     }
 
     @Override
-    protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+    protected @NotNull List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
         Block drop = SilkTouchLoot.hasSilkTouch(params) ? this : dirtBlock;
         return List.of(new ItemStack(drop));
     }
@@ -89,9 +91,9 @@ public class CustomGrassBlock extends CustomSpreadableBlock implements Bonemeala
                         continue;
                     }
 
-                    holder = ((RandomPatchConfiguration)list.get(0).config()).feature();
+                    holder = ((RandomPatchConfiguration)list.getFirst().config()).feature();
                 } else {
-                    if (!optional.isPresent()) {
+                    if (optional.isEmpty()) {
                         continue;
                     }
 

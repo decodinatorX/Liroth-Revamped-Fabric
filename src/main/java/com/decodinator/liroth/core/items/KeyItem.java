@@ -13,6 +13,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayDeque;
 import java.util.HashSet;
@@ -24,7 +25,7 @@ public class KeyItem extends Item {
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext use) {
+    public @NotNull InteractionResult useOn(UseOnContext use) {
         BlockPos pos = use.getClickedPos();
         Player player = use.getPlayer();
         Level level = use.getLevel();

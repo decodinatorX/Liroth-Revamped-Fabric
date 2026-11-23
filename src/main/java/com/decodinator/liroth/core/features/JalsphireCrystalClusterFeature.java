@@ -39,7 +39,7 @@ public class JalsphireCrystalClusterFeature extends Feature<PointedDripstoneConf
 			BlockPos blockpos1 = blockpos.relative(optional.get().getOpposite());
 			createPatchOfDripstoneBlocks(levelaccessor, randomsource, blockpos1, pointeddripstoneconfiguration);
 			int i = randomsource.nextFloat() < pointeddripstoneconfiguration.chanceOfTallerDripstone && JalsphireCrystalHelper.isEmptyOrWater(levelaccessor.getBlockState(blockpos.relative(optional.get()))) ? 2 : 1;
-			JalsphireCrystalHelper.growPointedDripstone(levelaccessor, blockpos, optional.get(), i, false, pointedBlock, baseBlock);
+			JalsphireCrystalHelper.growPointedDripstone(levelaccessor, blockpos, optional.get(), i, pointedBlock, baseBlock);
 			return true;
 		}
 	}

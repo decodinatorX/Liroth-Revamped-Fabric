@@ -10,13 +10,14 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class ForsakenCorpseEntity extends Zombie implements GeoAnimatable {
-    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	public ForsakenCorpseEntity(EntityType<? extends Zombie> entityType, Level world) {
 		super(entityType, world);
@@ -39,21 +40,21 @@ public class ForsakenCorpseEntity extends Zombie implements GeoAnimatable {
     
 
     @Override
-    protected SoundEvent getAmbientSound() {
+    protected @NotNull SoundEvent getAmbientSound() {
         return SoundEvents.DROWNED_AMBIENT;
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
+    protected @NotNull SoundEvent getHurtSound(DamageSource source) {
         return SoundEvents.DROWNED_HURT;
     }
 
     @Override
-    protected SoundEvent getDeathSound() {
+    protected @NotNull SoundEvent getDeathSound() {
         return SoundEvents.DROWNED_DEATH;
     }
 
-    protected SoundEvent getStepSound() {
+    protected @NotNull SoundEvent getStepSound() {
         return SoundEvents.DROWNED_STEP;
     }
     private static final RawAnimation CORPSE_WALK = RawAnimation.begin().thenPlay("corpse_walk");
@@ -87,7 +88,7 @@ public class ForsakenCorpseEntity extends Zombie implements GeoAnimatable {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
-        data.add(new AnimationController<ForsakenCorpseEntity>(this, "controller", 0, this::predicate));
+        data.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.decodinator.liroth.core.items.material;
 
 import com.decodinator.liroth.core.registry.LirothBlocks;
-import com.decodinator.liroth.core.registry.LirothItems;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;

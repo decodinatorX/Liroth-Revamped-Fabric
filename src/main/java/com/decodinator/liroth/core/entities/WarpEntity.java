@@ -12,18 +12,17 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class WarpEntity extends EnderMan implements GeoAnimatable{
-    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
     public WarpEntity(EntityType<? extends EnderMan> entityType, Level world) {
         super(entityType, world);
-//        this.maxUpStep = 1.0f;
-//        this.setPathfindingMalus(BlockPathTypes.WATER, -1.0f);
     }
 
     public static AttributeSupplier.Builder createWarpAttributes() {
@@ -31,17 +30,17 @@ public class WarpEntity extends EnderMan implements GeoAnimatable{
     }
 
     @Override
-    protected SoundEvent getAmbientSound() {
+    protected @NotNull SoundEvent getAmbientSound() {
         return this.isAngry() ? SoundEvents.ENDERMAN_SCREAM : LirothSounds.WARP_IDLE_SOUND_EVENT;
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
+    protected @NotNull SoundEvent getHurtSound(DamageSource source) {
         return LirothSounds.WARP_HURT_SOUND_EVENT;
     }
 
     @Override
-    protected SoundEvent getDeathSound() {
+    protected @NotNull SoundEvent getDeathSound() {
         return LirothSounds.WARP_DEATH_SOUND_EVENT;
     }
 
@@ -76,7 +75,7 @@ public class WarpEntity extends EnderMan implements GeoAnimatable{
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
-        data.add(new AnimationController<WarpEntity>(this, "controller", 0, this::predicate));
+        data.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
     @Override

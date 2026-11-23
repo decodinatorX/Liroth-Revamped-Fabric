@@ -1,6 +1,7 @@
 package com.decodinator.liroth.core.registry;
 
 import com.decodinator.liroth.Liroth;
+import com.decodinator.liroth.mixin.SpawnPlacementsAccessor;
 import com.decodinator.liroth.core.entities.projectiles.LevoArrow;
 import com.decodinator.liroth.core.items.BeamItem;
 import com.decodinator.liroth.core.entities.ForsakenCorpseEntity;
@@ -16,7 +17,6 @@ import com.decodinator.liroth.core.entities.VileSharkEntity;
 import com.decodinator.liroth.core.entities.WarpEntity;
 import com.decodinator.liroth.core.entities.projectiles.BeamLaserProjectileEntity;
 
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -37,55 +37,55 @@ public class LirothEntities {
     public static final EntityType<FungalFiendEntity> FUNGAL_FIEND = Registry.register(
             BuiltInRegistries.ENTITY_TYPE,
             ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "fungal_fiend"),
-            monster(FungalFiendEntity::new, EntityDimensions.fixed(0.6f, 2f))
+            monster("liroth:fungal_fiend", FungalFiendEntity::new, EntityDimensions.fixed(0.6f, 2f))
     );
     
     public static final EntityType<ForsakenCorpseEntity> FORSAKEN_CORPSE = Registry.register(
     		BuiltInRegistries.ENTITY_TYPE,
             ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "forsaken_corpse"),
-            monster(ForsakenCorpseEntity::new, EntityDimensions.fixed(0.6f, 1.95f))
+            monster("liroth:forsaken_corpse", ForsakenCorpseEntity::new, EntityDimensions.fixed(0.6f, 1.95f))
     );
     
     public static final EntityType<SkeletalFreakEntity> SKELETAL_FREAK = Registry.register(
     		BuiltInRegistries.ENTITY_TYPE,
             ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "skeletal_freak"),
-            monster(SkeletalFreakEntity::new, EntityDimensions.fixed(0.6f, 1.95f))
+            monster("liroth:skeletal_freak", SkeletalFreakEntity::new, EntityDimensions.fixed(0.6f, 1.95f))
     );
     
     public static final EntityType<WarpEntity> WARP = Registry.register(
     		BuiltInRegistries.ENTITY_TYPE,
             ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "warp"),
-            monster(WarpEntity::new, EntityDimensions.fixed(0.6f, 2.9f))
+            monster("liroth:warp", WarpEntity::new, EntityDimensions.fixed(0.6f, 2.9f))
     );
     
     public static final EntityType<SoulArachnidEntity> SOUL_ARACHNID = Registry.register(
     		BuiltInRegistries.ENTITY_TYPE,
             ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "soul_arachnid"),
-            monster(SoulArachnidEntity::new, EntityDimensions.fixed(0.6f, 2.9f))
+            monster("liroth:soul_arachnid", SoulArachnidEntity::new, EntityDimensions.fixed(0.6f, 2.9f))
     );
     
     public static final EntityType<PierPeepEntity> PIER_PEEP = Registry.register(
     		BuiltInRegistries.ENTITY_TYPE,
             ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "pier_peep"),
-            monster(PierPeepEntity::new, EntityDimensions.fixed(0.6f, 2.9f))
+            monster("liroth:pier_peep", PierPeepEntity::new, EntityDimensions.fixed(0.6f, 2.9f))
     );
     
     public static final EntityType<ShadeEntity> SHADE = Registry.register(
     		BuiltInRegistries.ENTITY_TYPE,
             ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "shade"),
-            monster(ShadeEntity::new, EntityDimensions.fixed(0.6f, 2.9f))
+            monster("liroth:shade", ShadeEntity::new, EntityDimensions.fixed(0.6f, 2.9f))
     );
     
     public static final EntityType<ProwlerEntity> PROWLER = Registry.register(
     		BuiltInRegistries.ENTITY_TYPE,
             ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "prowler"),
-            monster(ProwlerEntity::new, EntityDimensions.fixed(0.6f, 2.9f))
+            monster("liroth:prowler", ProwlerEntity::new, EntityDimensions.fixed(0.6f, 2.9f))
     );
     
     public static final EntityType<FreakshowEntity> FREAKSHOW = Registry.register(
     		BuiltInRegistries.ENTITY_TYPE,
             ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "freakshow"),
-            monster(FreakshowEntity::new, EntityDimensions.fixed(0.6f, 2.9f))
+            monster("liroth:freakshow", FreakshowEntity::new, EntityDimensions.fixed(0.6f, 2.9f))
     );
     
     public static final EntityType<VileSharkEntity> VILE_SHARK = Registry.register(
@@ -97,53 +97,50 @@ public class LirothEntities {
     public static final EntityType<LirothianMimicEntity> LIROTHIAN_MIMIC = Registry.register(
     		BuiltInRegistries.ENTITY_TYPE,
             ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "lirothian_mimic"),
-            monster(LirothianMimicEntity::new, EntityDimensions.fixed(0.6f, 2.9f))
+            monster("liroth:lirothian_mimic", LirothianMimicEntity::new, EntityDimensions.fixed(0.6f, 2.9f))
     );
     
 	public static final EntityType<BeamLaserProjectileEntity> BEAM_LASER_PROJECTILE_ENTITY = Registry.register(
 			BuiltInRegistries.ENTITY_TYPE,
 			ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "beam_laser_projectile_entity"),
-			FabricEntityTypeBuilder.<BeamLaserProjectileEntity>create(MobCategory.MISC, BeamLaserProjectileEntity::new)
-					.dimensions(EntityDimensions.fixed(0.25F, 0.25F)) // dimensions in Minecraft units of the projectile
-					.trackRangeBlocks(10) // necessary for all thrown projectiles (as it prevents it from breaking, lol)
-					.build() // VERY IMPORTANT DON'T DELETE FOR THE LOVE OF GOD PSLSSSSSS
+			EntityType.Builder.of(BeamLaserProjectileEntity::new, MobCategory.MISC)
+					.sized(0.25F, 0.25F)
+					.clientTrackingRange(10)
+					.build("liroth:beam_laser_projectile_entity")
 	);
 
     public static final EntityType<LevoArrow> LEVO_ARROW = Registry.register(
             BuiltInRegistries.ENTITY_TYPE,
             ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "levo_arrow"),
-            FabricEntityTypeBuilder.<LevoArrow>create(MobCategory.MISC, LevoArrow::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(10)
-                    .build()
+            EntityType.Builder.<LevoArrow>of(LevoArrow::new, MobCategory.MISC)
+                    .sized(0.25F, 0.25F)
+                    .clientTrackingRange(10)
+                    .build("liroth:levo_arrow")
     );
 
-    public static AbstractArrow createBeamProjectile(LivingEntity entity, ItemStack stack, float damageModifier) {
+    public static AbstractArrow createBeamProjectile(LivingEntity entity, ItemStack stack) {
     	BeamItem beamItem = (BeamItem)(stack.getItem() instanceof BeamItem ? stack.getItem() : LirothItems.COOL_BEAM);
-    	AbstractArrow persistentProjectileEntity = beamItem.createArrow(entity.level(), stack, entity, entity.getWeaponItem());
-        return persistentProjectileEntity;
+        return beamItem.createArrow(entity.level(), stack, entity, entity.getWeaponItem());
     }
 
-    private static <T extends Monster> EntityType<T> monster(EntityType.EntityFactory<T> factory, EntityDimensions dimensions) {
-        return FabricEntityTypeBuilder.<T>createMob()
-                .spawnGroup(MobCategory.MONSTER)
-                .entityFactory(factory)
-                .dimensions(dimensions)
-                .spawnRestriction(SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                        (type, level, spawnType, pos, random) -> Monster.checkMonsterSpawnRules(type, level, spawnType, pos, random)
-                                && Liroth.allowNaturalLirothMobSpawn(level, spawnType, pos))
-                .build();
+    private static <T extends Monster> EntityType<T> monster(String id, EntityType.EntityFactory<T> factory, EntityDimensions dimensions) {
+        EntityType<T> type = EntityType.Builder.of(factory, MobCategory.MONSTER)
+                .sized(dimensions.width(), dimensions.height())
+                .build(id);
+        SpawnPlacementsAccessor.spawningShit(type, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                (entityType, level, spawnType, pos, random) -> Monster.checkMonsterSpawnRules(entityType, level, spawnType, pos, random)
+                        && Liroth.allowNaturalLirothMobSpawn(level, spawnType, pos));
+        return type;
     }
 
     private static <T extends WaterAnimal> EntityType<T> waterCreature(EntityType.EntityFactory<T> factory, EntityDimensions dimensions) {
-        return FabricEntityTypeBuilder.<T>createMob()
-                .spawnGroup(MobCategory.WATER_CREATURE)
-                .entityFactory(factory)
-                .dimensions(dimensions)
-                .spawnRestriction(SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                        (type, level, spawnType, pos, random) -> WaterAnimal.checkSurfaceWaterAnimalSpawnRules(type, level, spawnType, pos, random)
-                                && Liroth.allowNaturalLirothMobSpawn(level, spawnType, pos))
-                .build();
+        EntityType<T> type = EntityType.Builder.of(factory, MobCategory.WATER_CREATURE)
+                .sized(dimensions.width(), dimensions.height())
+                .build("liroth:vile_shark");
+        SpawnPlacementsAccessor.spawningShit(type, SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                (entityType, level, spawnType, pos, random) -> WaterAnimal.checkSurfaceWaterAnimalSpawnRules(entityType, level, spawnType, pos, random)
+                        && Liroth.allowNaturalLirothMobSpawn(level, spawnType, pos));
+        return type;
     }
 
     static {
@@ -158,8 +155,6 @@ public class LirothEntities {
 		net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry.register(FREAKSHOW, FreakshowEntity.createFreakshowAttributes());
 		net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry.register(VILE_SHARK, VileSharkEntity.createVileSharkAttributes());
 		net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry.register(LIROTHIAN_MIMIC, LirothianMimicEntity.createLirothianMimicAttributes());
-
-        
     }
 
     public static void init() {

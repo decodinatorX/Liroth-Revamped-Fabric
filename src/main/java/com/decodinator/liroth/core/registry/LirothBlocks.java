@@ -4,12 +4,12 @@ import com.decodinator.liroth.Liroth;
 import com.decodinator.liroth.core.blocks.*;
 import com.decodinator.liroth.core.complexmaterials.*;
 import com.decodinator.liroth.core.features.trees.LirothTreeGrower;
+import com.decodinator.liroth.core.items.material.LirothArmorMaterial;
 import com.decodinator.liroth.core.items.material.LirothArmorTier;
 import com.decodinator.liroth.core.items.material.LirothToolMaterial;
 import net.kyrptonaught.customportalapi.CustomPortalBlock;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.ColorRGBA;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -23,7 +23,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class LirothBlocks {
     public static List<Block> BLOCKS = new ArrayList<>();
@@ -375,10 +374,10 @@ public class LirothBlocks {
         LIROTH_COBBLESTONE = new CobbleStoneMaterial("liroth_cobblestone", MapColor.COLOR_GRAY, () -> LirothParticles.PURPLE_FLAME);
         LIROTH_DIRT = registerBlock("liroth_dirt", new CustomDirtBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT), () -> LIROTH_FARMLAND_BLOCK, () -> LIROTH_PATH_BLOCK));
         LIROTH_GEM_BLOCK = registerBlock("liroth_gem_block", new BaseRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE).strength(5.0F, 1200.0F)) {});
-        LIROTH_GEM = GemMaterial.makeLiroth("liroth_gem", MapColor.COLOR_LIGHT_BLUE, LirothToolMaterial.LIROTH, LirothArmorTier.LIROTH, LirothToolMaterial.LIROTH.getLevel());
-        LIROTH_GEM_ANSALUM = GemFragMaterial.makeAnsalum("liroth_gem_ansalum", MapColor.COLOR_RED, LirothToolMaterial.LIROTH, LirothArmorTier.LIROTH_ANSALUM, LirothToolMaterial.LIROTH.getLevel());
-        LIROTH_GEM_LUX = GemFragMaterial.makeNormal("liroth_gem_lux", MapColor.COLOR_PURPLE, LirothToolMaterial.LIROTH, LirothArmorTier.LIROTH_LUX, LirothToolMaterial.LIROTH.getLevel());
-        LIROTH_GEM_SALEM = GemFragMaterial.makeNormal("liroth_gem_salem", MapColor.COLOR_BLUE, LirothToolMaterial.LIROTH, LirothArmorTier.LIROTH_SALEM, LirothToolMaterial.LIROTH.getLevel());
+        LIROTH_GEM = GemMaterial.makeLiroth("liroth_gem", MapColor.COLOR_LIGHT_BLUE, LirothToolMaterial.LIROTH, LirothArmorMaterial.LIROTH, LirothArmorTier.LIROTH, LirothToolMaterial.LIROTH.getLevel());
+        LIROTH_GEM_ANSALUM = GemFragMaterial.makeAnsalum("liroth_gem_ansalum", LirothToolMaterial.LIROTH, LirothArmorMaterial.LIROTH_ANSALUM, LirothArmorTier.LIROTH_ANSALUM, LirothToolMaterial.LIROTH.getLevel());
+        LIROTH_GEM_LUX = GemFragMaterial.makeNormal("liroth_gem_lux", LirothToolMaterial.LIROTH, LirothArmorMaterial.LIROTH_LUX, LirothArmorTier.LIROTH_LUX, LirothToolMaterial.LIROTH.getLevel());
+        LIROTH_GEM_SALEM = GemFragMaterial.makeNormal("liroth_gem_salem", LirothToolMaterial.LIROTH, LirothArmorMaterial.LIROTH_SALEM, LirothArmorTier.LIROTH_SALEM, LirothToolMaterial.LIROTH.getLevel());
         LIROTH_GLASS_BLOCK = registerBlock("liroth_glass_block", new BaseBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)));
         LIROTH_GRASS_BLOCK = registerBlock("liroth_grass_block", new CustomGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK), LIROTH_DIRT, () ->  LIROTH_FARMLAND_BLOCK, () ->  LIROTH_PATH_BLOCK));
         LIROTH_FARMLAND_BLOCK = registerBlock("liroth_farmland", new CustomFarmBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND), () -> LIROTH_DIRT));
@@ -392,7 +391,7 @@ public class LirothBlocks {
         LIROTH_SOUL_SAND = registerBlock("liroth_soul_sand", new BaseBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_SAND)));
         LIROTH_SPLITTER = registerBlock("liroth_splitter", new LirothSplitterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FURNACE)));
         LIROTH_STONE = new StoneMaterial("liroth_stone", MapColor.COLOR_LIGHT_BLUE);
-        LIROTHIAN_COBALT = MetalMaterial.makeNormal("lirothian_cobalt", MapColor.COLOR_LIGHT_BLUE, LirothToolMaterial.LIROTHIAN_COBALT, LirothArmorTier.LIROTHIAN_COBALT, LirothToolMaterial.LIROTHIAN_COBALT.getLevel());
+        LIROTHIAN_COBALT = MetalMaterial.makeNormal("lirothian_cobalt", MapColor.COLOR_LIGHT_BLUE, LirothToolMaterial.LIROTHIAN_COBALT, LirothArmorMaterial.LIROTHIAN_COBALT, LirothArmorTier.LIROTHIAN_COBALT, LirothToolMaterial.LIROTHIAN_COBALT.getLevel());
         LIROTHIAN_PETROLEUM_BLOCK = registerBlock("lirothian_petroleum_block", new BaseBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_BLOCK).strength(2.0F, 6.0F)));
         LIROTHIAN_PETROLEUM_ORE = registerBlock("lirothian_petroleum_ore", new BaseBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_ORE)));
         LIROTHIAN_PETROLEUM_LANTERN = registerBlock("lirothian_petroleum_lantern", new LanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
@@ -417,19 +416,8 @@ public class LirothBlocks {
         POTESTIUM_ORE = registerBlock("potestium_ore", new BaseBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_SOIL)));
         POTESTIUM_BLOCK = registerBlock("potestium_block", new BaseBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK)));
         POTESTIUM_PLATE_BLOCK = registerBlock("potestium_plate_block", new BaseBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK)));
-        POTTED_DAMNATION_FUNGAL_CLUSTER = registerBlockOnly("potted_damnation_fungal_cluster", new FlowerPotBlock(DAMNATION_FUNGAL_CLUSTER, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
-        POTTED_DAMNATION_FUNGUS = registerBlockOnly("potted_damnation_fungus", new FlowerPotBlock(DAMNATION_FUNGUS, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
-        POTTED_DAMNATION_SAPLING = registerBlockOnly("potted_damnation_sapling", new FlowerPotBlock(DAMNATION_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
-        POTTED_JAPZ_MINI_TREE = registerBlockOnly("potted_japz_mini_tree", new FlowerPotBlock(JAPZ_MINI_TREE, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
-        POTTED_JAPZ_SAPLING = registerBlockOnly("potted_japz_sapling", new FlowerPotBlock(JAPZ_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
-        POTTED_KOOLAW_SAPLING = registerBlockOnly("potted_koolaw_sapling", new FlowerPotBlock(KOOLAW_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
-        POTTED_LIROTH_ROSE = registerBlockOnly("potted_liroth_rose", new FlowerPotBlock(LIROTH_ROSE, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
-        POTTED_LIROTH_SAPLING = registerBlockOnly("potted_liroth_sapling", new FlowerPotBlock(LIROTH_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
-        POTTED_SPICED_SAPLING = registerBlockOnly("potted_spiced_sapling", new FlowerPotBlock(SPICED_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
-        POTTED_TALLPIER_SAPLING = registerBlockOnly("potted_tallpier_sapling", new FlowerPotBlock(TALLPIER_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
-        POTTED_WILITING_LIROTH_ROSE = registerBlockOnly("potted_wilting_liroth_rose", new FlowerPotBlock(WILITING_LIROTH_ROSE, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
         QUANTUM_EXTRACTOR = registerBlock("quantum_extractor", new QuantumExtractorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FURNACE).noOcclusion().lightLevel(state -> state.getValue(QuantumExtractorBlock.LIT) ? 13 : 0)));
-        RUBY = GemMaterial.makeNormal("ruby", MapColor.COLOR_RED, Tiers.DIAMOND, LirothArmorTier.RUBY, 3, SoundType.SOUL_SOIL);
+        RUBY = GemMaterial.makeNormal("ruby", MapColor.COLOR_RED, Tiers.DIAMOND, LirothArmorMaterial.RUBY, LirothArmorTier.RUBY, 3, SoundType.SOUL_SOIL);
         QUANTUM_DIAMOND_ORE = registerBlock("quantum_diamond_ore", new BaseBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_SOIL)));
         QUANTUM_PLATE_BLOCK = registerBlock("quantum_plate_block", new BaseBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK)));
         SEA_EYE = registerPlantBlock("sea_eye", new LirothWaterPlant(DEAD_SEA_EYE, BlockBehaviour.Properties.ofFullCopy(Blocks.DEAD_FIRE_CORAL_FAN)));
@@ -461,12 +449,22 @@ public class LirothBlocks {
         TALLPIER_SAPLING = registerPlantBlock("tallpier_sapling", new CustomSapling(LirothTreeGrower.PIER));
         TALLPIER_WOOD = new WoodMaterial("tallpier", MapColor.COLOR_PURPLE, MapColor.COLOR_PURPLE).init();
         TALLPIER_LEAVES = registerBlock("tallpier_leaves", new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
-        TOURMALINE = GemMaterial.makeNormal("tourmaline", MapColor.COLOR_RED, LirothToolMaterial.TOURMALINE, LirothArmorTier.TOURMALINE, LirothToolMaterial.TOURMALINE.getLevel());
-//        TOURMALINE_GEM_BLOCK = registerBlock("tourmaline_gem_block", new BaseBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK)));
-//        TOURMALINE_ORE = registerBlock("tourmaline_ore", new BaseBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_ORE)));
+        TOURMALINE = GemMaterial.makeNormal("tourmaline", MapColor.COLOR_RED, LirothToolMaterial.TOURMALINE, LirothArmorMaterial.TOURMALINE, LirothArmorTier.TOURMALINE, LirothToolMaterial.TOURMALINE.getLevel());
         VILE_TENTACLE_TIP = registerPlantBlock("vile_tentacle_tip", new LirothWaterTipBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.KELP), () -> VILE_TENTACLE));
         VILE_TENTACLE = registerBlockOnly("vile_tentacle", new LirothWaterPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.KELP_PLANT), VILE_TENTACLE_TIP));
         WILITING_LIROTH_ROSE = registerPlantBlock("wilting_liroth_rose", new LirothRosePlant(MapColor.COLOR_LIGHT_GRAY));
+
+        POTTED_DAMNATION_FUNGAL_CLUSTER = registerBlockOnly("potted_damnation_fungal_cluster", new FlowerPotBlock(DAMNATION_FUNGAL_CLUSTER, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
+        POTTED_DAMNATION_FUNGUS = registerBlockOnly("potted_damnation_fungus", new FlowerPotBlock(DAMNATION_FUNGUS, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
+        POTTED_DAMNATION_SAPLING = registerBlockOnly("potted_damnation_sapling", new FlowerPotBlock(DAMNATION_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
+        POTTED_JAPZ_MINI_TREE = registerBlockOnly("potted_japz_mini_tree", new FlowerPotBlock(JAPZ_MINI_TREE, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
+        POTTED_JAPZ_SAPLING = registerBlockOnly("potted_japz_sapling", new FlowerPotBlock(JAPZ_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
+        POTTED_KOOLAW_SAPLING = registerBlockOnly("potted_koolaw_sapling", new FlowerPotBlock(KOOLAW_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
+        POTTED_LIROTH_ROSE = registerBlockOnly("potted_liroth_rose", new FlowerPotBlock(LIROTH_ROSE, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
+        POTTED_LIROTH_SAPLING = registerBlockOnly("potted_liroth_sapling", new FlowerPotBlock(LIROTH_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
+        POTTED_SPICED_SAPLING = registerBlockOnly("potted_spiced_sapling", new FlowerPotBlock(SPICED_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
+        POTTED_TALLPIER_SAPLING = registerBlockOnly("potted_tallpier_sapling", new FlowerPotBlock(TALLPIER_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
+        POTTED_WILITING_LIROTH_ROSE = registerBlockOnly("potted_wilting_liroth_rose", new FlowerPotBlock(WILITING_LIROTH_ROSE, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
 
         LIROTH_FLUID_BLOCK = registerBlockOnly("liroth_fluid", new LiquidBlock(LirothFluids.LIROTH_FLUID_STILL, BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
         MOLTEN_SPINERIOS_BLOCK = registerBlockOnly("molten_spinerios", new LiquidBlock(LirothFluids.MOLTEN_SPINERIOS_STILL, BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
@@ -477,26 +475,6 @@ public class LirothBlocks {
         JALSPHIRE_PORTAL_FRAME = registerBlock("jalsphire_portal_frame", new PortalChargeFrameBlock(LirothItems.JALSPHIRE_CHARGE, "jalsphire_portal_charge"));
         DEVASTATED_PORTAL_FRAME = registerBlock("devastated_portal_frame", new PortalChargeFrameBlock(LirothItems.ANOMALY_CHARGE, "devastated_portal_charge"));
 
- /*       FlowerPotBlock flowerPot = (FlowerPotBlock) Blocks.FLOWER_POT;
-        flowerPot.addPlant(Liroth.C.mk("damnation_fungal_cluster"), () -> POTTED_DAMNATION_FUNGAL_CLUSTER);
-        flowerPot.addPlant(Liroth.C.mk("damnation_fungus"), () -> POTTED_DAMNATION_FUNGUS);
-        flowerPot.addPlant(Liroth.C.mk("damnation_sapling"), () -> POTTED_DAMNATION_SAPLING);
-        flowerPot.addPlant(Liroth.C.mk("japz_mini_tree"), () -> POTTED_JAPZ_MINI_TREE);
-        flowerPot.addPlant(Liroth.C.mk("japz_sapling"), () -> POTTED_JAPZ_SAPLING);
-        flowerPot.addPlant(Liroth.C.mk("koolaw_sapling"), () -> POTTED_KOOLAW_SAPLING);
-        flowerPot.addPlant(Liroth.C.mk("liroth_rose"), () -> POTTED_LIROTH_ROSE);
-        flowerPot.addPlant(Liroth.C.mk("liroth_sapling"), () -> POTTED_LIROTH_SAPLING);
-        flowerPot.addPlant(Liroth.C.mk("spiced_sapling"), () -> POTTED_SPICED_SAPLING);
-        flowerPot.addPlant(Liroth.C.mk("tallpier_sapling"), () -> POTTED_TALLPIER_SAPLING);
-        flowerPot.addPlant(Liroth.C.mk("wilting_liroth_rose"), () -> POTTED_WILITING_LIROTH_ROSE);*/
-    }
-
-    public static List<Block> getModBlocks() {
-        return getBlockRegistry().allBlocks().toList();
-    }
-
-    public static List<BlockItem> getModBlockItems() {
-        return getBlockRegistry().allBlockItems().toList();
     }
 
     @SafeVarargs
@@ -511,10 +489,6 @@ public class LirothBlocks {
         T registeredBlock = getBlockRegistry().register(name, block, tags);
         PLANT_BLOCKS.add(registeredBlock);
         return registeredBlock;
-    }
-
-    public static <T extends Block> T registerBlockTheOldWay(String name, Supplier<T> block) {
-        return getBlockRegistry().register(name, block.get());
     }
 
     public static <T extends Block> T registerBlockOnly(String name, Block block) {

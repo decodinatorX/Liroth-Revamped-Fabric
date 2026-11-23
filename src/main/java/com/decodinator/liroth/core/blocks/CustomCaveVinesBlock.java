@@ -28,7 +28,7 @@ public class CustomCaveVinesBlock extends GrowingPlantHeadBlock implements Bonem
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+    protected @NotNull BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
         if (facing == this.growthDirection.getOpposite() && !state.canSurvive(level, currentPos)) {
             level.scheduleTick(currentPos, this, 1);
         }
@@ -55,12 +55,12 @@ public class CustomCaveVinesBlock extends GrowingPlantHeadBlock implements Bonem
     }
 
     @Override
-    protected Block getBodyBlock() {
+    protected @NotNull Block getBodyBlock() {
         return LirothBlocks.JAPZ_VINES_PLANT;
     }
 
     @Override
-    protected GrowingPlantHeadBlock getHeadBlock() {
+    protected @NotNull GrowingPlantHeadBlock getHeadBlock() {
         return (GrowingPlantHeadBlock) LirothBlocks.JAPZ_VINES;
     }
 
@@ -80,7 +80,7 @@ public class CustomCaveVinesBlock extends GrowingPlantHeadBlock implements Bonem
     }
 
     @Override
-    protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+    protected @NotNull List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
         return SilkTouchLoot.hasSilkTouch(params) ? super.getDrops(state, params) : List.of();
     }
 

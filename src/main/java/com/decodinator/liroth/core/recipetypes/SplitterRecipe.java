@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class SplitterRecipe extends AbstractSplitterRecipe {
    public SplitterRecipe(ResourceLocation p_249157_, String p_250200_, Ingredient p_250340_, ItemStack p_250306_, RandomizedOutputIngredient bonus, RandomizedOutputIngredient2 bonus2, float p_249577_, int p_250030_) {
@@ -27,26 +28,21 @@ public class SplitterRecipe extends AbstractSplitterRecipe {
    }
 
    @Override
-   public ItemStack getResultItem(RegistryAccess registryAccess) {
-      return this.result;
-   }
-
-   @Override
    public boolean matches(RecipeInput recipeInput, Level level) {
-      return recipeInput.size() > 0 && this.ingredient.test(recipeInput.getItem(0));
+      return !recipeInput.isEmpty() && this.ingredient.test(recipeInput.getItem(0));
    }
 
    @Override
-   public ItemStack assemble(RecipeInput recipeInput, HolderLookup.Provider provider) {
+   public @NotNull ItemStack assemble(RecipeInput recipeInput, HolderLookup.Provider provider) {
       return this.result.copy();
    }
 
    @Override
-   public ItemStack getResultItem(HolderLookup.Provider provider) {
+   public @NotNull ItemStack getResultItem(HolderLookup.Provider provider) {
       return this.result;
    }
 
-   public ItemStack getToastSymbol() {
+   public @NotNull ItemStack getToastSymbol() {
       return new ItemStack(LirothBlocks.LIROTH_SPLITTER);
    }
 

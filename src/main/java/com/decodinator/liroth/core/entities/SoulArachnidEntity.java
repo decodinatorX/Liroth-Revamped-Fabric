@@ -13,7 +13,7 @@ import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class SoulArachnidEntity extends Spider implements GeoAnimatable {
-    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	public SoulArachnidEntity(EntityType<? extends Spider> entityType, Level world) {
 		super(entityType, world);
@@ -43,7 +43,7 @@ public class SoulArachnidEntity extends Spider implements GeoAnimatable {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
-        data.add(new AnimationController<SoulArachnidEntity>(this, "controller", 0, this::predicate));
+        data.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
     @Override

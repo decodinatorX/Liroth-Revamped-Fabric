@@ -1,7 +1,6 @@
 package com.decodinator.liroth.core.blocks;
 
 
-import com.decodinator.liroth.Liroth;
 import com.decodinator.liroth.core.blockentities.QuantumBlockEntity;
 import com.decodinator.liroth.core.blockentities.QuantumExtractorBlockEntity;
 
@@ -30,6 +29,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 
@@ -44,7 +44,7 @@ public class QuantumExtractorBlock extends BaseEntityBlock {
 	}
 
     @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
+    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
 
@@ -59,12 +59,12 @@ public class QuantumExtractorBlock extends BaseEntityBlock {
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState p_48727_) {
+    public @NotNull RenderShape getRenderShape(BlockState p_48727_) {
         return RenderShape.MODEL;
      }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    protected @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         		if (!level.isClientSide) {
         			MenuProvider screenHandlerFactory = state.getMenuProvider(level, pos);
 
@@ -72,7 +72,6 @@ public class QuantumExtractorBlock extends BaseEntityBlock {
         				player.openMenu(screenHandlerFactory);
         			}
         		}
-
     			return InteractionResult.sidedSuccess(level.isClientSide());
     	}
 
@@ -101,7 +100,7 @@ public class QuantumExtractorBlock extends BaseEntityBlock {
     
     @Override
     public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
-        if (!state.getValue(LIT).booleanValue()) {
+        if (!state.getValue(LIT)) {
             return;
         }
         double d = (double)pos.getX() + 0.5;

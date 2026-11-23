@@ -22,13 +22,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class CustomKelpBlock extends GrowingPlantHeadBlock implements LiquidBlockContainer {
 	   protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D);
-	   private static final double GROW_PER_TICK_PROBABILITY = 0.14D;
 
-	   public CustomKelpBlock(BlockBehaviour.Properties p_54300_) {
+    public CustomKelpBlock(BlockBehaviour.Properties p_54300_) {
 	      super(p_54300_, Direction.UP, SHAPE, true, 0.14D);
 	   }
 
@@ -36,7 +36,7 @@ public class CustomKelpBlock extends GrowingPlantHeadBlock implements LiquidBloc
 	      return p_54321_.is(LirothBlocks.LIROTH_FLUID_BLOCK);
 	   }
 
-	   protected Block getBodyBlock() {
+	   protected @NotNull Block getBodyBlock() {
 	      return LirothBlocks.VILE_TENTACLE;
 	   }
 
@@ -68,7 +68,7 @@ public class CustomKelpBlock extends GrowingPlantHeadBlock implements LiquidBloc
 	      return fluidstate.is(FluidTags.WATER) && fluidstate.getAmount() == 8 ? super.getStateForPlacement(p_54302_) : null;
 	   }
 
-	   public FluidState getFluidState(BlockState p_54319_) {
+	   public @NotNull FluidState getFluidState(BlockState p_54319_) {
 	      return LirothFluids.LIROTH_FLUID_STILL.getSource(false);
 	   }
-	}
+}

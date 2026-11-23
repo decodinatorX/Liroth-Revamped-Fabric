@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class QuantumRecipe extends AbstractQuantumRecipe {
    public QuantumRecipe(String p_250200_, Ingredient p_250340_, ItemStack p_250306_, RandomizedOutputIngredient bonus, float p_249577_, int p_250030_) {
@@ -23,26 +24,21 @@ public class QuantumRecipe extends AbstractQuantumRecipe {
    }
 
    @Override
-   public ItemStack getResultItem(RegistryAccess registryAccess) {
-      return this.result;
-   }
-
-   @Override
    public boolean matches(RecipeInput recipeInput, Level level) {
-      return recipeInput.size() > 0 && this.ingredient.test(recipeInput.getItem(0));
+      return !recipeInput.isEmpty() && this.ingredient.test(recipeInput.getItem(0));
    }
 
    @Override
-   public ItemStack assemble(RecipeInput recipeInput, HolderLookup.Provider provider) {
+   public @NotNull ItemStack assemble(RecipeInput recipeInput, HolderLookup.Provider provider) {
       return this.result.copy();
    }
 
    @Override
-   public ItemStack getResultItem(HolderLookup.Provider provider) {
+   public @NotNull ItemStack getResultItem(HolderLookup.Provider provider) {
       return this.result;
    }
 
-   public ItemStack getToastSymbol() {
+   public @NotNull ItemStack getToastSymbol() {
       return new ItemStack(LirothBlocks.QUANTUM_EXTRACTOR);
    }
 }

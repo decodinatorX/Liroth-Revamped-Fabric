@@ -7,6 +7,7 @@ import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class BeamItem extends ArrowItem {
 
@@ -15,7 +16,7 @@ public class BeamItem extends ArrowItem {
     }
 
     @Override
-    public AbstractArrow createArrow(Level level, ItemStack ammo, LivingEntity shooter, ItemStack weapon) {
+    public @NotNull AbstractArrow createArrow(Level level, ItemStack ammo, LivingEntity shooter, ItemStack weapon) {
         return BeamLaserProjectileEntity.createBeamProjectile(shooter);
     }
 }

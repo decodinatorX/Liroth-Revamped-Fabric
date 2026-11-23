@@ -1,9 +1,9 @@
 package com.decodinator.liroth.core.items;
 
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class CustomShieldItem extends ShieldItem {
     }
 
     @Override
-    public String getDescriptionId(ItemStack stack) {
+    public @NotNull String getDescriptionId(ItemStack stack) {
         return super.getDescriptionId(stack);
     }
 
@@ -24,7 +24,7 @@ public class CustomShieldItem extends ShieldItem {
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack stack) {
+    public @NotNull UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.BLOCK;
     }
 

@@ -29,7 +29,7 @@ extends Feature<PointedDripstoneConfiguration> {
 	         BlockPos blockpos1 = blockpos.relative(optional.get().getOpposite());
 	         createPatchOfDripstoneBlocks(levelaccessor, randomsource, blockpos1, pointeddripstoneconfiguration);
 	         int i = randomsource.nextFloat() < pointeddripstoneconfiguration.chanceOfTallerDripstone && PetrifiedCrystalHelper.isEmptyOrWater(levelaccessor.getBlockState(blockpos.relative(optional.get()))) ? 2 : 1;
-	         PetrifiedCrystalHelper.growPointedDripstone(levelaccessor, blockpos, optional.get(), i, false);
+	         PetrifiedCrystalHelper.growPointedDripstone(levelaccessor, blockpos, optional.get(), i);
 	         return true;
 	      }
 	   }

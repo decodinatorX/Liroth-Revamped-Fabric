@@ -9,6 +9,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import org.jetbrains.annotations.NotNull;
 
 public class SimpleQuantumSerializer<T extends AbstractQuantumRecipe>implements RecipeSerializer<T> {
 	private final SimpleQuantumSerializer.CookieBaker<T> factory;
@@ -32,12 +33,12 @@ public class SimpleQuantumSerializer<T extends AbstractQuantumRecipe>implements 
 	}
 
 	@Override
-	public MapCodec<T> codec() {
+	public @NotNull MapCodec<T> codec() {
 		return this.codec;
 	}
 
 	@Override
-	public StreamCodec<RegistryFriendlyByteBuf, T> streamCodec() {
+	public @NotNull StreamCodec<RegistryFriendlyByteBuf, T> streamCodec() {
 		return this.streamCodec;
 	}
 

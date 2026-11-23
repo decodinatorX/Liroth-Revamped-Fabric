@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import org.jetbrains.annotations.NotNull;
 
 public class SimpleSplitterSerializer<T extends AbstractSplitterRecipe>implements RecipeSerializer<T> {
 	private final SimpleSplitterSerializer.CookieBaker<T> factory;
@@ -37,12 +38,12 @@ public class SimpleSplitterSerializer<T extends AbstractSplitterRecipe>implement
 
 
 	@Override
-	public MapCodec<T> codec() {
+	public @NotNull MapCodec<T> codec() {
 		return this.codec;
 	}
 
 	@Override
-	public StreamCodec<RegistryFriendlyByteBuf, T> streamCodec() {
+	public @NotNull StreamCodec<RegistryFriendlyByteBuf, T> streamCodec() {
 		return this.streamCodec;
 	}
 

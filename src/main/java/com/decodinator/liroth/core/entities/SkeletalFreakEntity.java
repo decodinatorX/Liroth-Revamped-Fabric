@@ -17,13 +17,14 @@ import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class SkeletalFreakEntity extends Skeleton implements GeoAnimatable {
-    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	public SkeletalFreakEntity(EntityType<? extends Skeleton> entityType, Level world) {
 		super(entityType, world);
@@ -47,26 +48,22 @@ public class SkeletalFreakEntity extends Skeleton implements GeoAnimatable {
     }
 
     protected AbstractArrow createBeamProjectile(ItemStack arrow, float damageModifier) {
-        return LirothEntities.createBeamProjectile(this, arrow, damageModifier);
+        return LirothEntities.createBeamProjectile(this, arrow);
     }
     
     @Override
-    protected SoundEvent getAmbientSound() {
+    protected @NotNull SoundEvent getAmbientSound() {
         return SoundEvents.STRAY_AMBIENT;
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
+    protected @NotNull SoundEvent getHurtSound(DamageSource source) {
         return SoundEvents.STRAY_HURT;
     }
 
     @Override
-    protected SoundEvent getDeathSound() {
+    protected @NotNull SoundEvent getDeathSound() {
         return SoundEvents.STRAY_DEATH;
-    }
-
-    protected SoundEvent getStepSound() {
-        return SoundEvents.WITHER_SKELETON_STEP;
     }
 
     private static final RawAnimation SKELETAL_WALK = RawAnimation.begin().thenPlay("skeletal_walk");
@@ -89,7 +86,7 @@ public class SkeletalFreakEntity extends Skeleton implements GeoAnimatable {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
-        data.add(new AnimationController<SkeletalFreakEntity>(this, "controller", 0, this::predicate));
+        data.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
     @Override

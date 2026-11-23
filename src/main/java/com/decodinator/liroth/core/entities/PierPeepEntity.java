@@ -34,7 +34,4 @@ public class PierPeepEntity extends Vex {
         return null;
     }
 
-    protected SoundEvent getStepSound() {
-        return null;
-    }
 }

@@ -8,11 +8,12 @@
     "ChunkGeneratorMixin",
     "ExplosionMixin",
     "HoeItemAccess",
-    "ItemBlockRenderTypeAccess",
     "RandomStateAccessor",
+    "SpawnPlacementsAccessor",
     "ShovelItemAccess"
   ],
   "client": [
+    "ItemBlockRenderTypeAccess"
   ],
   "injectors": {
     "defaultRequire": 1

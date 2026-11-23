@@ -9,10 +9,6 @@ import net.minecraft.world.level.material.MapColor;
 public class LirothAnvilBlock extends LeveledAnvilBlock implements BehaviourMetal {
     protected MetalMaterial metalMaterial;
 
-    public LirothAnvilBlock(MapColor color, int level) {
-        super(color, level);
-    }
-
     public LirothAnvilBlock(MetalMaterial metalMaterial, MapColor color, int level) {
         super(color, level);
         this.metalMaterial = metalMaterial;

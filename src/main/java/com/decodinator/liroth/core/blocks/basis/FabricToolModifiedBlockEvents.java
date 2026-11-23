@@ -1,4 +1,4 @@
-package com.decodinator.liroth.core.blocks;
+package com.decodinator.liroth.core.blocks.basis;
 
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.core.BlockPos;

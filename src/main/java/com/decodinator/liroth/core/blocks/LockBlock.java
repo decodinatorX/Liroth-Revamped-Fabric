@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import org.jetbrains.annotations.NotNull;
 
 public class LockBlock extends Block {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -26,13 +27,12 @@ public class LockBlock extends Block {
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState p_48727_) {
+    public @NotNull RenderShape getRenderShape(BlockState p_48727_) {
         return RenderShape.MODEL;
     }
 
     @Override
-    public BlockState rotate(BlockState p_48722_, Rotation p_48723_) {
+    public @NotNull BlockState rotate(BlockState p_48722_, Rotation p_48723_) {
         return p_48722_.setValue(FACING, p_48723_.rotate(p_48722_.getValue(FACING)));
     }
-
 }

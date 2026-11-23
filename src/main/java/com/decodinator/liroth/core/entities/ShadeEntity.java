@@ -16,6 +16,7 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class ShadeEntity extends Zombie {
 
@@ -34,7 +35,7 @@ public class ShadeEntity extends Zombie {
     }
 	
     @Override
-    protected InteractionResult mobInteract(Player player2, InteractionHand hand) {
+    protected @NotNull InteractionResult mobInteract(Player player2, InteractionHand hand) {
         ItemStack itemStack = player2.getItemInHand(hand);
         if (itemStack.is(LirothTags.TORCHES)) {
             this.level().playSound(player2, this.getX(), this.getY(), this.getZ(), SoundEvents.SOUL_SOIL_BREAK, this.getSoundSource(), 1.0f, this.random.nextFloat() * 0.4f + 0.8f);
@@ -56,21 +57,21 @@ public class ShadeEntity extends Zombie {
      }
     
     @Override
-    protected SoundEvent getAmbientSound() {
+    protected @NotNull SoundEvent getAmbientSound() {
         return LirothSounds.SHADE_IDLE_SOUND_EVENT;
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
+    protected @NotNull SoundEvent getHurtSound(DamageSource source) {
         return LirothSounds.SHADE_HURT_SOUND_EVENT;
     }
 
     @Override
-    protected SoundEvent getDeathSound() {
+    protected @NotNull SoundEvent getDeathSound() {
         return LirothSounds.SHADE_DEATH_SOUND_EVENT;
     }
 
-    protected SoundEvent getStepSound() {
+    protected @NotNull SoundEvent getStepSound() {
     	return SoundEvents.SOUL_SAND_STEP;
 	}
 }

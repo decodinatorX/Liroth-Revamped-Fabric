@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
 
 public class PortalChargeFrameBlock extends Block {
     public static final BooleanProperty CHARGED = BlockStateProperties.LIT;
@@ -35,12 +36,8 @@ public class PortalChargeFrameBlock extends Block {
         registerDefaultState(stateDefinition.any().setValue(CHARGED, false));
     }
 
-    public Item getChargeItem() {
-        return chargeItem;
-    }
-
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (state.getValue(CHARGED) || !stack.is(chargeItem)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }

@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
@@ -27,7 +28,6 @@ import java.util.function.Supplier;
 public class LirothWaterTipBlock extends GrowingPlantHeadBlock implements LiquidBlockContainer {
     private final Supplier<Block> bodyPlant;
     protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D);
-    private static final double GROW_PER_TICK_PROBABILITY = 0.14D;
 
     public LirothWaterTipBlock(BlockBehaviour.Properties p_54300_, Supplier<Block> plantBlock) {
         super(p_54300_, Direction.UP, SHAPE, true, 0.14D);
@@ -38,16 +38,12 @@ public class LirothWaterTipBlock extends GrowingPlantHeadBlock implements Liquid
         return p_54321_.is(LirothBlocks.LIROTH_FLUID_BLOCK);
     }
 
-    protected Block getBodyBlock() {
+    protected @NotNull Block getBodyBlock() {
         return bodyPlant.get();
     }
 
     protected boolean canAttachTo(BlockState p_153455_) {
         return !p_153455_.is(Blocks.MAGMA_BLOCK);
-    }
-
-    public boolean canPlaceLiquid(BlockGetter p_54304_, BlockPos p_54305_, BlockState p_54306_, Fluid p_54307_) {
-        return false;
     }
 
     @Override
@@ -74,7 +70,7 @@ public class LirothWaterTipBlock extends GrowingPlantHeadBlock implements Liquid
         return fluidstate.is(FluidTags.WATER) || fluidstate.is(LirothFluids.LIROTH_FLUID_STILL) && fluidstate.getAmount() == 8 ? super.getStateForPlacement(p_54302_) : null;
     }
 
-    public FluidState getFluidState(BlockState p_54319_) {
+    public @NotNull FluidState getFluidState(BlockState p_54319_) {
         return LirothFluids.LIROTH_FLUID_STILL.getSource().defaultFluidState();
     }
 }

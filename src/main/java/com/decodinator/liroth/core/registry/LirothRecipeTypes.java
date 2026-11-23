@@ -21,9 +21,9 @@ public class LirothRecipeTypes {
 	public static SimpleSplitterSerializer<AbstractSplitterRecipe> LIROTH_SPLITTING_S;
 	
 	public static void init() {
-		QUANTUM_EXTRACTION = Registry.register(BuiltInRegistries.RECIPE_TYPE, ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "quantum_extraction"), new RecipeType<AbstractQuantumRecipe>() {});;
+		QUANTUM_EXTRACTION = Registry.register(BuiltInRegistries.RECIPE_TYPE, ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "quantum_extraction"), new RecipeType<AbstractQuantumRecipe>() {});
 		QUANTUM_EXTRACTION_S = Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "quantum_extraction"), new SimpleQuantumSerializer<>(QuantumRecipe::new, 200));
-		LIROTH_SPLITTING = Registry.register(BuiltInRegistries.RECIPE_TYPE, ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "liroth_splitting"), new RecipeType<AbstractSplitterRecipe>() {});;
+		LIROTH_SPLITTING = Registry.register(BuiltInRegistries.RECIPE_TYPE, ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "liroth_splitting"), new RecipeType<AbstractSplitterRecipe>() {});
 		LIROTH_SPLITTING_S = Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "liroth_splitting"), new SimpleSplitterSerializer<>(SplitterRecipe::new, 200));
 		}
 }

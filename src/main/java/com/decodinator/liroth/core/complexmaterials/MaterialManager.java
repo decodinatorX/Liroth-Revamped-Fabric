@@ -1,11 +1,6 @@
 package com.decodinator.liroth.core.complexmaterials;
 
 import org.betterx.wover.core.api.ModCore;
-import org.betterx.wover.tag.api.event.context.ItemTagBootstrapContext;
-import org.betterx.wover.tag.api.event.context.TagBootstrapContext;
-
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.world.level.block.Block;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +10,9 @@ public class MaterialManager {
     private static List<Material> MATERIALS;
 
     public interface MaterialRecipe {
-        void registerRecipes(RecipeOutput context);
     }
 
     public interface Material extends MaterialRecipe {
-        void registerRecipes(RecipeOutput context);
-        void registerBlockTags(TagBootstrapContext<Block> context);
-        void registerItemTags(ItemTagBootstrapContext context);
     }
 
     public static void register(Material m) {

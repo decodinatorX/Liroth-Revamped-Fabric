@@ -5,7 +5,6 @@ import com.decodinator.liroth.core.items.*;
 import com.decodinator.liroth.core.items.material.LirothArmorMaterial;
 import com.decodinator.liroth.core.items.material.LirothToolMaterial;
 import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
@@ -14,7 +13,6 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
 import org.betterx.bclib.BCLib;
-import org.betterx.bclib.api.v2.ComposterAPI;
 import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.items.BaseDiscItem;
 import org.betterx.bclib.items.BaseDrinkItem;
@@ -33,7 +31,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class LirothItems {
     public static List<Item> ITEMS = new ArrayList<>();
@@ -175,15 +172,6 @@ public class LirothItems {
         return getItemRegistry().allItems().toList();
     }
 
-    public static void registerCompostableFoods() {
-        getModItems().forEach(item -> {
-            FoodProperties food = item.components().get(DataComponents.FOOD);
-            if (food != null) {
-                ComposterAPI.allowCompost(food.nutrition() * food.saturation() * 0.18F, item);
-            }
-        });
-    }
-
     public static Item registerDisc(String name, ResourceKey<JukeboxSong> sound) {
         Item item = BaseDiscItem.create(sound, BehaviourBuilders.createDisc());
         RecordItemModelProvider.add(item);
@@ -263,12 +251,5 @@ public class LirothItems {
 
     @ApiStatus.Internal
     public static void ensureStaticallyLoaded() {
-        if (BCLib.isDevEnvironment()) {
-            //    DebugHelpers.generateDebugItems();
-        }
-    }
-
-    public static Item.Properties defaultSettings() {
-        return new Item.Properties();
     }
 }

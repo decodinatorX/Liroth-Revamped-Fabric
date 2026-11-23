@@ -35,6 +35,7 @@ import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.blending.Blender;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
+import org.jetbrains.annotations.NotNull;
 
 public class LirothSeededChunkGenerator extends NoiseBasedChunkGenerator {
     public static final MapCodec<LirothSeededChunkGenerator> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
@@ -56,8 +57,7 @@ public class LirothSeededChunkGenerator extends NoiseBasedChunkGenerator {
     }
 
     private RandomState withDimensionSeed(RandomState randomState, long seed) {
-        HolderGetter<NormalNoise.NoiseParameters> noises =
-                ((RandomStateAccessor) (Object) randomState).liroth$getNoises();
+        HolderGetter<NormalNoise.NoiseParameters> noises = ((RandomStateAccessor) (Object) randomState).liroth$getNoises();
         return RandomState.create(this.generatorSettings().value(), noises, this.getDimensionSeed(seed));
     }
 
@@ -66,8 +66,7 @@ public class LirothSeededChunkGenerator extends NoiseBasedChunkGenerator {
     }
 
     @Override
-    public ChunkGeneratorStructureState createState(HolderLookup<StructureSet> structureSetLookup,
-                                                    RandomState randomState, long seed) {
+    public @NotNull ChunkGeneratorStructureState createState(HolderLookup<StructureSet> structureSetLookup, RandomState randomState, long seed) {
         this.worldSeed = seed;
         long dimensionSeed = this.getDimensionSeed(seed);
         return ChunkGeneratorStructureState.createForNormal(
@@ -76,28 +75,24 @@ public class LirothSeededChunkGenerator extends NoiseBasedChunkGenerator {
     }
 
     @Override
-    public CompletableFuture<ChunkAccess> createBiomes(RandomState randomState, Blender blender,
-                                                       StructureManager structureManager, ChunkAccess chunk) {
+    public @NotNull CompletableFuture<ChunkAccess> createBiomes(RandomState randomState, Blender blender, StructureManager structureManager, ChunkAccess chunk) {
         return super.createBiomes(this.withStoredDimensionSeed(randomState), blender, structureManager, chunk);
     }
 
     @Override
-    public void applyCarvers(WorldGenRegion level, long seed, RandomState randomState, BiomeManager biomeManager,
-                             StructureManager structureManager, ChunkAccess chunk, GenerationStep.Carving step) {
+    public void applyCarvers(WorldGenRegion level, long seed, RandomState randomState, BiomeManager biomeManager, StructureManager structureManager, ChunkAccess chunk, GenerationStep.Carving step) {
         long dimensionSeed = this.getDimensionSeed(seed);
         super.applyCarvers(level, dimensionSeed, this.withDimensionSeed(randomState, seed), biomeManager,
                 structureManager, chunk, step);
     }
 
     @Override
-    public void buildSurface(WorldGenRegion level, StructureManager structureManager, RandomState randomState,
-                             ChunkAccess chunk) {
+    public void buildSurface(WorldGenRegion level, StructureManager structureManager, RandomState randomState, ChunkAccess chunk) {
         super.buildSurface(level, structureManager, this.withDimensionSeed(randomState, level.getSeed()), chunk);
     }
 
     @Override
-    public CompletableFuture<ChunkAccess> fillFromNoise(Blender blender, RandomState randomState,
-                                                        StructureManager structureManager, ChunkAccess chunk) {
+    public @NotNull CompletableFuture<ChunkAccess> fillFromNoise(Blender blender, RandomState randomState, StructureManager structureManager, ChunkAccess chunk) {
         return super.fillFromNoise(blender, this.withStoredDimensionSeed(randomState), structureManager, chunk);
     }
 
@@ -107,7 +102,7 @@ public class LirothSeededChunkGenerator extends NoiseBasedChunkGenerator {
     }
 
     @Override
-    public NoiseColumn getBaseColumn(int x, int z, LevelHeightAccessor level, RandomState randomState) {
+    public @NotNull NoiseColumn getBaseColumn(int x, int z, LevelHeightAccessor level, RandomState randomState) {
         return super.getBaseColumn(x, z, level, this.withStoredDimensionSeed(randomState));
     }
 
@@ -128,7 +123,7 @@ public class LirothSeededChunkGenerator extends NoiseBasedChunkGenerator {
     }
 
     @Override
-    protected MapCodec<? extends ChunkGenerator> codec() {
+    protected @NotNull MapCodec<? extends ChunkGenerator> codec() {
         return CODEC;
     }
 }

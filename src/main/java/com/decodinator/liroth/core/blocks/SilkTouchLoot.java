@@ -6,11 +6,11 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
 final class SilkTouchLoot {
-    private SilkTouchLoot() {}
+    private SilkTouchLoot() {
+    }
 
     static boolean hasSilkTouch(LootParams.Builder params) {
         ItemStack tool = params.getOptionalParameter(LootContextParams.TOOL);
-        return tool != null && tool.getEnchantments().keySet().stream()
-                .anyMatch(enchantment -> enchantment.is(Enchantments.SILK_TOUCH));
+        return tool != null && tool.getEnchantments().keySet().stream().anyMatch(enchantment -> enchantment.is(Enchantments.SILK_TOUCH));
     }
 }

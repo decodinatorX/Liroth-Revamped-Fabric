@@ -6,8 +6,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrowingPlantBodyBlock;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -20,11 +20,7 @@ public class CustomVinesBody extends GrowingPlantBodyBlock {
         this.headBlock = head;
     }
 
-    protected boolean canGrowInto(BlockState arg) {
-        return arg.isAir();
-    }
-
-    protected GrowingPlantHeadBlock getHeadBlock() {
+    protected @NotNull GrowingPlantHeadBlock getHeadBlock() {
         return headBlock.get();
     }
 

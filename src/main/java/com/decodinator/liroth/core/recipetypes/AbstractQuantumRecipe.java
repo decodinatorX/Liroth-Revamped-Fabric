@@ -8,7 +8,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
-import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class AbstractQuantumRecipe implements Recipe<RecipeInput> {
    protected final RecipeType<?> type;
@@ -29,19 +29,11 @@ public abstract class AbstractQuantumRecipe implements Recipe<RecipeInput> {
       this.cookingTime = p_250256_;
    }
 
-   public boolean matches(Container p_43748_, Level p_43749_) {
-      return this.ingredient.test(p_43748_.getItem(0));
-   }
-
-   public ItemStack assemble(Container p_43746_) {
-      return this.result.copy();
-   }
-
    public boolean canCraftInDimensions(int p_43743_, int p_43744_) {
       return true;
    }
 
-   public NonNullList<Ingredient> getIngredients() {
+   public @NotNull NonNullList<Ingredient> getIngredients() {
       NonNullList<Ingredient> nonnulllist = NonNullList.create();
       nonnulllist.add(this.ingredient);
       return nonnulllist;
@@ -59,7 +51,7 @@ public abstract class AbstractQuantumRecipe implements Recipe<RecipeInput> {
       return this.bonus;
    }
 
-   public String getGroup() {
+   public @NotNull String getGroup() {
       return this.group;
    }
 
@@ -67,12 +59,12 @@ public abstract class AbstractQuantumRecipe implements Recipe<RecipeInput> {
       return this.cookingTime;
    }
 
-   public RecipeType<?> getType() {
+   public @NotNull RecipeType<?> getType() {
       return this.type;
    }
 
    @Override
-   public RecipeSerializer<?> getSerializer() {
+   public @NotNull RecipeSerializer<?> getSerializer() {
       return LirothRecipeTypes.QUANTUM_EXTRACTION_S;
    }
 
@@ -89,17 +81,9 @@ public abstract class AbstractQuantumRecipe implements Recipe<RecipeInput> {
       return getBonus;
    }
 
-   public ItemStack[] ingredientAt(int slot) {
-      Ingredient ing = at(slot);
-      return ing.getItems();
-   }
-
    public Ingredient at(int slot) {
       return getIngredients().get(slot);
    }
 
    public abstract ItemStack assemble(Container p_44001_, RegistryAccess p_267165_);
-
-   public abstract ItemStack getResultItem(RegistryAccess p_267052_);
-
 }

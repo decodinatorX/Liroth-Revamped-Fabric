@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class LirothWaterPlant extends LirothDeadPlantBlock {
@@ -25,17 +26,17 @@ public class LirothWaterPlant extends LirothDeadPlantBlock {
     @Override
     public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (!LirothWaterPlant.scanForWater(state, world, pos)) {
-            world.setBlock(pos, (BlockState)this.deadCoralBlock.defaultBlockState().setValue(WATERLOGGED, false), Block.UPDATE_NEIGHBORS);
+            world.setBlock(pos, this.deadCoralBlock.defaultBlockState().setValue(WATERLOGGED, false), Block.UPDATE_NEIGHBORS);
         }
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         if (direction == Direction.DOWN && !state.canSurvive(world, pos)) {
             return Blocks.AIR.defaultBlockState();
         }
         this.canSurvive(state, world, pos);
-        if (state.getValue(WATERLOGGED).booleanValue()) {
+        if (state.getValue(WATERLOGGED)) {
             world.scheduleTick(pos, LirothFluids.LIROTH_FLUID_STILL.getSource(), LirothFluids.LIROTH_FLUID_STILL.getSource().getTickDelay(world));
         }
         return super.updateShape(state, direction, neighborState, world, pos, neighborPos);

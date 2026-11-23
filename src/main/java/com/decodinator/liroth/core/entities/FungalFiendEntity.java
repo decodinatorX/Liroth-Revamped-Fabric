@@ -11,13 +11,14 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class FungalFiendEntity extends Creeper implements GeoAnimatable {
-    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
 	public FungalFiendEntity(EntityType<? extends Creeper> entityType, Level world) {
 		super(entityType, world);
@@ -30,12 +31,12 @@ public class FungalFiendEntity extends Creeper implements GeoAnimatable {
 	}
 	
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
+    protected @NotNull SoundEvent getHurtSound(DamageSource source) {
         return LirothSounds.FUNGAL_FIEND_HURT_SOUND_EVENT;
     }
 
     @Override
-    protected SoundEvent getDeathSound() {
+    protected @NotNull SoundEvent getDeathSound() {
         return LirothSounds.FUNGAL_FIEND_DEATH_SOUND_EVENT;
     }
 
@@ -59,7 +60,7 @@ public class FungalFiendEntity extends Creeper implements GeoAnimatable {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
-        data.add(new AnimationController<FungalFiendEntity>(this, "controller", 0, this::predicate));
+        data.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
     @Override

@@ -35,7 +35,7 @@ extends Feature<NoneFeatureConfiguration> {
             for (int l = 0; l <= k; ++l) {
                 if (structureWorldAccess.getBlockState(blockPos2).is(LirothBlocks.LIROTH_FLUID_BLOCK) && structureWorldAccess.getBlockState(blockPos2.above()).is(LirothBlocks.LIROTH_FLUID_BLOCK) && blockState2.canSurvive(structureWorldAccess, blockPos2)) {
                     if (l == k) {
-                        structureWorldAccess.setBlock(blockPos2, (BlockState)blockState.setValue(CustomKelpBlock.AGE, random.nextInt(4) + 20), Block.UPDATE_NEIGHBORS);
+                        structureWorldAccess.setBlock(blockPos2, blockState.setValue(CustomKelpBlock.AGE, random.nextInt(4) + 20), Block.UPDATE_NEIGHBORS);
                         ++i;
                     } else {
                         structureWorldAccess.setBlock(blockPos2, blockState2, Block.UPDATE_NEIGHBORS);
@@ -43,7 +43,7 @@ extends Feature<NoneFeatureConfiguration> {
                 } else if (l > 0) {
                     BlockPos blockPos3 = blockPos2.below();
                     if (!blockState.canSurvive(structureWorldAccess, blockPos3) || structureWorldAccess.getBlockState(blockPos3.below()).is(LirothBlocks.VILE_TENTACLE_TIP)) break;
-                    structureWorldAccess.setBlock(blockPos3, (BlockState)blockState.setValue(CustomKelpBlock.AGE, random.nextInt(4) + 20), Block.UPDATE_NEIGHBORS);
+                    structureWorldAccess.setBlock(blockPos3, blockState.setValue(CustomKelpBlock.AGE, random.nextInt(4) + 20), Block.UPDATE_NEIGHBORS);
                     ++i;
                     break;
                 }

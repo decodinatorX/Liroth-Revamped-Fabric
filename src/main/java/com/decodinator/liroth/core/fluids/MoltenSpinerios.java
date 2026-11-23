@@ -11,25 +11,26 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class MoltenSpinerios extends WaterTypeFluid {
 	@Override
-	public Fluid getSource() {
+	public @NotNull Fluid getSource() {
 		return LirothFluids.MOLTEN_SPINERIOS_STILL;
 	}
  
 	@Override
-	public Fluid getFlowing() {
+	public @NotNull Fluid getFlowing() {
 		return LirothFluids.MOLTEN_SPINERIOS_FLOWING;
 	}
  
 	@Override
-	public Item getBucket() {
+	public @NotNull Item getBucket() {
 		return LirothItems.MOLTEN_SPINERIOS_BUCKET;
 	}
  
 	@Override
-	protected BlockState createLegacyBlock(FluidState fluidState) {
+	protected @NotNull BlockState createLegacyBlock(FluidState fluidState) {
 		return LirothBlocks.MOLTEN_SPINERIOS_BLOCK.defaultBlockState().setValue(LiquidBlock.LEVEL, getLegacyLevel(fluidState));
 	}
  

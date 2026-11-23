@@ -5,7 +5,6 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Vec3i;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
@@ -52,7 +51,7 @@ public class DamnationVinesFeature
             if (!world.isEmptyBlock(mutable)) continue;
             int j = 0;
             for (Direction direction : DIRECTIONS) {
-                BlockState blockState = world.getBlockState(mutable2.setWithOffset((Vec3i)mutable, direction));
+                BlockState blockState = world.getBlockState(mutable2.setWithOffset(mutable, direction));
                 if (blockState.is(Blocks.NETHERRACK) || blockState.is(Blocks.NETHER_WART_BLOCK)) {
                     ++j;
                 }
@@ -67,7 +66,7 @@ public class DamnationVinesFeature
         for (int i = 0; i < 100; ++i) {
             BlockState blockState;
             mutable.setWithOffset(pos, random.nextInt(8) - random.nextInt(8), random.nextInt(2) - random.nextInt(7), random.nextInt(8) - random.nextInt(8));
-            if (!world.isEmptyBlock(mutable) || !(blockState = world.getBlockState((BlockPos)mutable.above())).is(Blocks.NETHERRACK) && !blockState.is(Blocks.NETHER_WART_BLOCK)) continue;
+            if (!world.isEmptyBlock(mutable) || !(blockState = world.getBlockState(mutable.above())).is(Blocks.NETHERRACK) && !blockState.is(Blocks.NETHER_WART_BLOCK)) continue;
             int j = Mth.nextInt(random, 1, 8);
             if (random.nextInt(6) == 0) {
                 j *= 2;
@@ -82,8 +81,8 @@ public class DamnationVinesFeature
     public static void generateVineColumn(LevelAccessor world, RandomSource random, MutableBlockPos pos, int length, int minAge, int maxAge) {
         for (int i = 0; i <= length; ++i) {
             if (world.isEmptyBlock(pos)) {
-                if (i == length || !world.isEmptyBlock((BlockPos)pos.below())) {
-                    world.setBlock(pos, (BlockState)Blocks.WEEPING_VINES.defaultBlockState().setValue(GrowingPlantHeadBlock.AGE, Mth.nextInt(random, minAge, maxAge)), Block.UPDATE_NEIGHBORS);
+                if (i == length || !world.isEmptyBlock(pos.below())) {
+                    world.setBlock(pos, Blocks.WEEPING_VINES.defaultBlockState().setValue(GrowingPlantHeadBlock.AGE, Mth.nextInt(random, minAge, maxAge)), Block.UPDATE_NEIGHBORS);
                     break;
                 }
                 world.setBlock(pos, Blocks.WEEPING_VINES_PLANT.defaultBlockState(), Block.UPDATE_NEIGHBORS);

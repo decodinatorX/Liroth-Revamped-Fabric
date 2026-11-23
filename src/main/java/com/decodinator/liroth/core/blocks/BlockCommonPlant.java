@@ -15,24 +15,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.MapColor;
+import org.jetbrains.annotations.NotNull;
 
-public abstract class BlockCommonPlant extends BlockBaseNotFull implements BonemealableBlock {
+public abstract class BlockCommonPlant extends Block implements BonemealableBlock {
     public static final IntegerProperty AGE = BlockProperties.AGE;
 
     public BlockCommonPlant(MapColor color) {
         super(BehaviourBuilders.createPlant(color).sound(SoundType.CROP).noOcclusion().noCollission());
-    }
-
-    public BlockCommonPlant(Properties settings) {
-        super(settings.randomTicks());
-    }
-
-    public int getMaxAge() {
-        return 3;
-    }
-
-    public IntegerProperty getAgeProperty() {
-        return AGE;
     }
 
     @Override
@@ -44,7 +33,7 @@ public abstract class BlockCommonPlant extends BlockBaseNotFull implements Bonem
     public abstract boolean canSurvive(BlockState state, LevelReader world, BlockPos pos);
 
     @Override
-    public BlockState updateShape(
+    public @NotNull BlockState updateShape(
             BlockState state,
             Direction facing,
             BlockState neighborState,

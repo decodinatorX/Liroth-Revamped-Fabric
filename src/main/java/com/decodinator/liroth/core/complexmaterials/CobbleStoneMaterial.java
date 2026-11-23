@@ -5,16 +5,12 @@ import com.decodinator.liroth.core.blocks.BaseFurnaceBlock;
 import com.decodinator.liroth.core.registry.LirothBlocks;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import org.betterx.bclib.blocks.*;
 import org.betterx.wover.recipe.api.RecipeBuilder;
-import org.betterx.wover.tag.api.event.context.ItemTagBootstrapContext;
-import org.betterx.wover.tag.api.event.context.TagBootstrapContext;
-import org.betterx.wover.tag.api.predefined.CommonItemTags;
 
 import java.util.function.Supplier;
 
@@ -77,45 +73,4 @@ public class CobbleStoneMaterial implements MaterialManager.Material {
                 .build(context);
     }
 
-    @Override
-    public void registerRecipes(RecipeOutput context) {
-
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_stairs"), stairs)
-                .outputCount(4)
-                .shape("#  ", "## ", "###")
-                .addMaterial('#', stone)
-                .group("liroth_stone_stairs")
-                .build(context);
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_slab"), slab)
-                .outputCount(6)
-                .shape("###")
-                .addMaterial('#', stone)
-                .group("liroth_stone_slabs")
-                .build(context);
-
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_wall"), wall)
-                .outputCount(6)
-                .shape("###", "###")
-                .addMaterial('#', stone)
-                .group("liroth_wall")
-                .build(context);
-        RecipeBuilder.crafting(Liroth.C.mk(name + "_furnace"), furnace)
-                .shape("###", "# #", "###")
-                .addMaterial('#', stone)
-                .group("liroth_stone_ITEM_FURNACES")
-                .build(context);
-
-        CobbleStoneMaterial.recipesForStoneMaterial(context, this);
-    }
-
-    @Override
-    public void registerBlockTags(TagBootstrapContext<Block> context) {
-    }
-
-    @Override
-    public void registerItemTags(ItemTagBootstrapContext context) {
-        context.add(ItemTags.STONE_CRAFTING_MATERIALS, stone.asItem());
-        context.add(ItemTags.STONE_TOOL_MATERIALS, stone.asItem());
-        context.add(CommonItemTags.FURNACES, furnace.asItem());
-    }
 }

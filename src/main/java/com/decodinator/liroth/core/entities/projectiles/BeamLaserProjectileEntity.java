@@ -14,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import org.jetbrains.annotations.NotNull;
 
 public class BeamLaserProjectileEntity extends AbstractArrow {
 	public BeamLaserProjectileEntity(EntityType<? extends AbstractArrow> entityType, Level world) {
@@ -22,33 +23,33 @@ public class BeamLaserProjectileEntity extends AbstractArrow {
 		this.pickup = Pickup.ALLOWED;
 	}
 
-	protected void onHitEntity(EntityHitResult entityHitResult) { // called on entity hit.
+	protected void onHitEntity(EntityHitResult entityHitResult) {
 		super.onHitEntity(entityHitResult);
-		Entity entity = entityHitResult.getEntity(); // sets a new Entity instance as the EntityHitResult (victim)
-		int i = entity instanceof Blaze ? 3 : 0; // sets i to 3 if the Entity instance is an instance of BlazeEntity
-		entity.hurt(this.damageSources().arrow(this, this.getOwner()), (float)i); // deals damage
+		Entity entity = entityHitResult.getEntity();
+		int i = entity instanceof Blaze ? 3 : 0;
+		entity.hurt(this.damageSources().arrow(this, this.getOwner()), (float)i);
 
-		if (entity instanceof LivingEntity livingEntity) { // checks if entity is an instance of LivingEntity (meaning it is not a boat or minecart)
-			livingEntity.addEffect((new MobEffectInstance(MobEffects.BLINDNESS, 20 * 3, 0))); // applies a status effect
-			livingEntity.playSound(SoundEvents.AMBIENT_CAVE.value()); // plays a sound for the entity hit only
+		if (entity instanceof LivingEntity livingEntity) {
+			livingEntity.addEffect((new MobEffectInstance(MobEffects.BLINDNESS, 20 * 3, 0)));
+			livingEntity.playSound(SoundEvents.AMBIENT_CAVE.value());
 		}
 	}
 
-	protected void onHitBlock(BlockHitResult hitResult) { // called on collision with a block
+	protected void onHitBlock(BlockHitResult hitResult) {
 		super.onHitBlock(hitResult);
-		if (!this.level().isClientSide) { // checks if the world is client
-			this.level().broadcastEntityEvent(this, (byte)3); // particle?
+		if (!this.level().isClientSide) {
+			this.level().broadcastEntityEvent(this, (byte)3);
 		}
 
 	}
 
 	@Override
-	protected ItemStack getPickupItem() {
+	protected @NotNull ItemStack getPickupItem() {
 		return new ItemStack(LirothItems.COOL_BEAM);
 	}
 
 	@Override
-	protected ItemStack getDefaultPickupItem() {
+	protected @NotNull ItemStack getDefaultPickupItem() {
 		return new ItemStack(LirothItems.COOL_BEAM);
 	}
 

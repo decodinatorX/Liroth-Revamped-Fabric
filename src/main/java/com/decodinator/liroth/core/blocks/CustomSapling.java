@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.betterx.bclib.behaviours.interfaces.BehaviourSapling;
+import org.jetbrains.annotations.NotNull;
 
 public class CustomSapling extends SaplingBlock implements BehaviourSapling {
 	private static final VoxelShape SHAPE = box(4, 0, 4, 12, 14, 12);
@@ -19,7 +20,7 @@ public class CustomSapling extends SaplingBlock implements BehaviourSapling {
 	}
 
 		@Override
-		public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+		public @NotNull VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 			return SHAPE;
 		}
 	}

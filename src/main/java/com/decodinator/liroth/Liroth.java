@@ -1,6 +1,6 @@
 package com.decodinator.liroth;
 
-import com.decodinator.liroth.core.blocks.FabricToolModifiedBlockEvents;
+import com.decodinator.liroth.core.blocks.basis.FabricToolModifiedBlockEvents;
 import com.decodinator.liroth.core.entities.ShadeEntity;
 import com.decodinator.liroth.core.registry.*;
 import com.decodinator.liroth.core.worldgen.LirothSeededChunkGenerator;

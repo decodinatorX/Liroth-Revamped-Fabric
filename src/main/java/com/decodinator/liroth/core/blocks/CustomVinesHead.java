@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -34,7 +35,7 @@ public class CustomVinesHead extends GrowingPlantHeadBlock {
     }
 
 
-    protected Block getBodyBlock() {
+    protected @NotNull Block getBodyBlock() {
         return plantBlock.get();
     }
 
@@ -43,7 +44,7 @@ public class CustomVinesHead extends GrowingPlantHeadBlock {
     }
 
     @Override
-    protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+    protected @NotNull List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
         return SilkTouchLoot.hasSilkTouch(params) ? super.getDrops(state, params) : List.of();
     }
 }

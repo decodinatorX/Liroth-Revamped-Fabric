@@ -10,6 +10,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class FreakshowEntity extends Zombie {
 
@@ -27,17 +28,17 @@ public class FreakshowEntity extends Zombie {
      }
     
     @Override
-    protected SoundEvent getAmbientSound() {
+    protected @NotNull SoundEvent getAmbientSound() {
         return LirothSounds.WARP_IDLE_SOUND_EVENT;
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
+    protected @NotNull SoundEvent getHurtSound(DamageSource source) {
         return LirothSounds.WARP_HURT_SOUND_EVENT;
     }
 
     @Override
-    protected SoundEvent getDeathSound() {
+    protected @NotNull SoundEvent getDeathSound() {
         return LirothSounds.WARP_DEATH_SOUND_EVENT;
     }
 }

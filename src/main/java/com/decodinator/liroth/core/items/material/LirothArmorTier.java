@@ -1,6 +1,5 @@
 package com.decodinator.liroth.core.items.material;
 
-import net.minecraft.world.item.ArmorMaterials;
 import org.betterx.wover.complex.api.equipment.ArmorTier;
 import org.betterx.wover.complex.api.equipment.ArmorTiers;
 
