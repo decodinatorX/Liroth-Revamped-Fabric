@@ -5,7 +5,7 @@ import com.decodinator.liroth.Liroth;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 @Environment(value=EnvType.CLIENT)
 public class LirothModelLayers {
@@ -25,8 +25,8 @@ public class LirothModelLayers {
 		return new ModelLayerLocation(prefix(name), layer);
 	}
 	
-	public static ResourceLocation prefix(String path) {
-		return ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, path);
+	public static Identifier prefix(String path) {
+		return Identifier.fromNamespaceAndPath(Liroth.MOD_ID, path);
 	}
 
 	public static void init() {}

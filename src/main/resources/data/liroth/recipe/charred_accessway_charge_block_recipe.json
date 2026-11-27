@@ -6,15 +6,9 @@
     "212"
   ],
   "key": {
-    "0": {
-      "item": "liroth:charred_liroth_cobblestone"
-    },
-    "1": {
-      "item": "liroth:liroth_gem_ingot"
-    },
-    "2": {
-      "item": "liroth:purpetuated_amethyst_shard"
-    }
+    "0": "liroth:charred_liroth_cobblestone",
+    "1": "liroth:liroth_gem_ingot",
+    "2": "liroth:purpetuated_amethyst_shard"
   },
   "result": {
     "id": "liroth:damnation_portal_frame",

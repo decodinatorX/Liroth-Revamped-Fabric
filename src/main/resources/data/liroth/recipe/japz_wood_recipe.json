@@ -5,18 +5,10 @@
     "23"
   ],
   "key": {
-    "0": {
-      "item": "liroth:japz_log"
-    },
-    "1": {
-      "item": "liroth:japz_log"
-    },
-    "2": {
-      "item": "liroth:japz_log"
-    },
-    "3": {
-      "item": "liroth:japz_log"
-    }
+    "0": "liroth:japz_log",
+    "1": "liroth:japz_log",
+    "2": "liroth:japz_log",
+    "3": "liroth:japz_log"
   },
   "result": {
     "id": "liroth:japz_bark",

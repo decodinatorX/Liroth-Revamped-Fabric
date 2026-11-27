@@ -2,22 +2,20 @@ package com.decodinator.liroth.client.rendering.entities;
 
 import com.decodinator.liroth.Liroth;
 import com.decodinator.liroth.client.models.entities.FreakshowModel;
-import com.decodinator.liroth.core.entities.FreakshowEntity;
-
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.resources.Identifier;
+import org.jspecify.annotations.NullMarked;
 
-@Environment(value=EnvType.CLIENT)
-public class FreakshowTranslucentFeatureRenderer<T extends FreakshowEntity>
-extends EyesLayer<T, FreakshowModel<T>> {
-    private static final RenderType SKIN = RenderType.entityTranslucent(ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "textures/entity/freakshow/freakshow.png"));
+@NullMarked
+public class FreakshowTranslucentFeatureRenderer
+        extends EyesLayer<FreakshowRenderState, FreakshowModel> {
+    private static final RenderType SKIN = RenderTypes.entityTranslucent(Identifier.fromNamespaceAndPath(Liroth.MOD_ID, "textures/entity/freakshow/freakshow.png"));
 
-    public FreakshowTranslucentFeatureRenderer(RenderLayerParent<T, FreakshowModel<T>> featureRendererContext) {
-        super(featureRendererContext);
+    public FreakshowTranslucentFeatureRenderer(RenderLayerParent<FreakshowRenderState, FreakshowModel> parent) {
+        super(parent);
     }
 
     @Override
@@ -25,4 +23,3 @@ extends EyesLayer<T, FreakshowModel<T>> {
         return SKIN;
     }
 }
-

@@ -6,18 +6,10 @@
     "#R#"
   ],
   "key": {
-    "R": {
-      "item": "minecraft:redstone"
-    },
-    "#": {
-      "item": "minecraft:cobblestone"
-    },
-    "T": {
-      "tag": "minecraft:planks"
-    },
-    "X": {
-      "item": "liroth:lirothian_cobalt_ingot"
-    }
+    "R": "minecraft:redstone",
+    "#": "minecraft:cobblestone",
+    "T": "#minecraft:planks",
+    "X": "liroth:lirothian_cobalt_ingot"
   },
   "result": {
     "id": "minecraft:piston"

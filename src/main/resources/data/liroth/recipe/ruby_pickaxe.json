@@ -1,12 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "X": {
-      "item": "liroth:ruby_ingot"
-    }
+    "#": "minecraft:stick",
+    "X": "liroth:ruby_ingot"
   },
   "pattern": [
     "XXX",

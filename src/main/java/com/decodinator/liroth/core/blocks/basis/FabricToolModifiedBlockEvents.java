@@ -36,10 +36,11 @@ public final class FabricToolModifiedBlockEvents {
                 return InteractionResult.PASS;
             }
 
-            if (!world.isClientSide) {
+            if (!world.isClientSide()) {
                 BlockPos pos = hit.getBlockPos();
                 world.setBlock(pos, modified, 11);
-                world.playSound(null, pos, hoe ? SoundEvents.HOE_TILL : SoundEvents.SHOVEL_FLATTEN,
+                world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                        hoe ? SoundEvents.HOE_TILL : SoundEvents.SHOVEL_FLATTEN,
                         player.getSoundSource(), 1.0F, 1.0F);
                 EquipmentSlot slot = hand == InteractionHand.MAIN_HAND
                         ? EquipmentSlot.MAINHAND

@@ -1,9 +1,7 @@
 {
   "type": "minecraft:smelting",
   "group": "diamond",
-  "ingredient": {
-    "item": "liroth:potestium_ore"
-  },
+  "ingredient": "liroth:potestium_ore",
   "result": {
     "id": "liroth:potestium_shard"
   },

@@ -1,6 +1,8 @@
 package com.decodinator.liroth.core.blocks;
 
-import com.mojang.serialization.MapCodec;
+import java.util.List;
+import java.util.function.Supplier;
+
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
@@ -9,12 +11,8 @@ import net.minecraft.world.level.block.NetherVines;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
-import java.util.function.Supplier;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CustomVinesHead extends GrowingPlantHeadBlock {
     protected static final VoxelShape SHAPE = Block.box(4.0, 9.0, 4.0, 12.0, 16.0, 12.0);
@@ -26,25 +24,22 @@ public class CustomVinesHead extends GrowingPlantHeadBlock {
     }
 
     @Override
-    protected MapCodec<? extends GrowingPlantHeadBlock> codec() {
-        return null;
-    }
-
     protected int getBlocksToGrowWhenBonemealed(RandomSource arg) {
         return NetherVines.getBlocksToGrowWhenBonemealed(arg);
     }
 
-
-    protected @NotNull Block getBodyBlock() {
+    @Override
+    protected Block getBodyBlock() {
         return plantBlock.get();
     }
 
+    @Override
     protected boolean canGrowInto(BlockState arg) {
-        return arg.isAir();
+        return NetherVines.isValidGrowthState(arg);
     }
 
     @Override
-    protected @NotNull List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+    protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
         return SilkTouchLoot.hasSilkTouch(params) ? super.getDrops(state, params) : List.of();
     }
 }

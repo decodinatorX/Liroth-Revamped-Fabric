@@ -10,33 +10,36 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.DripstoneThickness;
+import net.minecraft.world.level.block.state.properties.SpeleothemThickness;
 
 public class JalsphireCrystalHelper {
 
-	protected static void buildBaseToTipColumn(Direction direction, int length, Block pointedBlock, Consumer<BlockState> stateConsumer) {
+	protected static void buildBaseToTipColumn(Direction direction, int length, boolean mergeTip, Block pointedBlock,
+											   Consumer<BlockState> stateConsumer) {
 		if (length >= 3) {
-			stateConsumer.accept(createPointedDripstone(direction, DripstoneThickness.BASE, pointedBlock));
+			stateConsumer.accept(createPointedDripstone(direction, SpeleothemThickness.BASE, pointedBlock));
 
 			for (int i = 0; i < length - 3; ++i) {
-				stateConsumer.accept(createPointedDripstone(direction, DripstoneThickness.MIDDLE, pointedBlock));
+				stateConsumer.accept(createPointedDripstone(direction, SpeleothemThickness.MIDDLE, pointedBlock));
 			}
 		}
 
 		if (length >= 2) {
-			stateConsumer.accept(createPointedDripstone(direction, DripstoneThickness.FRUSTUM, pointedBlock));
+			stateConsumer.accept(createPointedDripstone(direction, SpeleothemThickness.FRUSTUM, pointedBlock));
 		}
 
 		if (length >= 1) {
-			stateConsumer.accept(createPointedDripstone(direction, DripstoneThickness.TIP, pointedBlock));
+			stateConsumer.accept(createPointedDripstone(direction,
+					mergeTip ? SpeleothemThickness.TIP_MERGE : SpeleothemThickness.TIP, pointedBlock));
 		}
 
 	}
 
-	protected static void growPointedDripstone(LevelAccessor level, BlockPos pos, Direction direction, int length, Block pointedBlock, Block baseBlock) {
+	protected static void growPointedDripstone(LevelAccessor level, BlockPos pos, Direction direction, int length,
+											   boolean mergeTip, Block pointedBlock, Block baseBlock) {
 		if (isDripstoneBase(level.getBlockState(pos.relative(direction.getOpposite())), baseBlock)) {
 			BlockPos.MutableBlockPos mutablePos = pos.mutable();
-			buildBaseToTipColumn(direction, length, pointedBlock, state -> {
+			buildBaseToTipColumn(direction, length, mergeTip, pointedBlock, state -> {
 				if (state.is(pointedBlock)) {
 					state = state.setValue(CustomPointedCrystal.WATERLOGGED, level.isWaterAt(mutablePos));
 				}
@@ -47,14 +50,17 @@ public class JalsphireCrystalHelper {
 		}
 	}
 
-	protected static void placeDripstoneBlockIfPossible(LevelAccessor level, BlockPos pos, Block baseBlock) {
+	protected static boolean placeDripstoneBlockIfPossible(LevelAccessor level, BlockPos pos, Block baseBlock) {
 		BlockState blockstate = level.getBlockState(pos);
 		if (blockstate.is(BlockTags.DRIPSTONE_REPLACEABLE)) {
 			level.setBlock(pos, baseBlock.defaultBlockState(), 2);
+			return true;
+		} else {
+			return false;
 		}
 	}
 
-	private static BlockState createPointedDripstone(Direction direction, DripstoneThickness thickness, Block pointedBlock) {
+	private static BlockState createPointedDripstone(Direction direction, SpeleothemThickness thickness, Block pointedBlock) {
 		return pointedBlock.defaultBlockState().setValue(CustomPointedCrystal.TIP_DIRECTION, direction)
 				.setValue(CustomPointedCrystal.THICKNESS, thickness);
 	}
@@ -66,4 +72,5 @@ public class JalsphireCrystalHelper {
 	public static boolean isEmptyOrWater(BlockState p_159665_) {
 		return p_159665_.isAir() || p_159665_.is(Blocks.WATER);
 	}
+
 }

@@ -2,7 +2,7 @@
   "parent": "liroth:enter_liroth",
   "display": {
     "icon": {
-      "id": "liroth:pier_peep_spawn_egg"
+      "id": "liroth:liroth_tear"
     },
     "title": {
       "translate": "liroth:advancements.story.pier_peep.title"
@@ -19,15 +19,13 @@
     "killed_pier_peep": {
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "predicate": {
-              "type": "liroth:pier_peep"
-            },
-            "entity": "this"
-          }
-        ]
+        "entity": {
+          "predicate": {
+            "minecraft:entity_type": "liroth:pier_peep"
+          },
+          "entity": "this",
+          "type": "minecraft:entity_properties"
+        }
       }
     }
   },

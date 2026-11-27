@@ -5,9 +5,7 @@
     "#"
   ],
   "key": {
-    "#": {
-      "item": "liroth:devastated_brick_slab"
-    }
+    "#": "liroth:devastated_brick_slab"
   },
   "result": {
     "id": "liroth:chiseled_devastated_bricks",

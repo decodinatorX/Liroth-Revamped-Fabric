@@ -1,22 +1,19 @@
 package com.decodinator.liroth.client.rendering.entities;
 
-import com.decodinator.liroth.client.models.entities.VileSharkModel;
-import com.decodinator.liroth.core.entities.VileSharkEntity;
-
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.renderer.RenderType;
+import com.decodinator.liroth.Liroth;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.resources.Identifier;
+import org.jspecify.annotations.NullMarked;
 
-@Environment(value=EnvType.CLIENT)
-public class VileSharkGlowFeatureRenderer<T extends VileSharkEntity>
-extends EyesLayer<T, VileSharkModel<T>> {
-    private static final RenderType SKIN = RenderType.eyes(ResourceLocation.fromNamespaceAndPath("liroth", "textures/entity/vile_shark/vile_shark_glow.png"));
+@NullMarked
+public class VileSharkGlowFeatureRenderer extends EyesLayer<VileSharkRenderState, EntityModel<VileSharkRenderState>> {
+    private static final RenderType SKIN = net.minecraft.client.renderer.rendertype.RenderTypes.eyes(Identifier.fromNamespaceAndPath(Liroth.MOD_ID, "textures/entity/vile_shark/vile_shark_glow.png"));
 
-    public VileSharkGlowFeatureRenderer(RenderLayerParent<T, VileSharkModel<T>> featureRendererContext) {
-        super(featureRendererContext);
+    public VileSharkGlowFeatureRenderer(RenderLayerParent<VileSharkRenderState, EntityModel<VileSharkRenderState>> parent) {
+        super(parent);
     }
 
     @Override

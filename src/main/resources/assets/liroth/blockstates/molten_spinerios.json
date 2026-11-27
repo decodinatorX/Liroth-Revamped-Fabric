@@ -1,6 +1,9 @@
 {
-    "textures": {
-        "particle": "liroth:block/molten_spinerios_still"
+  "multipart": [
+    {
+      "apply": {
+        "model": "minecraft:block/air"
+      }
     }
+  ]
 }
-

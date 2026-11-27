@@ -1,9 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "liroth:jalsphire_gem_block"
-    }
+    "liroth:jalsphire_gem_block"
   ],
   "result": {
     "id": "liroth:jalsphire_gem",

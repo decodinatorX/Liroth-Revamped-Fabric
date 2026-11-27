@@ -5,12 +5,8 @@
     "1"
   ],
   "key": {
-    "0": {
-      "item": "liroth:blue_sandstone_slab"
-    },
-    "1": {
-      "item": "liroth:blue_sandstone_slab"
-    }
+    "0": "liroth:blue_sandstone_slab",
+    "1": "liroth:blue_sandstone_slab"
   },
   "result": {
     "id": "liroth:carved_blue_sandstone",

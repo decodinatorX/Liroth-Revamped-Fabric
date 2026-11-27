@@ -6,9 +6,7 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "liroth:potestium_shard"
-    }
+    "#": "liroth:potestium_shard"
   },
   "result": {
     "id": "liroth:potestium_block"

@@ -4,7 +4,7 @@
 	"parent": "block/cube_all",
 	"textures": {
 		"1": "liroth:block/jalsphire_trackway",
-		"2": "liroth:item/anomaly_charge",
+		"2": "liroth:block/anomaly_charge",
 		"3": "liroth:block/jalsphire_trackway_charge_slot",
 		"particle": "liroth:block/jalsphire_trackway"
 	},

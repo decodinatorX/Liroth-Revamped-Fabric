@@ -13,7 +13,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayDeque;
 import java.util.HashSet;
@@ -25,7 +24,7 @@ public class KeyItem extends Item {
     }
 
     @Override
-    public @NotNull InteractionResult useOn(UseOnContext use) {
+    public InteractionResult useOn(UseOnContext use) {
         BlockPos pos = use.getClickedPos();
         Player player = use.getPlayer();
         Level level = use.getLevel();
@@ -37,9 +36,9 @@ public class KeyItem extends Item {
             if (player != null) {
                 use.getItemInHand().hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
             }
-            return InteractionResult.sidedSuccess(level.isClientSide());
+            return level.isClientSide() ? InteractionResult.SUCCESS : InteractionResult.CONSUME;
         }
-        return  InteractionResult.FAIL;
+        return InteractionResult.FAIL;
     }
 
     private void destroyConnectedLocks(Level level, Player player, BlockPos start) {

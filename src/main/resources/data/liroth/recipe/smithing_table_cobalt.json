@@ -6,12 +6,8 @@
     "##"
   ],
   "key": {
-    "#": {
-      "tag": "minecraft:planks"
-    },
-    "@": {
-      "item": "liroth:lirothian_cobalt_ingot"
-    }
+    "#": "#minecraft:planks",
+    "@": "liroth:lirothian_cobalt_ingot"
   },
   "result": {
     "id": "minecraft:smithing_table"

@@ -1,14 +1,8 @@
 {
   "type": "minecraft:smithing_transform",
-  "template": {
-    "item": "liroth:liroth_upgrade_smithing_template"
-  },
-  "base": {
-    "item": "liroth:liroth_gem_leggings"
-  },
-  "addition": {
-    "item": "liroth:liroth_gem_ansalum_ingot"
-  },
+  "template": "liroth:liroth_upgrade_smithing_template",
+  "base": "liroth:liroth_gem_leggings",
+  "addition": "liroth:liroth_gem_ansalum_ingot",
   "result": {
     "id": "liroth:liroth_gem_ansalum_leggings"
   }

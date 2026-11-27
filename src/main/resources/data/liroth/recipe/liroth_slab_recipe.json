@@ -4,15 +4,9 @@
     "012"
   ],
   "key": {
-    "0": {
-      "item": "liroth:liroth_slab"
-    },
-    "1": {
-      "item": "liroth:liroth_slab"
-    },
-    "2": {
-      "item": "liroth:liroth_slab"
-    }
+    "0": "liroth:liroth_slab",
+    "1": "liroth:liroth_slab",
+    "2": "liroth:liroth_slab"
   },
   "result": {
     "id": "liroth:liroth_slab",

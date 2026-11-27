@@ -1,9 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "liroth:japz_log"
-    }
+    "liroth:japz_log"
   ],
   "result": {
     "id": "liroth:japz_planks",

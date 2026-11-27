@@ -3,11 +3,11 @@ package com.decodinator.liroth.core.items.material;
 import com.decodinator.liroth.Liroth;
 import com.decodinator.liroth.core.registry.LirothBlocks;
 import com.decodinator.liroth.core.registry.LirothItems;
+import net.minecraft.world.item.equipment.ArmorMaterial;
 import org.betterx.wover.item.api.armor.CustomArmorMaterial;
 
 import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class LirothArmorMaterial {

@@ -1,13 +1,12 @@
 package com.decodinator.liroth.core.blocks;
 
-import com.decodinator.liroth.Liroth;
-import net.kyrptonaught.customportalapi.portal.PortalIgnitionSource;
-import net.kyrptonaught.customportalapi.portal.PortalPlacer;
+import com.decodinator.liroth.core.registry.LirothPortalBuilders;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -21,61 +20,60 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import org.jetbrains.annotations.NotNull;
+import java.util.function.Supplier;
 
 public class PortalChargeFrameBlock extends Block {
     public static final BooleanProperty CHARGED = BlockStateProperties.LIT;
 
     private final Item chargeItem;
-    private final String ignitionSource;
+    private final Supplier<Block> regularFrame;
+    private final Supplier<LirothPortalBlock> portal;
 
-    public PortalChargeFrameBlock(Item chargeItem, String ignitionSource) {
+    public PortalChargeFrameBlock(Item chargeItem, Supplier<Block> regularFrame, Supplier<LirothPortalBlock> portal) {
         super(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE));
         this.chargeItem = chargeItem;
-        this.ignitionSource = ignitionSource;
+        this.regularFrame = regularFrame;
+        this.portal = portal;
         registerDefaultState(stateDefinition.any().setValue(CHARGED, false));
     }
 
+    public Item getChargeItem() {
+        return chargeItem;
+    }
+
     @Override
-    protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (state.getValue(CHARGED) || !stack.is(chargeItem)) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
         }
 
-        if (level.isClientSide) {
-            return ItemInteractionResult.SUCCESS;
+        if (level.isClientSide()) {
+            return InteractionResult.SUCCESS;
         }
 
         BlockState chargedState = state.setValue(CHARGED, true);
         level.setBlock(pos, chargedState, Block.UPDATE_ALL);
-
-        boolean activated = false;
-        PortalIgnitionSource source = PortalIgnitionSource.CustomSource(ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, ignitionSource)
-        );
-        for (int x = -3; x <= 3 && !activated; x++) {
-            for (int z = -3; z <= 3 && !activated; z++) {
-                if (x == 0 && z == 0) {
-                    continue;
-                }
-                activated = PortalPlacer.attemptPortalLight(level, pos.offset(x, 0, z), pos, source
-                );
-            }
-        }
-
-        if (!activated) {
+        if (!LirothPortalBuilders.tryCreatePortal(level, pos, chargedState, regularFrame.get(), portal.get())) {
             level.setBlock(pos, state, Block.UPDATE_ALL);
-            return ItemInteractionResult.FAIL;
+            player.sendSystemMessage(Component.translatable("message.liroth.portal.invalid_frame"));
+            return InteractionResult.FAIL;
         }
 
         if (!player.isCreative()) {
             stack.shrink(1);
         }
         level.playSound(null, pos, SoundEvents.END_PORTAL_FRAME_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-        return ItemInteractionResult.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(CHARGED);
+    }
+
+    @Override
+    protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel level, BlockPos pos, boolean movedByPiston) {
+        super.affectNeighborsAfterRemoval(state, level, pos, movedByPiston);
+        LirothPortalBuilders.removePortalForFrame(level, pos, portal.get());
     }
 }

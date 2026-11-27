@@ -6,24 +6,12 @@
     "678"
   ],
   "key": {
-    "0": {
-      "item": "liroth:liroth_planks"
-    },
-    "3": {
-      "item": "liroth:liroth_planks"
-    },
-    "4": {
-      "item": "liroth:liroth_planks"
-    },
-    "6": {
-      "item": "liroth:liroth_planks"
-    },
-    "7": {
-      "item": "liroth:liroth_planks"
-    },
-    "8": {
-      "item": "liroth:liroth_planks"
-    }
+    "0": "liroth:liroth_planks",
+    "3": "liroth:liroth_planks",
+    "4": "liroth:liroth_planks",
+    "6": "liroth:liroth_planks",
+    "7": "liroth:liroth_planks",
+    "8": "liroth:liroth_planks"
   },
   "result": {
     "id": "liroth:liroth_stairs",

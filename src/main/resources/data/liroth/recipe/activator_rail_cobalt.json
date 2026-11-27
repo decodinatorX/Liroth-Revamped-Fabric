@@ -6,15 +6,9 @@
     "XSX"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:redstone_torch"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    },
-    "X": {
-      "item": "liroth:lirothian_cobalt_ingot"
-    }
+    "#": "minecraft:redstone_torch",
+    "S": "minecraft:stick",
+    "X": "liroth:lirothian_cobalt_ingot"
   },
   "result": {
     "id": "minecraft:activator_rail",

@@ -2,7 +2,7 @@
   "parent": "liroth:enter_jalsphire",
   "display": {
     "icon": {
-      "id": "liroth:prowler_spawn_egg"
+      "id": "liroth:liroth_tear"
     },
     "title": {
       "translate": "liroth:advancements.story.prowler.title"
@@ -19,15 +19,13 @@
     "killed_prowler": {
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "predicate": {
-              "type": "liroth:prowler"
-            },
-            "entity": "this"
-          }
-        ]
+        "entity": {
+          "predicate": {
+            "minecraft:entity_type": "liroth:prowler"
+          },
+          "entity": "this",
+          "type": "minecraft:entity_properties"
+        }
       }
     }
   },

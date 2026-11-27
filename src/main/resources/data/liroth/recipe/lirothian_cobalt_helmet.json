@@ -5,9 +5,7 @@
     "X X"
   ],
   "key": {
-    "X": {
-      "item": "liroth:lirothian_cobalt_ingot"
-    }
+    "X": "liroth:lirothian_cobalt_ingot"
   },
   "result": {
     "id": "liroth:lirothian_cobalt_helmet"

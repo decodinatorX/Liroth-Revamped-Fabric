@@ -1,7 +1,8 @@
 {
-  "parent": "minecraft:block/template_farmland",
+  "parent": "minecraft:block/template_cube_bottom_top_indented",
   "textures": {
-    "dirt": "liroth:block/liroth_dirt",
+    "bottom": "liroth:block/liroth_dirt",
+    "side": "liroth:block/liroth_dirt",
     "top": "liroth:block/liroth_farmland"
   }
 }

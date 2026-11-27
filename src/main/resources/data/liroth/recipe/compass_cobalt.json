@@ -6,12 +6,8 @@
     " # "
   ],
   "key": {
-    "#": {
-      "item": "liroth:lirothian_cobalt_ingot"
-    },
-    "X": {
-      "item": "minecraft:redstone"
-    }
+    "#": "liroth:lirothian_cobalt_ingot",
+    "X": "minecraft:redstone"
   },
   "result": {
     "id": "minecraft:compass"

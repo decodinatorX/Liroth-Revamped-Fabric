@@ -1,21 +1,15 @@
 package com.decodinator.liroth.client.screens;
 
 import com.decodinator.liroth.Liroth;
-import com.mojang.blaze3d.systems.RenderSystem;
-
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
-
-@Environment(value= EnvType.CLIENT)
+import org.jspecify.annotations.NonNull;
 public class QuantumExtractorScreen extends AbstractContainerScreen<QuantumExtractorScreenHandler> {
-    private static final ResourceLocation TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "textures/gui/quantum_extractor_gui.png");
+    private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(Liroth.MOD_ID, "textures/gui/quantum_extractor_gui.png");
 
     public QuantumExtractorScreen(QuantumExtractorScreenHandler handler, Inventory inventory, Component title) {
         super(handler, inventory, title);
@@ -24,27 +18,22 @@ public class QuantumExtractorScreen extends AbstractContainerScreen<QuantumExtra
     @Override
     protected void init() {
         super.init();
-        // Center the title
         this.titleLabelX = 42;
         this.titleLabelY = 3;
     }
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, float delta, int mouseX, int mouseY) {
+    public void extractBackground(@NonNull GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
+        super.extractBackground(graphics, mouseX, mouseY, delta);
         int k;
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
-        int x = (width - this.imageWidth) / 2;
-        int y = (height - this.imageHeight) / 2;
         int i = this.leftPos;
         int j = this.topPos;
-        guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
-        if (((QuantumExtractorScreenHandler)this.menu).isBurning()) {
-            k = ((QuantumExtractorScreenHandler)this.menu).getFuelProgress();
-            guiGraphics.blit(TEXTURE, i + 57, j + 33 + 12 - k, 176, 65 - k, 14, k + 1);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, i, j, 0.0F, 0.0F, imageWidth, imageHeight, 256, 256);
+        if (this.menu.isBurning()) {
+            k = this.menu.getFuelProgress();
+            graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, i + 57, j + 33 + 12 - k, 176.0F, 65.0F - k, 14, k + 1, 256, 256);
         }
-        int s = ((QuantumExtractorScreenHandler)this.menu).getCookProgress(24);
-        guiGraphics.blit(TEXTURE, x + 80, y + 24, 176, 0, s + 1, 17);
+        int s = this.menu.getCookProgress(24);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, i + 80, j + 24, 176.0F, 0.0F, s + 1, 17, 256, 256);
     }
 }

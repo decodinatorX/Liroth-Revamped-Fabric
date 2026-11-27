@@ -1,46 +1,62 @@
 package com.decodinator.liroth.core.entities;
 
 import com.decodinator.liroth.core.registry.LirothSounds;
-
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.Enderman;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib.animatable.GeoAnimatable;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.*;
-import software.bernie.geckolib.util.GeckoLibUtil;
+import net.minecraft.world.level.pathfinder.PathType;
+import com.geckolib.animatable.GeoAnimatable;
+import com.geckolib.animatable.instance.AnimatableInstanceCache;
+import com.geckolib.animation.AnimationController;
+import com.geckolib.animation.RawAnimation;
+import com.geckolib.animation.object.PlayState;
+import com.geckolib.animation.state.AnimationTest;
+import com.geckolib.util.GeckoLibUtil;
 
-public class ProwlerEntity extends EnderMan implements GeoAnimatable {
-    private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+public class ProwlerEntity extends Enderman implements GeoAnimatable {
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
-    public ProwlerEntity(EntityType<? extends EnderMan> entityType, Level world) {
-        super(entityType, world);
-    }
-
-    public static AttributeSupplier.Builder createProwlerAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 40.0).add(Attributes.MOVEMENT_SPEED, 0.4f).add(Attributes.ATTACK_DAMAGE, 12.0).add(Attributes.FOLLOW_RANGE, 48.0);
+    public ProwlerEntity(EntityType<? extends Enderman> entityType, Level level) {
+        super(entityType, level);
+        this.setPathfindingMalus(PathType.WATER, -1.0f);
     }
 
     @Override
-    protected @NotNull SoundEvent getAmbientSound() {
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.removeAllGoals(goal -> {
+            String goalClass = goal.getClass().getName();
+            // WHO ADDED THIS???
+            return goalClass.endsWith("$EndermanTakeBlockGoal") || goalClass.endsWith("$EndermanLeaveBlockGoal");
+        });
+    }
+
+    public static AttributeSupplier.Builder createProwlerAttributes() {
+        return Monster.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 40)
+                .add(Attributes.MOVEMENT_SPEED, 0.4f)
+                .add(Attributes.ATTACK_DAMAGE, 12)
+                .add(Attributes.FOLLOW_RANGE, 48);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
         return this.isAngry() ? SoundEvents.ENDERMAN_SCREAM : LirothSounds.WARP_IDLE_SOUND_EVENT;
     }
 
     @Override
-    protected @NotNull SoundEvent getHurtSound(DamageSource source) {
+    protected SoundEvent getHurtSound(DamageSource source) {
         return LirothSounds.WARP_HURT_SOUND_EVENT;
     }
 
     @Override
-    protected @NotNull SoundEvent getDeathSound() {
+    protected SoundEvent getDeathSound() {
         return LirothSounds.WARP_DEATH_SOUND_EVENT;
     }
 
@@ -48,43 +64,38 @@ public class ProwlerEntity extends EnderMan implements GeoAnimatable {
     private static final RawAnimation WARP_CHASE = RawAnimation.begin().thenPlay("warp_chase");
     private static final RawAnimation WARP_IDLE = RawAnimation.begin().thenPlay("warp_idle");
 
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
-        if (!(swingTime > -0.15F && swingTime < 0.15F) && !this.isAggressive()) {
-            event.getController().setAnimation(WARP_WALK);
+    private PlayState predicate(AnimationTest<ProwlerEntity> event) {
+        if (this.getCurrentSwing() != null && !this.isAggressive()) {
+            event.setAnimation(WARP_WALK);
             return PlayState.CONTINUE;
         }
 
         if (event.isMoving() && !this.isAggressive()) {
-            event.getController().setAnimation(WARP_WALK);
+            event.setAnimation(WARP_WALK);
             return PlayState.CONTINUE;
         }
 
-        if (!(swingTime > -0.15F && swingTime < 0.15F) && this.isAggressive()) {
-            event.getController().setAnimation(WARP_CHASE);
+        if (this.getCurrentSwing() != null && this.isAggressive()) {
+            event.setAnimation(WARP_CHASE);
             return PlayState.CONTINUE;
         }
 
         if (event.isMoving() && this.isAggressive()) {
-            event.getController().setAnimation(WARP_CHASE);
+            event.setAnimation(WARP_CHASE);
             return PlayState.CONTINUE;
         }
 
-        event.getController().setAnimation(WARP_IDLE);
+        event.setAnimation(WARP_IDLE);
         return PlayState.CONTINUE;
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar data) {
-        data.add(new AnimationController<ProwlerEntity>(this, "controller", 0, this::predicate));
+    public void registerControllers(com.geckolib.animatable.manager.AnimatableManager.ControllerRegistrar data) {
+        data.add(new AnimationController<>("controller", this::predicate));
     }
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.factory;
-    }
-
-    @Override
-    public double getTick(Object age) {
-        return ((Entity) age).tickCount;
+        return this.cache;
     }
 }

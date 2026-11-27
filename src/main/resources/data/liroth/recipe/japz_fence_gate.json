@@ -6,12 +6,8 @@
     "#W#"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "W": {
-      "item": "liroth:japz_planks"
-    }
+    "#": "minecraft:stick",
+    "W": "liroth:japz_planks"
   },
   "result": {
     "id": "liroth:japz_gate"

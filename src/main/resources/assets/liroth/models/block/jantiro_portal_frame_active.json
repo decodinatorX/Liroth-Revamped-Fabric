@@ -4,7 +4,7 @@
 	"parent": "block/cube_all",
 	"textures": {
 		"0": "liroth:block/damned_passageway",
-		"1": "liroth:item/jantiro_elemental_charge",
+		"1": "liroth:block/jantiro_elemental_charge",
 		"2": "liroth:block/damned_passageway_charge_slot",
 		"particle": "liroth:block/damned_passageway"
 	},

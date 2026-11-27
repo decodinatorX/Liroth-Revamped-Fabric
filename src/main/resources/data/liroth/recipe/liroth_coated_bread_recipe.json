@@ -5,12 +5,8 @@
     " # "
   ],
   "key": {
-    "#": {
-      "item": "minecraft:bread"
-    },
-    "!": {
-      "item": "liroth:liroth_gem_nugget"
-    }
+    "#": "minecraft:bread",
+    "!": "liroth:liroth_gem_nugget"
   },
   "result": {
     "id": "liroth:liroth_coated_bread"

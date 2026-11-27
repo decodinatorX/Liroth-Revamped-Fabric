@@ -5,9 +5,7 @@
     "#"
   ],
   "key": {
-    "#": {
-      "item": "liroth:devastated_bricks"
-    }
+    "#": "liroth:devastated_bricks"
   },
   "result": {
     "id": "liroth:devastated_pillar_block",

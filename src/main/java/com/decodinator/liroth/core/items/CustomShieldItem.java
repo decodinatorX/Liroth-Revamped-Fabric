@@ -1,31 +1,50 @@
 package com.decodinator.liroth.core.items;
 
-import net.minecraft.network.chat.Component;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.*;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.ShieldItem;
+import net.minecraft.world.item.component.BlocksAttacks;
 
 import java.util.List;
+import java.util.Optional;
 
 public class CustomShieldItem extends ShieldItem {
-    public Integer uses;
-    public CustomShieldItem(Properties properties, Integer durability) {
-        super(properties);
+    private final int uses;
+
+    // longest fucking super descriptor that I had to unfold like this... ffs
+    public CustomShieldItem(Properties properties, int durability) {
+        super(
+                properties.durability(durability)
+                        .equippableUnswappable(EquipmentSlot.OFFHAND)
+                        .delayedComponent(DataComponents.BLOCKS_ATTACKS,
+                                context ->
+                                        new BlocksAttacks(
+                                                0.25F,
+                                                1.0F,
+                                                List.of(
+                                                        new BlocksAttacks
+                                                                .DamageReduction(
+                                                                90.0F,
+                                                                Optional.empty(),
+                                                                0.0F, 1.0F)),
+                                                new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F),
+                                                Optional.of(context.getOrThrow(DamageTypeTags.BYPASSES_SHIELD)),
+                                                Optional.of(SoundEvents.SHIELD_BLOCK),
+                                                Optional.of(SoundEvents.SHIELD_BREAK)
+                                        )
+                        )
+                        .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK));
         this.uses = durability;
     }
 
     @Override
-    public @NotNull String getDescriptionId(ItemStack stack) {
-        return super.getDescriptionId(stack);
-    }
-
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-    }
-
-    @Override
-    public @NotNull UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.BLOCK;
+    public ItemUseAnimation getUseAnimation(ItemStack stack) {
+        return ItemUseAnimation.BLOCK;
     }
 
     @Override

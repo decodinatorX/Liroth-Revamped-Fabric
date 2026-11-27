@@ -6,12 +6,8 @@
     " 1 "
   ],
   "key": {
-    "0": {
-      "item": "liroth:charred_liroth_cobblestone"
-    },
-    "1": {
-      "item": "liroth:liroth_gem_ingot"
-    }
+    "0": "liroth:charred_liroth_cobblestone",
+    "1": "liroth:liroth_gem_ingot"
   },
   "result": {
     "id": "liroth:charred_accessway_block",

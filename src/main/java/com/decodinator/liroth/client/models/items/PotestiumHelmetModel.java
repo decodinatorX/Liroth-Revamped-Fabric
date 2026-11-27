@@ -9,9 +9,9 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 
-public class PotestiumHelmetModel extends HumanoidModel<LivingEntity> {
+public class PotestiumHelmetModel extends HumanoidModel<HumanoidRenderState> {
 	
 	public PotestiumHelmetModel(ModelPart root) {
 		super(root);

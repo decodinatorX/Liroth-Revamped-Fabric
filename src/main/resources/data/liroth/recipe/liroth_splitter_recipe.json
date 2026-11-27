@@ -6,12 +6,8 @@
     "###"
   ],
   "key": {
-    "#": {
-      "tag": "minecraft:stone_crafting_materials"
-    },
-    "!": { 
-    	"item": "liroth:liroth_gem_ingot"
-    }
+    "#": "#minecraft:stone_crafting_materials",
+    "!": "liroth:liroth_gem_ingot"
   },
   "result": {
     "id": "liroth:liroth_splitter",

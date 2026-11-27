@@ -6,12 +6,8 @@
     " G "
   ],
   "key": {
-    "G": {
-      "item": "liroth:gleemstone_dust"
-    },
-    "A": {
-      "item": "minecraft:arrow"
-    }
+    "G": "liroth:gleemstone_dust",
+    "A": "minecraft:arrow"
   },
   "result": {
     "id": "liroth:levo_arrow",

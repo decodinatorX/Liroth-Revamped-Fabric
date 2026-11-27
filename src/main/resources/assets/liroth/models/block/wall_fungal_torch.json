@@ -1,7 +1,77 @@
 {
-  "parent": "minecraft:block/template_torch_wall",
-  "render_type": "cutout",
-  "textures": {
-    "torch": "liroth:block/fungal_torch"
-  }
+	"format_version": "26.3",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/template_torch_wall",
+	"render_type": "cutout",
+	"textures": {
+		"torch": "liroth:block/fungal_torch"
+	},
+	"elements": [
+		{
+			"from": [-4.97432, 5.54782, 8],
+			"to": [-0.97432, 9.54782, 8],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [-0.1, 3.625, 8]},
+			"faces": {
+				"north": {"uv": [7, 10, 2, 15], "texture": "#torch"},
+				"east": {"uv": [4, 10, 7, 15], "texture": "#torch"},
+				"south": {"uv": [2, 10, 7, 15], "texture": "#torch"},
+				"west": {"uv": [2, 10, 5, 15], "texture": "#torch"},
+				"up": {"uv": [2, 10, 7, 13], "texture": "#torch"},
+				"down": {"uv": [2, 12, 7, 15], "texture": "#torch"}
+			}
+		},
+		{
+			"from": [-0.97432, 3.54782, 7],
+			"to": [1.02568, 13.54782, 9],
+			"shade_direction_override": "up",
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [-0.1, 3.625, 8]},
+			"faces": {
+				"north": {"uv": [7, 6, 9, 16], "texture": "#torch"},
+				"east": {"uv": [7, 6, 9, 16], "texture": "#torch"},
+				"south": {"uv": [7, 6, 9, 16], "texture": "#torch"},
+				"west": {"uv": [7, 6, 9, 16], "texture": "#torch"},
+				"up": {"uv": [7, 6, 9, 8], "texture": "#torch"},
+				"down": {"uv": [7, 13, 9, 15], "texture": "#torch", "cullface": "down"}
+			}
+		},
+		{
+			"from": [-5.1, 7.54782, 7.87432],
+			"to": [-1.1, 11.54782, 7.87432],
+			"rotation": {"x": 0, "y": -90, "z": -22.5, "origin": [-0.1, 3.625, 8]},
+			"faces": {
+				"north": {"uv": [9, 8, 14, 13], "texture": "#torch"},
+				"east": {"uv": [11, 8, 14, 13], "texture": "#torch"},
+				"south": {"uv": [14, 8, 9, 13], "texture": "#torch"},
+				"west": {"uv": [9, 8, 12, 13], "texture": "#torch"},
+				"up": {"uv": [9, 8, 14, 11], "texture": "#torch"},
+				"down": {"uv": [9, 10, 14, 13], "texture": "#torch"}
+			}
+		},
+		{
+			"from": [1.02568, 5.54782, 8],
+			"to": [5.02568, 9.54782, 8],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [-0.1, 3.625, 8]},
+			"faces": {
+				"north": {"uv": [2, 10, 7, 15], "texture": "#torch"},
+				"east": {"uv": [4, 10, 7, 15], "texture": "#torch"},
+				"south": {"uv": [7, 10, 2, 15], "texture": "#torch"},
+				"west": {"uv": [2, 10, 5, 15], "texture": "#torch"},
+				"up": {"uv": [2, 10, 7, 13], "texture": "#torch"},
+				"down": {"uv": [2, 12, 7, 15], "texture": "#torch"}
+			}
+		},
+		{
+			"from": [-5.1, 7.54782, 8.12568],
+			"to": [-1.1, 11.54782, 8.12568],
+			"rotation": {"x": 0, "y": 90, "z": -22.5, "origin": [-0.1, 3.625, 8]},
+			"faces": {
+				"north": {"uv": [9, 8, 14, 13], "texture": "#torch"},
+				"east": {"uv": [11, 8, 14, 13], "texture": "#torch"},
+				"south": {"uv": [14, 8, 9, 13], "texture": "#torch"},
+				"west": {"uv": [9, 8, 12, 13], "texture": "#torch"},
+				"up": {"uv": [9, 8, 14, 11], "texture": "#torch"},
+				"down": {"uv": [9, 10, 14, 13], "texture": "#torch"}
+			}
+		}
+	]
 }

@@ -1,6 +1,6 @@
 package com.decodinator.liroth.core.features;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
@@ -8,12 +8,13 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public class LirothBoneMushroomFeature
-extends LirothSkeletonFeature {
-    public LirothBoneMushroomFeature(Codec<NoneFeatureConfiguration> codec) {
-        super(codec);
+public class LirothBoneMushroomFeature extends LirothSkeletonFeature {
+    public static final MapCodec<LirothBoneMushroomFeature> CODEC = MapCodec.unit(LirothBoneMushroomFeature::new);
+
+    @Override
+    public MapCodec<LirothBoneMushroomFeature> codec() {
+        return CODEC;
     }
 
     @Override
@@ -28,9 +29,7 @@ extends LirothSkeletonFeature {
                 for (int o = 0; o <= k; ++o) {
                     mutable.set(m + pos.getX(), n + pos.getY(), o + pos.getZ());
                     mutable.move(Direction.DOWN, l);
-                    if ((m != 0 && m != j || n != 0 && n != i) && (o != 0 && o != k || n != 0 && n != i) && (m != 0 && m != j || o != 0 && o != k) && (m == 0 || m == j || n == 0 || n == i || o == 0 || o == k) && !(random.nextFloat() < 0.1f)) {
-                        this.generateCoralPiece(world, random, mutable, state);
-                    }
+                    if ((m != 0 && m != j || n != 0 && n != i) && (o != 0 && o != k || n != 0 && n != i) && (m != 0 && m != j || o != 0 && o != k) && (m == 0 || m == j || n == 0 || n == i || o == 0 || o == k) && !(random.nextFloat() < 0.1f) && this.generateCoralPiece(world, random, mutable, state)) continue;
                 }
             }
         }

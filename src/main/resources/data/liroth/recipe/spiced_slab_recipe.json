@@ -4,15 +4,9 @@
     "012"
   ],
   "key": {
-    "0": {
-      "item": "liroth:spiced_planks"
-    },
-    "1": {
-      "item": "liroth:spiced_planks"
-    },
-    "2": {
-      "item": "liroth:spiced_planks"
-    }
+    "0": "liroth:spiced_planks",
+    "1": "liroth:spiced_planks",
+    "2": "liroth:spiced_planks"
   },
   "result": {
     "id": "liroth:spiced_slab",

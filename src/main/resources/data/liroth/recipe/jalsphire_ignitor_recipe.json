@@ -7,21 +7,11 @@
     " 7 "
   ],
   "key": {
-    "1": {
-      "item": "liroth:liroth_gem_ingot"
-    },
-    "3": {
-      "item": "liroth:liroth_gem_ansalum_ingot"
-    },
-    "4": {
-      "item": "liroth:jalsphire_gem"
-    },
-    "5": {
-      "item": "liroth:liroth_gem_salem_ingot"
-    },
-    "7": {
-      "item": "liroth:liroth_gem_lux_ingot"
-    }
+    "1": "liroth:liroth_gem_ingot",
+    "3": "liroth:liroth_gem_ansalum_ingot",
+    "4": "liroth:jalsphire_gem",
+    "5": "liroth:liroth_gem_salem_ingot",
+    "7": "liroth:liroth_gem_lux_ingot"
   },
   "result": {
     "id": "liroth:jalsphire_charge",

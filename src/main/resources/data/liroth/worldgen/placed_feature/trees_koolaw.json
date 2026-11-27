@@ -36,8 +36,8 @@
       "predicate": {
         "type": "minecraft:would_survive",
         "state": {
-          "Name": "liroth:koolaw_sapling",
-          "Properties": {
+          "id": "liroth:koolaw_sapling",
+          "properties": {
             "stage": "0"
           }
         }

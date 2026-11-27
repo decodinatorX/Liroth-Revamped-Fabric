@@ -5,12 +5,8 @@
     " # "
   ],
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "!": {
-      "item": "liroth:lirothian_petroleum"
-    }
+    "#": "minecraft:stick",
+    "!": "liroth:lirothian_petroleum"
   },
   "result": {
     "id": "liroth:lirothian_petroleum_torch",

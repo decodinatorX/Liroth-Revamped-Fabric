@@ -1,9 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "liroth:potestium_plate_block"
-    }
+    "liroth:potestium_plate_block"
   ],
   "result": {
     "id": "liroth:potestium_plate",

@@ -6,30 +6,14 @@
     "678"
   ],
   "key": {
-    "0": {
-      "item": "liroth:liroth_cobblestone"
-    },
-    "1": {
-      "item": "liroth:liroth_cobblestone"
-    },
-    "2": {
-      "item": "liroth:liroth_cobblestone"
-    },
-    "3": {
-      "item": "liroth:liroth_cobblestone"
-    },
-    "5": {
-      "item": "liroth:liroth_cobblestone"
-    },
-    "6": {
-      "item": "liroth:liroth_cobblestone"
-    },
-    "7": {
-      "item": "liroth:liroth_cobblestone"
-    },
-    "8": {
-      "item": "liroth:liroth_cobblestone"
-    }
+    "0": "liroth:liroth_cobblestone",
+    "1": "liroth:liroth_cobblestone",
+    "2": "liroth:liroth_cobblestone",
+    "3": "liroth:liroth_cobblestone",
+    "5": "liroth:liroth_cobblestone",
+    "6": "liroth:liroth_cobblestone",
+    "7": "liroth:liroth_cobblestone",
+    "8": "liroth:liroth_cobblestone"
   },
   "result": {
     "id": "liroth:liroth_cobblestone_furnace",

@@ -6,15 +6,9 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "liroth:ruby_block"
-    },
-    "B": { 
-      "item": "liroth:quantum_diamond"
-    },
-    "H": { 
-      "item": "liroth:liroth_splitter"
-    }
+    "#": "liroth:ruby_block",
+    "B": "liroth:quantum_diamond",
+    "H": "liroth:liroth_splitter"
   },
   "result": {
     "id": "liroth:quantum_extractor",

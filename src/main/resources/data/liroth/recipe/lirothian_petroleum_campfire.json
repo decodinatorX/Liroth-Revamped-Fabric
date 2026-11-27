@@ -6,15 +6,9 @@
     "LLL"
   ],
   "key": {
-    "L": {
-      "tag": "minecraft:logs"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    },
-    "C": {
-      "item": "liroth:lirothian_petroleum"
-    }
+    "L": "#minecraft:logs",
+    "S": "minecraft:stick",
+    "C": "liroth:lirothian_petroleum"
   },
   "result": {
     "id": "liroth:lirothian_petroleum_campfire"

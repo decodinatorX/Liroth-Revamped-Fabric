@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/template_fire_side",
-  "textures": {
-    "fire": "liroth:blocks/black_fire_0"
-  }
-}

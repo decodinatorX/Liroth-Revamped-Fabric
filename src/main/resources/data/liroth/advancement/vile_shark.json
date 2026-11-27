@@ -2,7 +2,7 @@
   "parent": "liroth:enter_liroth",
   "display": {
     "icon": {
-      "id": "liroth:vile_shark_spawn_egg"
+      "id": "liroth:vile_tentacle_tip"
     },
     "title": {
       "translate": "liroth:advancements.story.vile_shark.title"
@@ -19,15 +19,13 @@
     "killed_vile_shark": {
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "predicate": {
-              "type": "liroth:vile_shark"
-            },
-            "entity": "this"
-          }
-        ]
+        "entity": {
+          "predicate": {
+            "minecraft:entity_type": "liroth:vile_shark"
+          },
+          "entity": "this",
+          "type": "minecraft:entity_properties"
+        }
       }
     }
   },

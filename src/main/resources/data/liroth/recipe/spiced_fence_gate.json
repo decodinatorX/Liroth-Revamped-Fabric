@@ -6,12 +6,8 @@
     "#W#"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "W": {
-      "item": "liroth:spiced_planks"
-    }
+    "#": "minecraft:stick",
+    "W": "liroth:spiced_planks"
   },
   "result": {
     "id": "liroth:spiced_gate"

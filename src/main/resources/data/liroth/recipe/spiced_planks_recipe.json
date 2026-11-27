@@ -1,9 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "liroth:spiced_log"
-    }
+    "liroth:spiced_log"
   ],
   "result": {
     "id": "liroth:spiced_planks",

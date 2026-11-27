@@ -9,13 +9,14 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SnowLayerBlock;
-import net.minecraft.world.level.block.SnowyDirtBlock;
+import net.minecraft.world.level.block.SnowyBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.lighting.LightEngine;
 
-public abstract class CustomSpreadableBlock extends SnowyDirtBlock {
+public abstract class CustomSpreadableBlock extends SnowyBlock {
     public Block dirtBlock;
+
     protected CustomSpreadableBlock(BlockBehaviour.Properties p_56817_) {
         super(p_56817_);
     }
@@ -28,8 +29,8 @@ public abstract class CustomSpreadableBlock extends SnowyDirtBlock {
         } else if (blockstate.getFluidState().getAmount() == 8) {
             return false;
         } else {
-            int i = LightEngine.getLightBlockInto(p_56825_, p_56824_, p_56826_, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(p_56825_, blockpos));
-            return i < p_56825_.getMaxLightLevel();
+            int lightDampening = LightEngine.getLightDampeningInto(p_56824_, blockstate, Direction.UP, blockstate.getLightDampening());
+            return lightDampening < 15;
         }
     }
 
@@ -48,7 +49,7 @@ public abstract class CustomSpreadableBlock extends SnowyDirtBlock {
             if (level.getMaxLocalRawBrightness(pos.above()) >= 9) {
                 BlockState blockstate = this.defaultBlockState();
 
-                for(int i = 0; i < 4; ++i) {
+                for (int i = 0; i < 4; ++i) {
                     BlockPos blockpos = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
                     if (level.getBlockState(blockpos).is(dirtBlock) && canPropagate(blockstate, level, blockpos)) {
                         level.setBlockAndUpdate(blockpos, blockstate.setValue(SNOWY, level.getBlockState(blockpos.above()).is(Blocks.SNOW)));

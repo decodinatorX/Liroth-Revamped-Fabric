@@ -1,12 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "liroth:lirothian_cobalt_ingot"
-    },
-    {
-      "item": "minecraft:flint"
-    }
+    "liroth:lirothian_cobalt_ingot",
+    "minecraft:flint"
   ],
   "result": {
     "id": "minecraft:flint_and_steel"

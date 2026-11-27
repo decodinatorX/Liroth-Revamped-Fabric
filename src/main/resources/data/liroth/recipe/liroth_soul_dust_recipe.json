@@ -4,9 +4,7 @@
     "0"
   ],
   "key": {
-    "0": {
-      "item": "liroth:liroth_soul_sand"
-    }
+    "0": "liroth:liroth_soul_sand"
   },
   "result": {
     "id": "liroth:liroth_soul_dust",

@@ -6,15 +6,9 @@
     "XRX"
   ],
   "key": {
-    "R": {
-      "item": "minecraft:redstone"
-    },
-    "#": {
-      "item": "minecraft:stone_pressure_plate"
-    },
-    "X": {
-      "item": "liroth:lirothian_cobalt_ingot"
-    }
+    "R": "minecraft:redstone",
+    "#": "minecraft:stone_pressure_plate",
+    "X": "liroth:lirothian_cobalt_ingot"
   },
   "result": {
     "id": "minecraft:detector_rail",

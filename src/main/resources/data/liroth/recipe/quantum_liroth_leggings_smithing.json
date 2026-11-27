@@ -1,14 +1,8 @@
 {
   "type": "minecraft:smithing_transform",
-  "template": {
-    "item": "liroth:quantum_upgrade_smithing_template"
-  },
-  "base": {
-    "item": "liroth:liroth_gem_leggings"
-  },
-  "addition": {
-    "item": "liroth:quantum_plate"
-  },
+  "template": "liroth:quantum_upgrade_smithing_template",
+  "base": "liroth:liroth_gem_leggings",
+  "addition": "liroth:quantum_plate",
   "result": {
     "id": "liroth:quantum_liroth_leggings"
   }

@@ -1,0 +1,16 @@
+{
+  "values": {
+    "liroth:lirothian_petroleum": {
+      "burn_time": 1600
+    },
+    "liroth:lirothian_petroleum_block": {
+      "burn_time": 16000
+    },
+    "liroth:damnation_fungal_cluster": {
+      "burn_time": 3200
+    },
+    "liroth:damnation_fungus": {
+      "burn_time": 1600
+    }
+  }
+}

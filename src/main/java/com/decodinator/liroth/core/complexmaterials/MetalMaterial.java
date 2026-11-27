@@ -1,11 +1,14 @@
 package com.decodinator.liroth.core.complexmaterials;
 
 import com.decodinator.liroth.core.blocks.basis.LirothAnvilBlock;
+import com.decodinator.liroth.core.items.LirothArmorItem;
+import com.decodinator.liroth.core.items.material.LirothToolMaterial;
 import com.decodinator.liroth.core.registry.LirothBlocks;
 import com.decodinator.liroth.core.registry.LirothItems;
-import net.minecraft.core.Holder;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
+
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
 import org.betterx.bclib.blocks.*;
 import org.betterx.bclib.items.ModelProviderItem;
 import org.betterx.bclib.items.tool.*;
@@ -14,7 +17,6 @@ import org.betterx.wover.complex.api.equipment.ArmorTier;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -59,9 +61,9 @@ public class MetalMaterial implements MaterialManager.Material {
     public static MetalMaterial makeNormal(
             String name,
             MapColor color,
-            Tier material,
-            Holder<ArmorMaterial> armor,
-            ArmorTier tier,
+            LirothToolMaterial material,
+            ArmorMaterial armMat,
+            ArmorTier armor,
             int anvilLevel
     ) {
         return new MetalMaterial(
@@ -73,8 +75,58 @@ public class MetalMaterial implements MaterialManager.Material {
                         .mapColor(color),
                 LirothItems::makeItemSettings,
                 material,
+                armMat,
                 armor,
-                tier,
+                anvilLevel
+        );
+    }
+
+    public static MetalMaterial makeLiroth(
+            String name,
+            MapColor color,
+            LirothToolMaterial material,
+            ArmorMaterial armMat,
+            ArmorTier armor,
+            int anvilLevel
+    ) {
+        return new MetalMaterial(
+                name,
+                true,
+                false,
+                () -> BlockBehaviour.Properties
+                        .ofFullCopy(Blocks.NETHERITE_BLOCK)
+                        .mapColor(color),
+                LirothItems::makeItemSettings,
+                material,
+                armMat,
+                armor,
+                anvilLevel
+        );
+    }
+
+    public static MetalMaterial makeOreless(
+            String name,
+            MapColor color,
+            float hardness,
+            float resistance,
+            LirothToolMaterial material,
+            ArmorMaterial armMat,
+            ArmorTier armor,
+            int anvilLevel
+    ) {
+        return new MetalMaterial(
+                name,
+                false,
+                true,
+                () -> BlockBehaviour.Properties
+                        .ofFullCopy(Blocks.IRON_BLOCK)
+                        .mapColor(color)
+                        .destroyTime(hardness)
+                        .explosionResistance(resistance),
+                LirothItems::makeItemSettings,
+                material,
+                armMat,
+                armor,
                 anvilLevel
         );
     }
@@ -85,9 +137,9 @@ public class MetalMaterial implements MaterialManager.Material {
             boolean hasIngotBlock,
             Supplier<BlockBehaviour.Properties> settingsSupplier,
             Supplier<Properties> itemSettings,
-            Tier material,
-            Holder<ArmorMaterial> armor,
-            ArmorTier tier,
+            LirothToolMaterial material,
+            ArmorMaterial armMat,
+            ArmorTier armor,
             int anvilLevel
     ) {
         final BlockBehaviour.Properties settings = settingsSupplier.get();
@@ -97,52 +149,37 @@ public class MetalMaterial implements MaterialManager.Material {
         this.hasIngotBlock = hasIngotBlock;
         this.name = name;
         this.itemSettings = itemSettings;
-        rawOre = hasOre ? LirothItems.registerItem(name + "_raw", new ModelProviderItem(newItemSettings())) : null;
-        ore = hasOre ? LirothBlocks.registerBlock(name + "_ore", new BaseOreBlock(() -> rawOre, 1, 3, 1)) : null;
+        rawOre = hasOre ? LirothItems.registerItem(name + "_raw", () -> new ModelProviderItem(newItemSettings())) : null;
+        ore = hasOre ? LirothBlocks.registerBlock(name + "_ore", () -> (new BaseOreBlock(() -> rawOre, 1, 3, 1))) : null;
 
-        rawBlock = LirothBlocks.registerBlock("raw_" + name, new BaseBlock.Metal(settings));
+        rawBlock = LirothBlocks.registerBlock("raw_" + name, () -> (new BaseBlock.Metal(settings)));
 
-        block = LirothBlocks.registerBlock(name + "_block", new BaseBlock.Metal(settings));
+        block = LirothBlocks.registerBlock(name + "_block", () -> (new BaseBlock.Metal(settings)));
 
-        door = LirothBlocks.registerBlock(name + "_door", new BaseDoorBlock.Metal(block, BlockSetType.IRON));
-        trapdoor = LirothBlocks.registerBlock(name + "_trapdoor", new BaseTrapdoorBlock.Metal(block, BlockSetType.IRON));
-        bars = LirothBlocks.registerBlock(name + "_bars", new BaseBarsBlock.Metal(block));
-        chain = LirothBlocks.registerBlock(name + "_chain", new BaseChainBlock.Metal(block.defaultMapColor()));
+        door = LirothBlocks.registerBlock(name + "_door", () -> (new BaseDoorBlock.Metal(block, BlockSetType.IRON)));
+        trapdoor = LirothBlocks.registerBlock(name + "_trapdoor", () -> (new BaseTrapdoorBlock.Metal(block, BlockSetType.IRON)));
+        bars = LirothBlocks.registerBlock(name + "_bars", () -> (new BaseBarsBlock.Metal(block)));
+        chain = LirothBlocks.registerBlock(name + "_chain", () -> (new BaseChainBlock.Metal(block.defaultMapColor())));
         pressurePlate = LirothBlocks.registerBlock(
                 name + "_plate",
-                new BasePressurePlateBlock.Wood(block, BlockSetType.IRON)
+                () -> (new BasePressurePlateBlock.Wood(block, BlockSetType.IRON))
         );
 
-        nugget = LirothItems.registerItem(name + "_nugget", new ModelProviderItem(newItemSettings()));
-        ingot = LirothItems.registerItem(name + "_ingot", new ModelProviderItem(newItemSettings()));
+        nugget = LirothItems.registerItem(name + "_nugget", () -> new ModelProviderItem(newItemSettings()));
+        ingot = LirothItems.registerItem(name + "_ingot", () -> new ModelProviderItem(newItemSettings()));
 
-        shovel = LirothItems.registerTool(name + "_shovel", new BaseShovelItem(material, 1.5F, -3.0F, newItemSettings()));
-        sword = LirothItems.registerTool(name + "_sword", new BaseSwordItem(material, 3, -2.4F, newItemSettings()));
-        pickaxe = LirothItems.registerTool(name + "_pickaxe", new BasePickaxeItem(material, 1, -2.8F, newItemSettings()));
-        axe = LirothItems.registerTool(name + "_axe", new BaseAxeItem(material, 6.0F, -3.0F, newItemSettings()));
-        hoe = LirothItems.registerTool(name + "_hoe", new BaseHoeItem(material, -3, 0.0F, newItemSettings()));
+        shovel = LirothItems.registerTool(name + "_shovel", material, BlockTags.MINEABLE_WITH_SHOVEL, 1.5F, -3.0F, newItemSettings(), ingot);
+        sword = LirothItems.registerSwordTool(name + "_sword", material, 3.0F, -2.4F, newItemSettings(), ingot);
+        pickaxe = LirothItems.registerTool(name + "_pickaxe", material, BlockTags.MINEABLE_WITH_PICKAXE, 1.0F, -2.8F, newItemSettings(), ingot);
+        axe = LirothItems.registerTool(name + "_axe", material, BlockTags.MINEABLE_WITH_AXE, 6.0F, -3.0F, newItemSettings(), ingot);
+        hoe = LirothItems.registerTool(name + "_hoe", material, BlockTags.MINEABLE_WITH_HOE, -3.0F, 0.0F, newItemSettings(), ingot);
 
-        helmet = LirothItems.registerArmorItem(
-                name + "_helmet",
-                new ArmorItem(armor, ArmorItem.Type.HELMET, newArmorSettings(ArmorSlot.HELMET_SLOT, tier))
-        );
-        chestplate = LirothItems.registerArmorItem(
-                name + "_chestplate",
-                new ArmorItem(armor, ArmorItem.Type.CHESTPLATE, newArmorSettings(ArmorSlot.CHESTPLATE_SLOT, tier))
-        );
-        leggings = LirothItems.registerArmorItem(
-                name + "_leggings",
-                new ArmorItem(armor, ArmorItem.Type.LEGGINGS, newArmorSettings(ArmorSlot.LEGGINGS_SLOT, tier))
-        );
-        boots = LirothItems.registerArmorItem(
-                name + "_boots",
-                new ArmorItem(armor, ArmorItem.Type.BOOTS, newArmorSettings(ArmorSlot.BOOTS_SLOT, tier))
-        );
+        helmet = LirothItems.registerArmorItem(name + "_helmet", () -> new LirothArmorItem(armor, ArmorSlot.HELMET_SLOT, newArmorSettings(ArmorSlot.HELMET_SLOT, armor).humanoidArmor(armMat, ArmorType.HELMET)));
+        chestplate = LirothItems.registerArmorItem(name + "_chestplate", () -> new LirothArmorItem(armor, ArmorSlot.CHESTPLATE_SLOT, newArmorSettings(ArmorSlot.CHESTPLATE_SLOT, armor).humanoidArmor(armMat, ArmorType.CHESTPLATE)));
+        leggings = LirothItems.registerArmorItem(name + "_leggings", () -> new LirothArmorItem(armor, ArmorSlot.LEGGINGS_SLOT, newArmorSettings(ArmorSlot.LEGGINGS_SLOT, armor).humanoidArmor(armMat, ArmorType.LEGGINGS)));
+        boots = LirothItems.registerArmorItem(name + "_boots", () -> new LirothArmorItem(armor, ArmorSlot.BOOTS_SLOT, newArmorSettings(ArmorSlot.BOOTS_SLOT, armor).humanoidArmor(armMat, ArmorType.BOOTS)));
 
-        anvilBlock = LirothBlocks.registerBlock(
-                name + "_anvil",
-                new LirothAnvilBlock(this, block.defaultMapColor(), anvilLevel)
-        );
+        anvilBlock = LirothBlocks.registerBlock(name + "_anvil", () -> (new LirothAnvilBlock(this, block.defaultMapColor(), anvilLevel)));
 
         MaterialManager.register(this);
     }

@@ -3,61 +3,15 @@
   "downfall": 0,
   "has_precipitation": false,
   "effects": {
-    "sky_color": 328965,
-    "fog_color": 78337,
-    "water_color": 328965,
-    "water_fog_color": 328965,
-    "grass_color": 328965,
-    "foliage_color": 328965,
-    "ambient_sound": "minecraft:ambient.soul_sand_valley.loop",
-    "mood_sound": {
-      "sound": "minecraft:ambient.soul_sand_valley.mood",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2
-    },
-    "additions_sound": {
-      "sound": "minecraft:ambient.soul_sand_valley.additions",
-      "tick_chance": 0.0111
-    },
-    "music": {
-      "sound": "liroth:music.liroth.damnation",
-      "min_delay": 12000,
-      "max_delay": 24000,
-      "replace_current_music": false
-    },
-    "particle": {
-      "options": {
-        "type": "liroth:green_spore"
-      },
-      "probability": 0.025
-    }
+    "water_color": "#050505",
+    "grass_color": "#050505",
+    "foliage_color": "#050505"
   },
-  "spawners": {
-    "monster": [
-      {
-        "type": "liroth:fungal_fiend",
-        "weight": 100,
-        "minCount": 1,
-        "maxCount": 2
-      }
-    ],
-    "creature": [],
-    "ambient": [],
-    "axolotls": [],
-    "underground_water_creature": [],
-    "water_creature": [],
-    "water_ambient": [],
-    "misc": []
-  },
-  "spawn_costs": {},
-  "carvers": {
-    "air": [
-      "minecraft:cave",
-      "minecraft:cave_extra_underground",
-      "minecraft:canyon"
-    ]
-  },
+  "carvers": [
+    "minecraft:cave",
+    "minecraft:cave_extra_underground",
+    "minecraft:canyon"
+  ],
   "features": [
     [],
     [],
@@ -87,5 +41,67 @@
       "liroth:fungal_patch_ceiling"
     ],
     []
-  ]
+  ],
+  "attributes": {
+    "minecraft:visual/sky_color": "#050505",
+    "minecraft:visual/fog_color": "#013201",
+    "minecraft:visual/water_fog_color": "#050505",
+    "minecraft:audio/ambient_sounds": {
+      "loop": "minecraft:ambient.soul_sand_valley.loop",
+      "mood": {
+        "sound": "minecraft:ambient.soul_sand_valley.mood",
+        "tick_delay": 6000,
+        "block_search_extent": 8,
+        "offset": 2
+      },
+      "additions": {
+        "sound": "minecraft:ambient.soul_sand_valley.additions",
+        "tick_chance": 0.0111
+      }
+    },
+    "minecraft:audio/background_music": {
+      "default": {
+        "sound": "liroth:music.liroth.damnation",
+        "min_delay": 12000,
+        "max_delay": 24000
+      }
+    },
+    "minecraft:visual/ambient_particles": {
+      "argument": [
+        {
+          "particle": {
+            "type": "liroth:green_spore"
+          },
+          "probability": 0.025
+        }
+      ],
+      "modifier": "append"
+    },
+    "minecraft:gameplay/natural_mob_spawns": {
+      "argument": {
+        "spawn_costs": {},
+        "spawns_by_category": {
+          "monster": [
+            {
+              "type": "liroth:fungal_fiend",
+              "weight": 100,
+              "count": {
+                "type": "minecraft:uniform",
+                "min_inclusive": 1,
+                "max_inclusive": 2
+              }
+            }
+          ],
+          "creature": [],
+          "ambient": [],
+          "axolotls": [],
+          "underground_water_creature": [],
+          "water_creature": [],
+          "water_ambient": [],
+          "misc": []
+        }
+      },
+      "modifier": "overlay"
+    }
+  }
 }

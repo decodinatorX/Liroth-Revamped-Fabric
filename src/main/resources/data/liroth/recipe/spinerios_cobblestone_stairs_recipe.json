@@ -6,24 +6,12 @@
     "678"
   ],
   "key": {
-    "0": {
-      "item": "liroth:spinerios_cobblestone"
-    },
-    "3": {
-      "item": "liroth:spinerios_cobblestone"
-    },
-    "4": {
-      "item": "liroth:spinerios_cobblestone"
-    },
-    "6": {
-      "item": "liroth:spinerios_cobblestone"
-    },
-    "7": {
-      "item": "liroth:spinerios_cobblestone"
-    },
-    "8": {
-      "item": "liroth:spinerios_cobblestone"
-    }
+    "0": "liroth:spinerios_cobblestone",
+    "3": "liroth:spinerios_cobblestone",
+    "4": "liroth:spinerios_cobblestone",
+    "6": "liroth:spinerios_cobblestone",
+    "7": "liroth:spinerios_cobblestone",
+    "8": "liroth:spinerios_cobblestone"
   },
   "result": {
     "id": "liroth:spinerios_cobblestone_stairs",

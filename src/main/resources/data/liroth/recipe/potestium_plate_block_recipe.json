@@ -6,9 +6,7 @@
     "000"
   ],
   "key": {
-    "0": {
-      "item": "liroth:potestium_plate"
-    }
+    "0": "liroth:potestium_plate"
   },
   "result": {
     "id": "liroth:potestium_plate_block",

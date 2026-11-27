@@ -1,8 +1,6 @@
 {
   "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "liroth:spinerios_ancient_debris"
-  },
+  "ingredient": "liroth:spinerios_ancient_debris",
   "result": {
     "id": "minecraft:netherite_scrap"
   },

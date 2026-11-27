@@ -6,30 +6,14 @@
     "678"
   ],
   "key": {
-    "0": {
-      "item": "liroth:koolaw_planks"
-    },
-    "1": {
-      "item": "liroth:koolaw_planks"
-    },
-    "2": {
-      "item": "liroth:koolaw_planks"
-    },
-    "3": {
-      "item": "liroth:koolaw_planks"
-    },
-    "5": {
-      "item": "liroth:koolaw_planks"
-    },
-    "6": {
-      "item": "liroth:koolaw_planks"
-    },
-    "7": {
-      "item": "liroth:koolaw_planks"
-    },
-    "8": {
-      "item": "liroth:koolaw_planks"
-    }
+    "0": "liroth:koolaw_planks",
+    "1": "liroth:koolaw_planks",
+    "2": "liroth:koolaw_planks",
+    "3": "liroth:koolaw_planks",
+    "5": "liroth:koolaw_planks",
+    "6": "liroth:koolaw_planks",
+    "7": "liroth:koolaw_planks",
+    "8": "liroth:koolaw_planks"
   },
   "result": {
     "id": "liroth:koolaw_chest",

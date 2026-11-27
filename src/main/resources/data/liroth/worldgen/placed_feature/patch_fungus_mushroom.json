@@ -15,6 +15,56 @@
       "heightmap": "WORLD_SURFACE_WG"
     },
     {
+      "type": "minecraft:count",
+      "count": 32
+    },
+    {
+      "type": "minecraft:offset",
+      "x": {
+        "type": "minecraft:uniform",
+        "min_inclusive": -7,
+        "max_inclusive": 7
+      },
+      "y": {
+        "type": "minecraft:uniform",
+        "min_inclusive": -3,
+        "max_inclusive": 3
+      },
+      "z": {
+        "type": "minecraft:uniform",
+        "min_inclusive": -7,
+        "max_inclusive": 7
+      }
+    },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:all_of",
+        "predicates": [
+          {
+            "type": "minecraft:matching_blocks",
+            "blocks": [
+              "minecraft:air"
+            ]
+          },
+          {
+            "type": "minecraft:not",
+            "predicate": {
+              "type": "minecraft:matching_blocks",
+              "offset": [
+                0,
+                -1,
+                0
+              ],
+              "blocks": [
+                "minecraft:podzol"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
       "type": "minecraft:biome"
     }
   ]

@@ -6,9 +6,7 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "liroth:spiced_planks"
-    }
+    "#": "liroth:spiced_planks"
   },
   "result": {
     "id": "liroth:spiced_boat"

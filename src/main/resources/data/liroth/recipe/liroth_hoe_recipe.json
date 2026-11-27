@@ -1,14 +1,8 @@
 {
   "type": "minecraft:smithing_transform",
-  "template": {
-    "item": "liroth:liroth_upgrade_smithing_template"
-  },
-  "base": {
-    "item": "minecraft:netherite_hoe"
-  },
-  "addition": {
-    "item": "liroth:liroth_gem_ingot"
-  },
+  "template": "liroth:liroth_upgrade_smithing_template",
+  "base": "minecraft:netherite_hoe",
+  "addition": "liroth:liroth_gem_ingot",
   "result": {
     "id": "liroth:liroth_gem_hoe"
   }

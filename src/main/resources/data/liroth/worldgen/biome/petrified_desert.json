@@ -3,47 +3,14 @@
   "downfall": 0,
   "has_precipitation": false,
   "effects": {
-    "sky_color": 7396351,
-    "fog_color": 12775679,
-    "water_color": 4178916,
-    "water_fog_color": 340531,
-    "grass_color": 1624764,
-    "foliage_color": 32639,
-    "mood_sound": {
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2
-    },
-    "music": {
-      "sound": "liroth:music.liroth.escape",
-      "min_delay": 12000,
-      "max_delay": 24000,
-      "replace_current_music": true
-    }
+    "water_color": "#3fc3e4",
+    "grass_color": "#18cabc",
+    "foliage_color": "#007f7f"
   },
-  "spawners": {
-    "monster": [
-      {
-        "type": "liroth:shade",
-        "weight": 1,
-        "minCount": 1,
-        "maxCount": 1
-      }
-    ],
-    "creature": [],
-    "ambient": [],
-    "water_creature": [],
-    "water_ambient": [],
-    "misc": []
-  },
-  "spawn_costs": {},
-  "carvers": {
-    "air": [
-      "minecraft:cave",
-      "minecraft:canyon"
-    ]
-  },
+  "carvers": [
+    "minecraft:cave",
+    "minecraft:canyon"
+  ],
   "features": [
     [],
     [],
@@ -74,5 +41,49 @@
     ],
     [],
     []
-  ]
+  ],
+  "attributes": {
+    "minecraft:visual/sky_color": "#70dbff",
+    "minecraft:visual/fog_color": "#c2f0ff",
+    "minecraft:visual/water_fog_color": "#053233",
+    "minecraft:audio/ambient_sounds": {
+      "mood": {
+        "sound": "minecraft:ambient.cave",
+        "tick_delay": 6000,
+        "block_search_extent": 8,
+        "offset": 2
+      }
+    },
+    "minecraft:audio/background_music": {
+      "default": {
+        "sound": "liroth:music.liroth.escape",
+        "min_delay": 12000,
+        "max_delay": 24000
+      }
+    },
+    "minecraft:gameplay/natural_mob_spawns": {
+      "argument": {
+        "spawn_costs": {},
+        "spawns_by_category": {
+          "monster": [
+            {
+              "type": "liroth:shade",
+              "weight": 1,
+              "count": {
+                "type": "minecraft:uniform",
+                "min_inclusive": 1,
+                "max_inclusive": 1
+              }
+            }
+          ],
+          "creature": [],
+          "ambient": [],
+          "water_creature": [],
+          "water_ambient": [],
+          "misc": []
+        }
+      },
+      "modifier": "overlay"
+    }
+  }
 }

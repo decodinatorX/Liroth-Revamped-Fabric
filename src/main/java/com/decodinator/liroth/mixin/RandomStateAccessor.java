@@ -9,5 +9,5 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(RandomState.class)
 public interface RandomStateAccessor {
     @Accessor("noises")
-    HolderGetter<NormalNoise.NoiseParameters> liroth$getNoises();
+    HolderGetter<NormalNoise> liroth$getNoises();
 }

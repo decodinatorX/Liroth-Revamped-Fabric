@@ -5,18 +5,10 @@
     "23"
   ],
   "key": {
-    "0": {
-      "item": "liroth:spinerios_stone"
-    },
-    "1": {
-      "item": "liroth:spinerios_stone"
-    },
-    "2": {
-      "item": "liroth:spinerios_stone"
-    },
-    "3": {
-      "item": "liroth:spinerios_stone"
-    }
+    "0": "liroth:spinerios_stone",
+    "1": "liroth:spinerios_stone",
+    "2": "liroth:spinerios_stone",
+    "3": "liroth:spinerios_stone"
   },
   "result": {
     "id": "liroth:spinerios_stone_bricks",

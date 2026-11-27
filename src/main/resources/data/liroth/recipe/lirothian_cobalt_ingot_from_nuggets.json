@@ -7,9 +7,7 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "liroth:lirothian_cobalt_nugget"
-    }
+    "#": "liroth:lirothian_cobalt_nugget"
   },
   "result": {
     "id": "liroth:lirothian_cobalt_ingot"

@@ -6,24 +6,12 @@
     "678"
   ],
   "key": {
-    "0": {
-      "item": "liroth:blue_sandstone"
-    },
-    "3": {
-      "item": "liroth:blue_sandstone"
-    },
-    "4": {
-      "item": "liroth:blue_sandstone"
-    },
-    "6": {
-      "item": "liroth:blue_sandstone"
-    },
-    "7": {
-      "item": "liroth:blue_sandstone"
-    },
-    "8": {
-      "item": "liroth:blue_sandstone"
-    }
+    "0": "liroth:blue_sandstone",
+    "3": "liroth:blue_sandstone",
+    "4": "liroth:blue_sandstone",
+    "6": "liroth:blue_sandstone",
+    "7": "liroth:blue_sandstone",
+    "8": "liroth:blue_sandstone"
   },
   "result": {
     "id": "liroth:blue_sandstone_stairs",

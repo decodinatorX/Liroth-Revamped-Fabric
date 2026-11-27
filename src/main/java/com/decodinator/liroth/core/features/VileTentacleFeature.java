@@ -1,8 +1,8 @@
 package com.decodinator.liroth.core.features;
 
+import com.decodinator.liroth.core.blocks.LirothWaterTipBlock;
 import com.decodinator.liroth.core.registry.LirothBlocks;
-import com.decodinator.liroth.core.blocks.CustomKelpBlock;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
@@ -11,21 +11,19 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 
-public class VileTentacleFeature 
-extends Feature<NoneFeatureConfiguration> {
-    public VileTentacleFeature(Codec<NoneFeatureConfiguration> codec) {
-        super(codec);
+public final class VileTentacleFeature implements Feature {
+    public static final MapCodec<VileTentacleFeature> CODEC = MapCodec.unit(VileTentacleFeature::new);
+
+    @Override
+    public MapCodec<VileTentacleFeature> codec() {
+        return CODEC;
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+    public boolean place(WorldGenLevel structureWorldAccess, ChunkGenerator chunkGenerator, RandomSource random, BlockPos blockPos) {
         int i = 0;
-        WorldGenLevel structureWorldAccess = context.level();
-        BlockPos blockPos = context.origin();
-        RandomSource random = context.random();
         int j = structureWorldAccess.getHeight(Heightmap.Types.OCEAN_FLOOR, blockPos.getX(), blockPos.getZ());
         BlockPos blockPos2 = new BlockPos(blockPos.getX(), j, blockPos.getZ());
         if (structureWorldAccess.getBlockState(blockPos2).is(LirothBlocks.LIROTH_FLUID_BLOCK)) {
@@ -35,7 +33,7 @@ extends Feature<NoneFeatureConfiguration> {
             for (int l = 0; l <= k; ++l) {
                 if (structureWorldAccess.getBlockState(blockPos2).is(LirothBlocks.LIROTH_FLUID_BLOCK) && structureWorldAccess.getBlockState(blockPos2.above()).is(LirothBlocks.LIROTH_FLUID_BLOCK) && blockState2.canSurvive(structureWorldAccess, blockPos2)) {
                     if (l == k) {
-                        structureWorldAccess.setBlock(blockPos2, blockState.setValue(CustomKelpBlock.AGE, random.nextInt(4) + 20), Block.UPDATE_NEIGHBORS);
+                        structureWorldAccess.setBlock(blockPos2, (BlockState)blockState.setValue(LirothWaterTipBlock.AGE, random.nextInt(4) + 20), Block.UPDATE_NEIGHBORS);
                         ++i;
                     } else {
                         structureWorldAccess.setBlock(blockPos2, blockState2, Block.UPDATE_NEIGHBORS);
@@ -43,7 +41,7 @@ extends Feature<NoneFeatureConfiguration> {
                 } else if (l > 0) {
                     BlockPos blockPos3 = blockPos2.below();
                     if (!blockState.canSurvive(structureWorldAccess, blockPos3) || structureWorldAccess.getBlockState(blockPos3.below()).is(LirothBlocks.VILE_TENTACLE_TIP)) break;
-                    structureWorldAccess.setBlock(blockPos3, blockState.setValue(CustomKelpBlock.AGE, random.nextInt(4) + 20), Block.UPDATE_NEIGHBORS);
+                    structureWorldAccess.setBlock(blockPos3, (BlockState)blockState.setValue(LirothWaterTipBlock.AGE, random.nextInt(4) + 20), Block.UPDATE_NEIGHBORS);
                     ++i;
                     break;
                 }

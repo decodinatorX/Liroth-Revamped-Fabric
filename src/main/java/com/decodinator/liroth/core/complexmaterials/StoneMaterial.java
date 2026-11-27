@@ -31,19 +31,19 @@ public class StoneMaterial implements MaterialManager.Material {
         BlockBehaviour.Properties material = createMaterial(color);
 
         this.name = name;
-        stone = LirothBlocks.registerBlock(name, new BaseBlock.Stone(material));
-        stairs = LirothBlocks.registerBlock(name + "_stairs", new BaseStairsBlock.Stone(stone));
-        slab = LirothBlocks.registerBlock(name + "_slab", new BaseSlabBlock.Stone(stone));
-        wall = LirothBlocks.registerBlock(name + "_wall", new BaseWallBlock.Stone(stone));
-        button = LirothBlocks.registerBlock(name + "_button", new BaseButtonBlock.Stone(stone, BlockSetType.STONE));
+        stone = LirothBlocks.registerBlock(name, () -> (new BaseBlock.Stone(material)));
+        stairs = LirothBlocks.registerBlock(name + "_stairs", () -> (new BaseStairsBlock.Stone(stone)));
+        slab = LirothBlocks.registerBlock(name + "_slab", () -> (new BaseSlabBlock.Stone(stone)));
+        wall = LirothBlocks.registerBlock(name + "_wall", () -> (new BaseWallBlock.Stone(stone)));
+        button = LirothBlocks.registerBlock(name + "_button", () -> (new BaseButtonBlock.Stone(stone, BlockSetType.STONE)));
         pressurePlate = LirothBlocks.registerBlock(
                 name + "_plate",
-                new BasePressurePlateBlock.Stone(stone, BlockSetType.STONE)
+                () -> (new BasePressurePlateBlock.Stone(stone, BlockSetType.STONE))
         );
-        bricks = LirothBlocks.registerBlock(name + "_bricks", new BaseBlock.Stone(material));
-        brickStairs = LirothBlocks.registerBlock(name + "_bricks_stairs", new BaseStairsBlock.Stone(bricks));
-        brickSlab = LirothBlocks.registerBlock(name + "_bricks_slab", new BaseSlabBlock.Stone(bricks));
-        brickWall = LirothBlocks.registerBlock(name + "_bricks_wall", new BaseWallBlock.Stone(bricks));
+        bricks = LirothBlocks.registerBlock(name + "_bricks", () -> (new BaseBlock.Stone(material)));
+        brickStairs = LirothBlocks.registerBlock(name + "_bricks_stairs", () -> (new BaseStairsBlock.Stone(bricks)));
+        brickSlab = LirothBlocks.registerBlock(name + "_bricks_slab", () -> (new BaseSlabBlock.Stone(bricks)));
+        brickWall = LirothBlocks.registerBlock(name + "_bricks_wall", () -> (new BaseWallBlock.Stone(bricks)));
 
 
         MaterialManager.register(this);

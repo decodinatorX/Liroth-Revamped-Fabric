@@ -2,7 +2,7 @@
   "parent": "liroth:enter_liroth",
   "display": {
     "icon": {
-      "id": "liroth:warp_spawn_egg"
+      "id": "liroth:liroth_tear"
     },
     "title": {
       "translate": "liroth:advancements.story.warp.title"
@@ -19,15 +19,13 @@
     "killed_warp": {
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "predicate": {
-              "type": "liroth:warp"
-            },
-            "entity": "this"
-          }
-        ]
+        "entity": {
+          "predicate": {
+            "minecraft:entity_type": "liroth:warp"
+          },
+          "entity": "this",
+          "type": "minecraft:entity_properties"
+        }
       }
     }
   },

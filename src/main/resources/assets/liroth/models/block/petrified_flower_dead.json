@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/template_chorus_flower",
-  "textures": {
-    "texture": "liroth:blocks/petrified_flower_dead"
-  }
-}

@@ -5,24 +5,12 @@
     "345"
   ],
   "key": {
-    "0": {
-      "item": "liroth:blue_sandstone"
-    },
-    "1": {
-      "item": "liroth:blue_sandstone"
-    },
-    "2": {
-      "item": "liroth:blue_sandstone"
-    },
-    "3": {
-      "item": "liroth:blue_sandstone"
-    },
-    "4": {
-      "item": "liroth:blue_sandstone"
-    },
-    "5": {
-      "item": "liroth:blue_sandstone"
-    }
+    "0": "liroth:blue_sandstone",
+    "1": "liroth:blue_sandstone",
+    "2": "liroth:blue_sandstone",
+    "3": "liroth:blue_sandstone",
+    "4": "liroth:blue_sandstone",
+    "5": "liroth:blue_sandstone"
   },
   "result": {
     "id": "liroth:blue_sandstone_wall",

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "key": {
+      "#": "liroth:purpetuated_amethyst_shard"
+    },
+    "pattern": [
+      "##",
+      "##"
+    ],
+  "result": {
+    "id": "liroth:gateway_block",
+    "count": 1
+  }
+}

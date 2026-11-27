@@ -4,15 +4,9 @@
     "012"
   ],
   "key": {
-    "0": {
-      "item": "liroth:blue_sandstone"
-    },
-    "1": {
-      "item": "liroth:blue_sandstone"
-    },
-    "2": {
-      "item": "liroth:blue_sandstone"
-    }
+    "0": "liroth:blue_sandstone",
+    "1": "liroth:blue_sandstone",
+    "2": "liroth:blue_sandstone"
   },
   "result": {
     "id": "liroth:blue_sandstone_slab",

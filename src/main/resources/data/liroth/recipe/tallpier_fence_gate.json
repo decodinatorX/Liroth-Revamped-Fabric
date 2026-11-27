@@ -6,12 +6,8 @@
     "#W#"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "W": {
-      "item": "liroth:tallpier_planks"
-    }
+    "#": "minecraft:stick",
+    "W": "liroth:tallpier_planks"
   },
   "result": {
     "id": "liroth:tallpier_gate"

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#minecraft:netherite_tool_materials",
+  "base": "liroth:ruby_nautilus_armor",
+  "result": {
+    "id": "minecraft:diamond_nautilus_armor"
+  },
+  "template": "liroth:swap_upgrade_smithing_template"
+}

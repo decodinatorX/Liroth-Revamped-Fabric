@@ -34,10 +34,12 @@
   ],
   "depends": {
     "fabricloader": ">=0.19.5",
-    "fabric": "*",
-    "minecraft": "~1.21.1",
-    "java": ">=17",
-	"bclib": "21.0.x",
+    "fabric-api": "*",
+    "minecraft": "26.3.x",
+    "java": ">=25",
+	"bclib": "26.3.x",
+	"wover": "26.3.x",
+	"wunderlib": "26.3.x",
     "geckolib": ">=4.5.8",
     "nuit": ">=1.0.0-beta.6"
   },

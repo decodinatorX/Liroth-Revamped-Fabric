@@ -6,15 +6,9 @@
     "#"
   ],
   "key": {
-    "#": {
-      "tag": "minecraft:planks"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    },
-    "I": {
-      "item": "liroth:lirothian_cobalt_ingot"
-    }
+    "#": "#minecraft:planks",
+    "S": "minecraft:stick",
+    "I": "liroth:lirothian_cobalt_ingot"
   },
   "result": {
     "id": "minecraft:tripwire_hook",

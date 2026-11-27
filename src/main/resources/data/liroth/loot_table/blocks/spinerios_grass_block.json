@@ -5,32 +5,66 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:item",
-              "name": "liroth:spinerios_grass_block",
-              "conditions": [
-                {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "enchantments": [
+          "type": "minecraft:item",
+          "name": "liroth:spinerios_grass_block",
+          "condition": {
+            "type": "minecraft:all_of",
+            "terms": [
+              {
+                "type": "minecraft:match_tool",
+                "predicate": {
+                  "predicates": {
+                    "minecraft:enchantments": [
                       {
-                        "enchantment": "minecraft:silk_touch",
-                        "levels": { "min": 1 }
+                        "enchantments": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
                       }
                     ]
                   }
                 }
-              ]
-            },
-            { "type": "minecraft:item", "name": "liroth:spinerios_dirt" }
-          ]
+              },
+              {
+                "type": "minecraft:survives_explosion"
+              }
+            ]
+          }
         }
-      ],
-      "conditions": [
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
         {
-          "condition": "minecraft:survives_explosion"
+          "type": "minecraft:item",
+          "name": "liroth:spinerios_dirt",
+          "condition": {
+            "type": "minecraft:all_of",
+            "terms": [
+              {
+                "type": "minecraft:inverted",
+                "term": {
+                  "type": "minecraft:match_tool",
+                  "predicate": {
+                    "predicates": {
+                      "minecraft:enchantments": [
+                        {
+                          "enchantments": "minecraft:silk_touch",
+                          "levels": {
+                            "min": 1
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "type": "minecraft:survives_explosion"
+              }
+            ]
+          }
         }
       ]
     }

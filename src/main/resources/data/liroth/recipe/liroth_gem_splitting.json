@@ -1,9 +1,7 @@
 {
   "type": "liroth:liroth_splitting",
   "id": "liroth:liroth_gem_splitting",
-  "ingredient": {
-    "item": "liroth:liroth_gem_ingot"
-  },
+  "ingredient": "liroth:liroth_gem_ingot",
   "result": {
     "id": "liroth:liroth_dust_ansalum",
     "count": 1

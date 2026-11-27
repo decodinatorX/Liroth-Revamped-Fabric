@@ -2,7 +2,7 @@
   "parent": "liroth:enter_liroth",
   "display": {
     "icon": {
-      "id": "liroth:lirothian_mimic_spawn_egg"
+      "id": "liroth:liroth_chest"
     },
     "title": {
       "translate": "liroth:advancements.story.lirothian_mimic.title"
@@ -19,15 +19,13 @@
     "killed_lirothian_mimic": {
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "predicate": {
-              "type": "liroth:lirothian_mimic"
-            },
-            "entity": "this"
-          }
-        ]
+        "entity": {
+          "predicate": {
+            "minecraft:entity_type": "liroth:lirothian_mimic"
+          },
+          "entity": "this",
+          "type": "minecraft:entity_properties"
+        }
       }
     }
   },

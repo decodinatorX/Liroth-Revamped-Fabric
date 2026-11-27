@@ -5,18 +5,10 @@
     "23"
   ],
   "key": {
-    "0": {
-      "item": "liroth:spinerios_stone_pebble"
-    },
-    "1": {
-      "item": "liroth:spinerios_stone_pebble"
-    },
-    "2": {
-      "item": "liroth:spinerios_stone_pebble"
-    },
-    "3": {
-      "item": "liroth:spinerios_stone_pebble"
-    }
+    "0": "liroth:spinerios_stone_pebble",
+    "1": "liroth:spinerios_stone_pebble",
+    "2": "liroth:spinerios_stone_pebble",
+    "3": "liroth:spinerios_stone_pebble"
   },
   "result": {
     "id": "liroth:spinerios_stone",

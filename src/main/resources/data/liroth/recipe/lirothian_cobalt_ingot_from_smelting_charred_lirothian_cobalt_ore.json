@@ -1,9 +1,7 @@
 {
   "type": "minecraft:smelting",
   "group": "iron_ingot",
-  "ingredient": {
-    "item": "liroth:charred_lirothian_cobalt_ore"
-  },
+  "ingredient": "liroth:charred_lirothian_cobalt_ore",
   "result": {
     "id": "liroth:lirothian_cobalt_ingot"
   },

@@ -1,63 +1,23 @@
 package com.decodinator.liroth.core.features.trees;
 
 import com.decodinator.liroth.core.registry.LirothConfiguredFeatures;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.level.block.grower.TreeGrower;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 
-import java.util.Optional;
+public final class LirothTreeGrower {
+    public static final TreeGrower LIROTH = create("liroth", LirothConfiguredFeatures.LIROTH);
+    public static final TreeGrower DAMNATION = create("damnation", LirothConfiguredFeatures.DAMNATION);
+    public static final TreeGrower JAPZ = create("japz", LirothConfiguredFeatures.JAPZ);
+    public static final TreeGrower KOOLAW = create("koolaw", LirothConfiguredFeatures.KOOLAW);
+    public static final TreeGrower PETRIFIED = create("petrified_damnation", LirothConfiguredFeatures.PETRIFIED);
+    public static final TreeGrower PIER = create("pier", LirothConfiguredFeatures.TALLPIER);
+    public static final TreeGrower SPICED = create("spiced", LirothConfiguredFeatures.SPICED);
 
-public class LirothTreeGrower extends TreeGrower {
-    public LirothTreeGrower(String name, Optional<ResourceKey<ConfiguredFeature<?, ?>>> megaTree, Optional<ResourceKey<ConfiguredFeature<?, ?>>> tree, Optional<ResourceKey<ConfiguredFeature<?, ?>>> flowers) {
-        super(name, megaTree, tree, flowers);
+    private LirothTreeGrower() {
     }
 
-    public static final TreeGrower LIROTH = new TreeGrower(
-            "liroth",
-            Optional.empty(),
-            Optional.of(LirothConfiguredFeatures.LIROTH),
-            Optional.empty()
-    );
-
-    public static final TreeGrower DAMNATION = new TreeGrower(
-            "damnation",
-            Optional.empty(),
-            Optional.of(LirothConfiguredFeatures.DAMNATION),
-            Optional.empty()
-    );
-
-    public static final TreeGrower JAPZ = new TreeGrower(
-            "japz",
-            Optional.empty(),
-            Optional.of(LirothConfiguredFeatures.JAPZ),
-            Optional.empty()
-    );
-
-    public static final TreeGrower KOOLAW = new TreeGrower(
-            "koolaw",
-            Optional.empty(),
-            Optional.of(LirothConfiguredFeatures.KOOLAW),
-            Optional.empty()
-    );
-
-    public static final TreeGrower PETRIFIED = new TreeGrower(
-            "petrified_damnation",
-            Optional.empty(),
-            Optional.of(LirothConfiguredFeatures.PETRIFIED),
-            Optional.empty()
-    );
-
-    public static final TreeGrower PIER = new TreeGrower(
-            "pier",
-            Optional.empty(),
-            Optional.of(LirothConfiguredFeatures.TALLPIER),
-            Optional.empty()
-    );
-
-    public static final TreeGrower SPICED = new TreeGrower(
-            "spiced",
-            Optional.empty(),
-            Optional.of(LirothConfiguredFeatures.SPICED),
-            Optional.empty()
-    );
+    private static TreeGrower create(String name, net.minecraft.resources.ResourceKey<Feature> feature) {
+        return new TreeGrower(name, WeightedList.of(feature), WeightedList.of(), WeightedList.of(), feature);
+    }
 }

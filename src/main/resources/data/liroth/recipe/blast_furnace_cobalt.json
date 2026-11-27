@@ -6,15 +6,9 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:smooth_stone"
-    },
-    "X": {
-      "item": "minecraft:furnace"
-    },
-    "I": {
-      "item": "liroth:lirothian_cobalt_ingot"
-    }
+    "#": "minecraft:smooth_stone",
+    "X": "minecraft:furnace",
+    "I": "liroth:lirothian_cobalt_ingot"
   },
   "result": {
     "id": "minecraft:blast_furnace"

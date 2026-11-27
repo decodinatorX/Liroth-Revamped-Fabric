@@ -1,9 +1,8 @@
 package com.decodinator.liroth.core.features;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -13,23 +12,23 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public class DamnationVinesFeature
-        extends Feature<NoneFeatureConfiguration> {
+public class DamnationVinesFeature implements Feature {
+    public static final MapCodec<DamnationVinesFeature> CODEC = MapCodec.unit(DamnationVinesFeature::new);
     private static final Direction[] DIRECTIONS = Direction.values();
 
-    public DamnationVinesFeature(Codec<NoneFeatureConfiguration> codec) {
-        super(codec);
+    public DamnationVinesFeature() {
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-        WorldGenLevel structureWorldAccess = context.level();
-        BlockPos blockPos = context.origin();
-        RandomSource random = context.random();
+    public MapCodec<DamnationVinesFeature> codec() {
+        return CODEC;
+    }
+
+    @Override
+    public boolean place(WorldGenLevel structureWorldAccess, ChunkGenerator chunkGenerator, RandomSource random, BlockPos blockPos) {
         if (!structureWorldAccess.isEmptyBlock(blockPos)) {
             return false;
         }
@@ -44,8 +43,8 @@ public class DamnationVinesFeature
 
     private void generateNetherWartBlocksInArea(LevelAccessor world, RandomSource random, BlockPos pos) {
         world.setBlock(pos, Blocks.NETHER_WART_BLOCK.defaultBlockState(), Block.UPDATE_NEIGHBORS);
-        MutableBlockPos mutable = new MutableBlockPos();
-        MutableBlockPos mutable2 = new MutableBlockPos();
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        BlockPos.MutableBlockPos mutable2 = new BlockPos.MutableBlockPos();
         for (int i = 0; i < 200; ++i) {
             mutable.setWithOffset(pos, random.nextInt(6) - random.nextInt(6), random.nextInt(2) - random.nextInt(5), random.nextInt(6) - random.nextInt(6));
             if (!world.isEmptyBlock(mutable)) continue;
@@ -62,7 +61,7 @@ public class DamnationVinesFeature
     }
 
     private void generateVinesInArea(LevelAccessor world, RandomSource random, BlockPos pos) {
-        MutableBlockPos mutable = new MutableBlockPos();
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         for (int i = 0; i < 100; ++i) {
             BlockState blockState;
             mutable.setWithOffset(pos, random.nextInt(8) - random.nextInt(8), random.nextInt(2) - random.nextInt(7), random.nextInt(8) - random.nextInt(8));
@@ -78,7 +77,7 @@ public class DamnationVinesFeature
         }
     }
 
-    public static void generateVineColumn(LevelAccessor world, RandomSource random, MutableBlockPos pos, int length, int minAge, int maxAge) {
+    public static void generateVineColumn(LevelAccessor world, RandomSource random, BlockPos.MutableBlockPos pos, int length, int minAge, int maxAge) {
         for (int i = 0; i <= length; ++i) {
             if (world.isEmptyBlock(pos)) {
                 if (i == length || !world.isEmptyBlock(pos.below())) {

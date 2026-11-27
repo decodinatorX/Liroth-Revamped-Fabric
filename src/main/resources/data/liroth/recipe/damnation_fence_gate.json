@@ -6,12 +6,8 @@
     "#W#"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "W": {
-      "item": "liroth:damnation_planks"
-    }
+    "#": "minecraft:stick",
+    "W": "liroth:damnation_planks"
   },
   "result": {
     "id": "liroth:damnation_gate"

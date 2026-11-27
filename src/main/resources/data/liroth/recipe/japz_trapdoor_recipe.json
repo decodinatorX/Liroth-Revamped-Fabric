@@ -5,24 +5,12 @@
     "345"
   ],
   "key": {
-    "0": {
-      "item": "liroth:japz_planks"
-    },
-    "1": {
-      "item": "liroth:japz_planks"
-    },
-    "2": {
-      "item": "liroth:japz_planks"
-    },
-    "3": {
-      "item": "liroth:japz_planks"
-    },
-    "4": {
-      "item": "liroth:japz_planks"
-    },
-    "5": {
-      "item": "liroth:japz_planks"
-    }
+    "0": "liroth:japz_planks",
+    "1": "liroth:japz_planks",
+    "2": "liroth:japz_planks",
+    "3": "liroth:japz_planks",
+    "4": "liroth:japz_planks",
+    "5": "liroth:japz_planks"
   },
   "result": {
     "id": "liroth:japz_trapdoor",

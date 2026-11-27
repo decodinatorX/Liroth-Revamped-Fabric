@@ -2,17 +2,17 @@ package com.decodinator.liroth.core.items;
 
 import java.util.function.Predicate;
 
+import com.decodinator.liroth.core.entities.projectiles.BeamLaserProjectileEntity;
 import com.decodinator.liroth.core.registry.LirothItems;
 import com.decodinator.liroth.core.registry.LirothSounds;
-import com.decodinator.liroth.core.entities.projectiles.BeamLaserProjectileEntity;
-import net.minecraft.sounds.SoundEvent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -24,13 +24,12 @@ public class LirothBlaster extends BowItem {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
-        ItemStack itemStack = user.getItemInHand(hand);
+    public InteractionResult use(Level world, Player user, InteractionHand hand) {
         if (user.getAbilities().instabuild || !getCoolBeamAmmo(user).isEmpty()) {
             user.startUsingItem(hand);
-            return InteractionResultHolder.consume(itemStack);
+            return InteractionResult.CONSUME;
         }
-        return InteractionResultHolder.fail(itemStack);
+        return InteractionResult.FAIL;
     }
 
     @Override
@@ -43,51 +42,41 @@ public class LirothBlaster extends BowItem {
         return 50;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public void releaseUsing(ItemStack stack, Level world, LivingEntity user, int remainingUseTicks) {
-        float f;
+    public boolean releaseUsing(ItemStack stack, Level world, LivingEntity user, int remainingUseTicks) {
         if (!(user instanceof Player)) {
-            return;
+            return false;
         }
-        Player playerEntity = (Player)user;
-        boolean bl = playerEntity.getAbilities().instabuild/* || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY, stack) > 0*/;
+        Player playerEntity = (Player) user;
+        boolean bl = playerEntity.getAbilities().instabuild;
         ItemStack itemStack = getCoolBeamAmmo(playerEntity);
         if (itemStack.isEmpty() && !bl) {
-            return;
+            return false;
         }
         if (itemStack.isEmpty()) {
             itemStack = new ItemStack(LirothItems.COOL_BEAM);
         }
-        if ((double)(f = LirothBlaster.getPowerForTime(this.getUseDuration(stack, playerEntity) - remainingUseTicks)) < 0.1) {
-            return;
+        float power = BowItem.getPowerForTime(stack.getUseDuration(playerEntity) - remainingUseTicks);
+        if (power < 0.1) {
+            return false;
         }
-        if (!world.isClientSide) {
+        if (world instanceof ServerLevel serverLevel) {
             AbstractArrow persistentProjectileEntity = BeamLaserProjectileEntity.createBeamProjectile(playerEntity);
-            persistentProjectileEntity.shootFromRotation(playerEntity, playerEntity.getXRot(), playerEntity.getYRot(), 0.0f, f * 7.0f, 1.0f);
-            if (f == 1.0f) {
+            persistentProjectileEntity.shootFromRotation(playerEntity, playerEntity.getXRot(), playerEntity.getYRot(), 0.0f, power * 7.0f, 1.0f);
+            if (power == 1.0f) {
                 persistentProjectileEntity.setCritArrow(true);
             }
-/*            if ((j = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER, stack)) > 0) {
-                persistentProjectileEntity.setBaseDamage(persistentProjectileEntity.getBaseDamage() + (double)j * 0.5 + 0.5);
-            }
-            if ((k = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH, stack)) > 0) {
-                persistentProjectileEntity.setKnockback(k);
-            }
-            if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, stack) > 0) {
-                persistentProjectileEntity.setSecondsOnFire(100);
-            }*/
-            // stack.hurtAndBreak(1, playerEntity, p -> p.broadcastBreakEvent(playerEntity.getUsedItemHand()));
             if (bl) {
                 persistentProjectileEntity.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
             }
-            world.addFreshEntity(persistentProjectileEntity);
+            serverLevel.addFreshEntity(persistentProjectileEntity);
         }
-        world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvent.createVariableRangeEvent(LirothSounds.LIROTH_BLASTER_FIRING_SOUND_ID), SoundSource.PLAYERS, 1.0f, 1.0f / (world.getRandom().nextFloat() * 0.4f + 1.2f) + f * 0.5f);
+        world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), LirothSounds.LIROTH_BLASTER_FIRING_SOUND_EVENT, SoundSource.PLAYERS, 1.0f, 1.0f / (world.getRandom().nextFloat() * 0.4f + 1.2f) + power * 0.5f);
         if (!bl) {
             itemStack.shrink(1);
         }
         playerEntity.awardStat(Stats.ITEM_USED.get(this));
+        return true;
     }
 
     private static ItemStack getCoolBeamAmmo(Player player) {
@@ -97,7 +86,8 @@ public class LirothBlaster extends BowItem {
         if (player.getMainHandItem().is(LirothItems.COOL_BEAM)) {
             return player.getMainHandItem();
         }
-        for (ItemStack itemStack : player.getInventory().items) {
+        for (int slot = 0; slot < player.getInventory().getContainerSize(); slot++) {
+            ItemStack itemStack = player.getInventory().getItem(slot);
             if (itemStack.is(LirothItems.COOL_BEAM)) {
                 return itemStack;
             }

@@ -1,8 +1,6 @@
 {
   "type": "liroth:quantum_extraction",
-  "ingredient": {
-    "item": "liroth:quantum_diamond"
-  },
+  "ingredient": "liroth:quantum_diamond",
   "result": {
     "id": "minecraft:diamond",
     "count": 1

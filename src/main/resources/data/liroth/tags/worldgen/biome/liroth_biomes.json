@@ -1,15 +1,48 @@
 {
   "values": [
-    "liroth:damnation_biome",
-    "liroth:devastated_plains",
-    "liroth:fungal_caverns",
-    "liroth:jalsphire_plains",
-    "liroth:jantiros_biome",
-    "liroth:japz_lush_caves",
-    "liroth:liroth_biome",
-    "liroth:petrified_desert",
-    "liroth:spiced_desert",
-    "liroth:tallpier",
-    "liroth:vile_sea"
+    {
+      "id": "liroth:damnation_biome",
+      "required": false
+    },
+    {
+      "id": "liroth:devastated_plains",
+      "required": false
+    },
+    {
+      "id": "liroth:fungal_caverns",
+      "required": false
+    },
+    {
+      "id": "liroth:jalsphire_plains",
+      "required": false
+    },
+    {
+      "id": "liroth:jantiros_biome",
+      "required": false
+    },
+    {
+      "id": "liroth:japz_lush_caves",
+      "required": false
+    },
+    {
+      "id": "liroth:liroth_biome",
+      "required": false
+    },
+    {
+      "id": "liroth:petrified_desert",
+      "required": false
+    },
+    {
+      "id": "liroth:spiced_desert",
+      "required": false
+    },
+    {
+      "id": "liroth:tallpier",
+      "required": false
+    },
+    {
+      "id": "liroth:vile_sea",
+      "required": false
+    }
   ]
 }

@@ -4,49 +4,15 @@
   "has_precipitation": true,
   "temperature_modifier": "none",
   "effects": {
-    "sky_color": 8223487,
-    "fog_color": 9175295,
-    "water_color": 5980132,
-    "water_fog_color": 1967411,
-    "grass_color": 4259912,
-    "foliage_color": 10624171,
-    "ambient_sound": "minecraft:ambient.nether_wastes.loop",
-    "mood_sound": {
-      "sound": "minecraft:ambient.nether_wastes.mood",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2
-    },
-    "additions_sound": {
-      "sound": "minecraft:ambient.nether_wastes.additions",
-      "tick_chance": 0.0111
-    },
-    "music": {
-      "sound": "liroth:music.liroth.liroth_biome",
-      "min_delay": 12000,
-      "max_delay": 24000,
-      "replace_current_music": true
-    }
+    "water_color": "#5b3fe4",
+    "grass_color": "#410048",
+    "foliage_color": "#a21cab"
   },
-  "spawners": {
-    "monster": [],
-    "creature": [],
-    "ambient": [],
-    "axolotls": [],
-    "underground_water_creature": [],
-    "water_creature": [
-    ],
-    "water_ambient": [],
-    "misc": []
-  },
-  "spawn_costs": {},
-  "carvers": {
-    "air": [
-      "minecraft:cave",
-      "minecraft:cave_extra_underground",
-      "minecraft:canyon"
-    ]
-  },
+  "carvers": [
+    "minecraft:cave",
+    "minecraft:cave_extra_underground",
+    "minecraft:canyon"
+  ],
   "features": [
     [],
     [],
@@ -79,5 +45,46 @@
     [
       "minecraft:freeze_top_layer"
     ]
-  ]
+  ],
+  "attributes": {
+    "minecraft:visual/sky_color": "#7d7aff",
+    "minecraft:visual/fog_color": "#8c00ff",
+    "minecraft:visual/water_fog_color": "#1e0533",
+    "minecraft:audio/ambient_sounds": {
+      "loop": "minecraft:ambient.nether_wastes.loop",
+      "mood": {
+        "sound": "minecraft:ambient.nether_wastes.mood",
+        "tick_delay": 6000,
+        "block_search_extent": 8,
+        "offset": 2
+      },
+      "additions": {
+        "sound": "minecraft:ambient.nether_wastes.additions",
+        "tick_chance": 0.0111
+      }
+    },
+    "minecraft:audio/background_music": {
+      "default": {
+        "sound": "liroth:music.liroth.liroth_biome",
+        "min_delay": 12000,
+        "max_delay": 24000
+      }
+    },
+    "minecraft:gameplay/natural_mob_spawns": {
+      "argument": {
+        "spawn_costs": {},
+        "spawns_by_category": {
+          "monster": [],
+          "creature": [],
+          "ambient": [],
+          "axolotls": [],
+          "underground_water_creature": [],
+          "water_creature": [],
+          "water_ambient": [],
+          "misc": []
+        }
+      },
+      "modifier": "overlay"
+    }
+  }
 }

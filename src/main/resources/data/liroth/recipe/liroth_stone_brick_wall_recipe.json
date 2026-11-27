@@ -5,24 +5,12 @@
     "345"
   ],
   "key": {
-    "0": {
-      "item": "liroth:liroth_stone_bricks"
-    },
-    "1": {
-      "item": "liroth:liroth_stone_bricks"
-    },
-    "2": {
-      "item": "liroth:liroth_stone_bricks"
-    },
-    "3": {
-      "item": "liroth:liroth_stone_bricks"
-    },
-    "4": {
-      "item": "liroth:liroth_stone_bricks"
-    },
-    "5": {
-      "item": "liroth:liroth_stone_bricks"
-    }
+    "0": "liroth:liroth_stone_bricks",
+    "1": "liroth:liroth_stone_bricks",
+    "2": "liroth:liroth_stone_bricks",
+    "3": "liroth:liroth_stone_bricks",
+    "4": "liroth:liroth_stone_bricks",
+    "5": "liroth:liroth_stone_bricks"
   },
   "result": {
     "id": "liroth:liroth_stone_bricks_wall",

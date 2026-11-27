@@ -6,24 +6,12 @@
     "678"
   ],
   "key": {
-    "0": {
-      "item": "liroth:japz_planks"
-    },
-    "3": {
-      "item": "liroth:japz_planks"
-    },
-    "4": {
-      "item": "liroth:japz_planks"
-    },
-    "6": {
-      "item": "liroth:japz_planks"
-    },
-    "7": {
-      "item": "liroth:japz_planks"
-    },
-    "8": {
-      "item": "liroth:japz_planks"
-    }
+    "0": "liroth:japz_planks",
+    "3": "liroth:japz_planks",
+    "4": "liroth:japz_planks",
+    "6": "liroth:japz_planks",
+    "7": "liroth:japz_planks",
+    "8": "liroth:japz_planks"
   },
   "result": {
     "id": "liroth:japz_stairs",

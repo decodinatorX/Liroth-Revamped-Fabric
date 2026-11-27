@@ -17,7 +17,7 @@
     "hidden": false
   },
   "criteria": {
-    "liroth_gem_ansalum_helmet": {
+    "liroth_gem_anslaum_helmet": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
         ]
       }
     },
-    "liroth_gem_ansalum_chestplate": {
+    "liroth_gem_anslaum_chestplate": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -41,7 +41,7 @@
         ]
       }
     },
-    "liroth_gem_ansalum_leggings": {
+    "liroth_gem_anslaum_leggings": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -53,7 +53,7 @@
         ]
       }
     },
-    "liroth_gem_ansalum_boots": {
+    "liroth_gem_anslaum_boots": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -68,10 +68,10 @@
   },
   "requirements": [
     [
-      "liroth_gem_ansalum_helmet",
-      "liroth_gem_ansalum_chestplate",
-      "liroth_gem_ansalum_leggings",
-      "liroth_gem_ansalum_boots"
+      "liroth_gem_anslaum_helmet",
+      "liroth_gem_anslaum_chestplate",
+      "liroth_gem_anslaum_leggings",
+      "liroth_gem_anslaum_boots"
     ]
   ]
 }

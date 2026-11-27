@@ -1,15 +1,19 @@
 
 package com.decodinator.liroth.core.complexmaterials;
 
+import com.decodinator.liroth.core.items.LirothArmorItem;
+import com.decodinator.liroth.core.items.material.LirothToolMaterial;
 import com.decodinator.liroth.core.registry.LirothItems;
 import net.minecraft.core.Holder;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import org.betterx.bclib.items.ModelProviderItem;
-import org.betterx.bclib.items.tool.*;
 import org.betterx.wover.complex.api.equipment.ArmorSlot;
 import org.betterx.wover.complex.api.equipment.ArmorTier;
 
@@ -34,38 +38,73 @@ public class GemFragMaterial implements MaterialManager.Material {
 
     public static GemFragMaterial makeNormal(
             String name,
-            Tier material,
-            Holder<ArmorMaterial> armor,
-            ArmorTier tier,
+            MapColor color,
+            LirothToolMaterial material,
+            ArmorMaterial armMat,
+            ArmorTier armor,
             int anvilLevel
     ) {
         return new GemFragMaterial(
                 name,
                 false,
                 true,
+                () -> BlockBehaviour.Properties
+                        .ofFullCopy(Blocks.IRON_BLOCK)
+                        .mapColor(color),
                 LirothItems::makeItemSettings,
                 material,
+                armMat,
                 armor,
-                tier,
                 anvilLevel
         );
     }
 
     public static GemFragMaterial makeAnsalum(
             String name,
-            Tier material,
-            Holder<ArmorMaterial> armor,
-            ArmorTier tier,
+            MapColor color,
+            LirothToolMaterial material,
+            ArmorMaterial armMat,
+            ArmorTier armor,
             int anvilLevel
     ) {
         return new GemFragMaterial(
                 name,
                 true,
                 false,
+                () -> BlockBehaviour.Properties
+                        .ofFullCopy(Blocks.NETHERITE_BLOCK)
+                        .mapColor(color),
                 LirothItems::makeItemSettings,
                 material,
+                armMat,
                 armor,
-                tier,
+                anvilLevel
+        );
+    }
+
+    public static GemFragMaterial makeOreless(
+            String name,
+            MapColor color,
+            float hardness,
+            float resistance,
+            LirothToolMaterial material,
+            ArmorMaterial armMat,
+            ArmorTier armor,
+            int anvilLevel
+    ) {
+        return new GemFragMaterial(
+                name,
+                false,
+                true,
+                () -> BlockBehaviour.Properties
+                        .ofFullCopy(Blocks.IRON_BLOCK)
+                        .mapColor(color)
+                        .destroyTime(hardness)
+                        .explosionResistance(resistance),
+                LirothItems::makeItemSettings,
+                material,
+                armMat,
+                armor,
                 anvilLevel
         );
     }
@@ -74,10 +113,11 @@ public class GemFragMaterial implements MaterialManager.Material {
             String name,
             boolean hasAxe,
             boolean hasSword,
+            Supplier<BlockBehaviour.Properties> settingsSupplier,
             Supplier<Properties> itemSettings,
-            Tier material,
-            Holder<ArmorMaterial> armor,
-            ArmorTier tier,
+            LirothToolMaterial material,
+            ArmorMaterial armMat,
+            ArmorTier armor,
             int anvilLevel
     ) {
 
@@ -87,27 +127,15 @@ public class GemFragMaterial implements MaterialManager.Material {
         this.name = name;
         this.itemSettings = itemSettings;
 
-        ingot = LirothItems.registerItem(name + "_ingot", new ModelProviderItem(newItemSettings()));
+        ingot = LirothItems.registerItem(name + "_ingot", () -> new ModelProviderItem(newItemSettings()));
 
-        sword = hasSword ? LirothItems.registerTool(name + "_sword", new BaseSwordItem(material, 3, -2.4F, newItemSettings())) : null;
-        axe = hasAxe ? LirothItems.registerTool(name + "_axe", new BaseAxeItem(material, 6.0F, -3.0F, newItemSettings())) : null;
+        sword = hasSword ? LirothItems.registerSwordTool(name + "_sword", material, 3.0F, -2.4F, newItemSettings(), ingot) : null;
+        axe = hasAxe ? LirothItems.registerTool(name + "_axe", material, BlockTags.MINEABLE_WITH_AXE, 6.0F, -3.0F, newItemSettings(), ingot) : null;
 
-        helmet = LirothItems.registerArmorItem(
-                name + "_helmet",
-                new ArmorItem(armor, ArmorItem.Type.HELMET, newArmorSettings(ArmorSlot.HELMET_SLOT, tier))
-        );
-        chestplate = LirothItems.registerArmorItem(
-                name + "_chestplate",
-                new ArmorItem(armor, ArmorItem.Type.CHESTPLATE, newArmorSettings(ArmorSlot.CHESTPLATE_SLOT, tier))
-        );
-        leggings = LirothItems.registerArmorItem(
-                name + "_leggings",
-                new ArmorItem(armor, ArmorItem.Type.LEGGINGS, newArmorSettings(ArmorSlot.LEGGINGS_SLOT, tier))
-        );
-        boots = LirothItems.registerArmorItem(
-                name + "_boots",
-                new ArmorItem(armor, ArmorItem.Type.BOOTS, newArmorSettings(ArmorSlot.BOOTS_SLOT, tier))
-        );
+        helmet = LirothItems.registerArmorItem(name + "_helmet", () -> new LirothArmorItem(armor, ArmorSlot.HELMET_SLOT, newArmorSettings(ArmorSlot.HELMET_SLOT, armor).humanoidArmor(armMat, ArmorType.HELMET)));
+        chestplate = LirothItems.registerArmorItem(name + "_chestplate", () -> new LirothArmorItem(armor, ArmorSlot.CHESTPLATE_SLOT, newArmorSettings(ArmorSlot.CHESTPLATE_SLOT, armor).humanoidArmor(armMat, ArmorType.CHESTPLATE)));
+        leggings = LirothItems.registerArmorItem(name + "_leggings", () -> new LirothArmorItem(armor, ArmorSlot.LEGGINGS_SLOT, newArmorSettings(ArmorSlot.LEGGINGS_SLOT, armor).humanoidArmor(armMat, ArmorType.LEGGINGS)));
+        boots = LirothItems.registerArmorItem(name + "_boots", () -> new LirothArmorItem(armor, ArmorSlot.BOOTS_SLOT, newArmorSettings(ArmorSlot.BOOTS_SLOT, armor).humanoidArmor(armMat, ArmorType.BOOTS)));
 
         MaterialManager.register(this);
     }

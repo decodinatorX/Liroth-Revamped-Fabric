@@ -6,15 +6,9 @@
     "###"
   ],
   "key": {
-    "I": {
-      "item": "minecraft:netherite_ingot"
-    },
-    "S": {
-      "item": "liroth:liroth_gem_ingot"
-    },
-    "#": {
-      "item": "liroth:soulless_soil"
-    }
+    "I": "minecraft:netherite_ingot",
+    "S": "liroth:liroth_gem_ingot",
+    "#": "liroth:soulless_soil"
   },
   "result": {
     "id": "liroth:quantum_upgrade_smithing_template",

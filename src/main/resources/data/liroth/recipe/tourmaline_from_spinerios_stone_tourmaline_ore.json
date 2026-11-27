@@ -1,9 +1,7 @@
 {
   "type": "minecraft:smelting",
   "group": "diamond",
-  "ingredient": {
-    "item": "liroth:spinerios_stone_tourmaline_ore"
-  },
+  "ingredient": "liroth:spinerios_stone_tourmaline_ore",
   "result": {
     "id": "liroth:tourmaline_ingot"
   },

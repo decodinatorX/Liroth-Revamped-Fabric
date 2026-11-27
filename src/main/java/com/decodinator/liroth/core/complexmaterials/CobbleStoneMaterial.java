@@ -34,11 +34,11 @@ public class CobbleStoneMaterial implements MaterialManager.Material {
         this.furnaceFireParticle = fireParticle;
 
         this.name = name;
-        stone = LirothBlocks.registerBlock(name, new BaseBlock.Stone(material));
-        stairs = LirothBlocks.registerBlock(name + "_stairs", new BaseStairsBlock.Stone(stone));
-        slab = LirothBlocks.registerBlock(name + "_slab", new BaseSlabBlock.Stone(stone));
-        wall = LirothBlocks.registerBlock(name + "_wall", new BaseWallBlock.Stone(stone));
-        furnace = LirothBlocks.registerBlock(name + "_furnace", new BaseFurnaceBlock.Stone(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).mapColor(color), fireParticle));
+        stone = LirothBlocks.registerBlock(name, () -> (new BaseBlock.Stone(material)));
+        stairs = LirothBlocks.registerBlock(name + "_stairs", () -> (new BaseStairsBlock.Stone(stone)));
+        slab = LirothBlocks.registerBlock(name + "_slab", () -> (new BaseSlabBlock.Stone(stone)));
+        wall = LirothBlocks.registerBlock(name + "_wall", () -> (new BaseWallBlock.Stone(stone)));
+        furnace = LirothBlocks.registerBlock(name + "_furnace", () -> (new BaseFurnaceBlock.Stone(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).mapColor(color), fireParticle)));
 
         MaterialManager.register(this);
 

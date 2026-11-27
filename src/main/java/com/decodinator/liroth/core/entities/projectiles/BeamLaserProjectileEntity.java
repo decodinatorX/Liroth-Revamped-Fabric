@@ -9,12 +9,11 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Blaze;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
-import org.jetbrains.annotations.NotNull;
 
 public class BeamLaserProjectileEntity extends AbstractArrow {
 	public BeamLaserProjectileEntity(EntityType<? extends AbstractArrow> entityType, Level world) {
@@ -37,19 +36,19 @@ public class BeamLaserProjectileEntity extends AbstractArrow {
 
 	protected void onHitBlock(BlockHitResult hitResult) {
 		super.onHitBlock(hitResult);
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide()) {
 			this.level().broadcastEntityEvent(this, (byte)3);
 		}
 
 	}
 
 	@Override
-	protected @NotNull ItemStack getPickupItem() {
+	protected ItemStack getPickupItem() {
 		return new ItemStack(LirothItems.COOL_BEAM);
 	}
 
 	@Override
-	protected @NotNull ItemStack getDefaultPickupItem() {
+	protected ItemStack getDefaultPickupItem() {
 		return new ItemStack(LirothItems.COOL_BEAM);
 	}
 

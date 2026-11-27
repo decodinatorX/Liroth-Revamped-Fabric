@@ -5,24 +5,12 @@
     "345"
   ],
   "key": {
-    "0": {
-      "item": "liroth:charred_liroth_cobblestone"
-    },
-    "1": {
-      "item": "liroth:charred_liroth_cobblestone"
-    },
-    "2": {
-      "item": "liroth:charred_liroth_cobblestone"
-    },
-    "3": {
-      "item": "liroth:charred_liroth_cobblestone"
-    },
-    "4": {
-      "item": "liroth:charred_liroth_cobblestone"
-    },
-    "5": {
-      "item": "liroth:charred_liroth_cobblestone"
-    }
+    "0": "liroth:charred_liroth_cobblestone",
+    "1": "liroth:charred_liroth_cobblestone",
+    "2": "liroth:charred_liroth_cobblestone",
+    "3": "liroth:charred_liroth_cobblestone",
+    "4": "liroth:charred_liroth_cobblestone",
+    "5": "liroth:charred_liroth_cobblestone"
   },
   "result": {
     "id": "liroth:charred_liroth_cobblestone_wall",

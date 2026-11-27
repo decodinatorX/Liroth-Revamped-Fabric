@@ -1,15 +1,13 @@
 package com.decodinator.liroth.core.blocks;
 
-import com.mojang.serialization.MapCodec;
+import java.util.function.Supplier;
+
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrowingPlantBodyBlock;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.function.Supplier;
 
 public class CustomVinesBody extends GrowingPlantBodyBlock {
     public static final VoxelShape SHAPE = Block.box(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
@@ -20,12 +18,8 @@ public class CustomVinesBody extends GrowingPlantBodyBlock {
         this.headBlock = head;
     }
 
-    protected @NotNull GrowingPlantHeadBlock getHeadBlock() {
-        return headBlock.get();
-    }
-
     @Override
-    protected MapCodec<? extends GrowingPlantBodyBlock> codec() {
-        return null;
+    protected GrowingPlantHeadBlock getHeadBlock() {
+        return headBlock.get();
     }
 }

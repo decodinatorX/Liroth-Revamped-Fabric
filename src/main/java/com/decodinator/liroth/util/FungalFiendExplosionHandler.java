@@ -8,17 +8,18 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public final class FungalFiendExplosionHandler {
     private FungalFiendExplosionHandler() {}
 
-    public static void onFungalFiendExplosion(Level level, Explosion explosion) {
-        if (level.isClientSide || !(explosion.getDirectSourceEntity() instanceof FungalFiendEntity)) {
+    public static void onFungalFiendExplosion(Level level, Explosion explosion, List<BlockPos> affectedBlocks) {
+        if (level.isClientSide() || !(explosion.getDirectSourceEntity() instanceof FungalFiendEntity)) {
             return;
         }
 
-        Set<BlockPos> blastBlocks = new HashSet<>(explosion.getToBlow());
+        Set<BlockPos> blastBlocks = new HashSet<>(affectedBlocks);
         Set<BlockPos> exposedBlocks = new HashSet<>();
         for (BlockPos blastPos : blastBlocks) {
             for (Direction direction : Direction.values()) {

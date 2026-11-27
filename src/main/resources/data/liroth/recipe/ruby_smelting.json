@@ -1,9 +1,7 @@
 {
   "type": "minecraft:smelting",
   "group": "diamond",
-  "ingredient": {
-    "item": "liroth:ruby_ore"
-  },
+  "ingredient": "liroth:ruby_ore",
   "result": {
     "id": "liroth:ruby_ingot"
   },

@@ -1,9 +1,7 @@
 {
   "type": "minecraft:smelting",
   "group": "diamond",
-  "ingredient": {
-    "item": "liroth:deepslate_tourmaline_ore"
-  },
+  "ingredient": "liroth:deepslate_tourmaline_ore",
   "result": {
     "id": "liroth:tourmaline_ingot"
   },

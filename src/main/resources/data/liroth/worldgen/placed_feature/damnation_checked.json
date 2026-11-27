@@ -6,8 +6,8 @@
       "predicate": {
         "type": "minecraft:would_survive",
         "state": {
-          "Name": "liroth:damnation_sapling",
-          "Properties": {
+          "id": "liroth:damnation_sapling",
+          "properties": {
             "stage": "0"
           }
         }

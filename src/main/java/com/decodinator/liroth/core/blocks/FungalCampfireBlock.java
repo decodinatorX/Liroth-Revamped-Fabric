@@ -1,32 +1,32 @@
 package com.decodinator.liroth.core.blocks;
 
-import java.util.Optional;
-
 import com.decodinator.liroth.core.blockentities.FungalCampfireBlockEntity;
 import com.decodinator.liroth.core.registry.LirothBlockEntities;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.item.crafting.CampfireCookingRecipe;
-import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipePropertySet;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -42,14 +42,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class FungalCampfireBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
@@ -57,49 +58,45 @@ public class FungalCampfireBlock extends BaseEntityBlock implements SimpleWaterl
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	public static final BooleanProperty SIGNAL_FIRE = BlockStateProperties.SIGNAL_FIRE;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    private final boolean spawnParticles;
+	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
+	private static final VoxelShape VIRTUAL_FENCE_POST = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
+	private static final int SMOKE_DISTANCE = 5;
+	private final boolean spawnParticles;
 	private final int fireDamage;
 
 	public FungalCampfireBlock(boolean p_51236_, int p_51237_, BlockBehaviour.Properties p_51238_) {
 		super(p_51238_);
 		this.spawnParticles = p_51236_;
 		this.fireDamage = p_51237_;
-		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.TRUE).setValue(SIGNAL_FIRE, Boolean.FALSE).setValue(WATERLOGGED, Boolean.FALSE).setValue(FACING, Direction.NORTH));
+		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.valueOf(true)).setValue(SIGNAL_FIRE, Boolean.valueOf(false)).setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(FACING, Direction.NORTH));
 	}
 
-	public InteractionResult use(Level p_51275_, BlockPos p_51276_, Player p_51277_, InteractionHand p_51278_) {
+	@Override
+	protected InteractionResult useItemOn(ItemStack itemStack, BlockState p_51274_, Level p_51275_, BlockPos p_51276_, Player p_51277_, InteractionHand p_51278_, BlockHitResult p_51279_) {
 		BlockEntity blockentity = p_51275_.getBlockEntity(p_51276_);
 		if (blockentity instanceof FungalCampfireBlockEntity campfireblockentity) {
 			ItemStack itemstack = p_51277_.getItemInHand(p_51278_);
-			Optional<RecipeHolder<CampfireCookingRecipe>> optional = campfireblockentity.getCookableRecipe(itemstack);
-			if (optional.isPresent()) {
-				if (!p_51275_.isClientSide && campfireblockentity.placeFood(p_51277_, p_51277_.getAbilities().instabuild ? itemstack.copy() : itemstack, optional.get().value().getCookingTime())) {
+			if (p_51275_.recipeAccess().propertySet(RecipePropertySet.CAMPFIRE_INPUT).test(itemstack)) {
+				if (p_51275_ instanceof ServerLevel serverLevel
+						&& campfireblockentity.placeFood(serverLevel, p_51277_, itemstack)) {
 					p_51277_.awardStat(Stats.INTERACT_WITH_CAMPFIRE);
-					return InteractionResult.SUCCESS;
+					return InteractionResult.SUCCESS_SERVER;
 				}
+
 				return InteractionResult.CONSUME;
 			}
 		}
+
 		return InteractionResult.PASS;
 	}
 
-	public void entityInside(BlockState p_51269_, Level p_51270_, BlockPos p_51271_, Entity p_51272_) {
+	@Override
+	protected void entityInside(BlockState p_51269_, Level p_51270_, BlockPos p_51271_, Entity p_51272_, InsideBlockEffectApplier effectApplier, boolean isPrecise) {
 		if (p_51269_.getValue(LIT) && p_51272_ instanceof LivingEntity ) {
 			p_51272_.hurt(p_51270_.damageSources().inFire(), (float)this.fireDamage);
 		}
-		super.entityInside(p_51269_, p_51270_, p_51271_, p_51272_);
-	}
 
-	public void onRemove(BlockState p_51281_, Level p_51282_, BlockPos p_51283_, BlockState p_51284_, boolean p_51285_) {
-		if (!p_51281_.is(p_51284_.getBlock())) {
-			BlockEntity blockentity = p_51282_.getBlockEntity(p_51283_);
-			if (blockentity instanceof FungalCampfireBlockEntity) {
-				Containers.dropContents(p_51282_, p_51283_, ((FungalCampfireBlockEntity)blockentity).getItems());
-			}
-
-			super.onRemove(p_51281_, p_51282_, p_51283_, p_51284_, p_51285_);
-		}
+		super.entityInside(p_51269_, p_51270_, p_51271_, p_51272_, effectApplier, isPrecise);
 	}
 
 	@Nullable
@@ -107,30 +104,27 @@ public class FungalCampfireBlock extends BaseEntityBlock implements SimpleWaterl
 		LevelAccessor levelaccessor = p_51240_.getLevel();
 		BlockPos blockpos = p_51240_.getClickedPos();
 		boolean flag = levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER;
-		return this.defaultBlockState().setValue(WATERLOGGED, flag).setValue(SIGNAL_FIRE, this.isSmokeSource(levelaccessor.getBlockState(blockpos.below()))).setValue(LIT, !flag).setValue(FACING, p_51240_.getHorizontalDirection());
+		return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(flag)).setValue(SIGNAL_FIRE, Boolean.valueOf(this.isSmokeSource(levelaccessor.getBlockState(blockpos.below())))).setValue(LIT, Boolean.valueOf(!flag)).setValue(FACING, p_51240_.getHorizontalDirection());
 	}
 
-	public @NotNull BlockState updateShape(BlockState p_51298_, Direction p_51299_, BlockState p_51300_, LevelAccessor p_51301_, BlockPos p_51302_, BlockPos p_51303_) {
+	@Override
+	protected BlockState updateShape(BlockState p_51298_, LevelReader level, ScheduledTickAccess ticks, BlockPos p_51302_, Direction p_51299_, BlockPos p_51303_, BlockState p_51300_, RandomSource random) {
 		if (p_51298_.getValue(WATERLOGGED)) {
-			p_51301_.scheduleTick(p_51302_, Fluids.WATER, Fluids.WATER.getTickDelay(p_51301_));
+			ticks.scheduleTick(p_51302_, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 		}
-		return p_51299_ == Direction.DOWN ? p_51298_.setValue(SIGNAL_FIRE, this.isSmokeSource(p_51300_)) : super.updateShape(p_51298_, p_51299_, p_51300_, p_51301_, p_51302_, p_51303_);
+
+		return p_51299_ == Direction.DOWN ? p_51298_.setValue(SIGNAL_FIRE, this.isSmokeSource(p_51300_)) : super.updateShape(p_51298_, level, ticks, p_51302_, p_51299_, p_51303_, p_51300_, random);
 	}
 
 	private boolean isSmokeSource(BlockState p_51324_) {
 		return p_51324_.is(Blocks.HAY_BLOCK);
 	}
 
-	public @NotNull VoxelShape getShape(BlockState p_51309_, BlockGetter p_51310_, BlockPos p_51311_, CollisionContext p_51312_) {
+	public VoxelShape getShape(BlockState p_51309_, BlockGetter p_51310_, BlockPos p_51311_, CollisionContext p_51312_) {
 		return SHAPE;
 	}
 
-	@Override
-	protected MapCodec<? extends BaseEntityBlock> codec() {
-		return null;
-	}
-
-	public @NotNull RenderShape getRenderShape(BlockState p_51307_) {
+	public RenderShape getRenderShape(BlockState p_51307_) {
 		return RenderShape.MODEL;
 	}
 
@@ -142,7 +136,7 @@ public class FungalCampfireBlock extends BaseEntityBlock implements SimpleWaterl
 
 			if (this.spawnParticles && p_220921_.nextInt(5) == 0) {
 				for(int i = 0; i < p_220921_.nextInt(1) + 1; ++i) {
-					p_220919_.addParticle(ParticleTypes.LAVA, (double)p_220920_.getX() + 0.5D, (double)p_220920_.getY() + 0.5D, (double)p_220920_.getZ() + 0.5D, p_220921_.nextFloat() / 2.0F, 5.0E-5D, p_220921_.nextFloat() / 2.0F);
+					p_220919_.addParticle(ParticleTypes.LAVA, (double)p_220920_.getX() + 0.5D, (double)p_220920_.getY() + 0.5D, (double)p_220920_.getZ() + 0.5D, (double)(p_220921_.nextFloat() / 2.0F), 5.0E-5D, (double)(p_220921_.nextFloat() / 2.0F));
 				}
 			}
 
@@ -169,13 +163,13 @@ public class FungalCampfireBlock extends BaseEntityBlock implements SimpleWaterl
 			boolean flag = p_51259_.getValue(LIT);
 			if (flag) {
 				if (!p_51257_.isClientSide()) {
-					p_51257_.playSound(null, p_51258_, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
+					p_51257_.playSound((Player)null, p_51258_, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
 				}
 
-				dowse(null, p_51257_, p_51258_, p_51259_);
+				dowse((Entity)null, p_51257_, p_51258_, p_51259_);
 			}
 
-			p_51257_.setBlock(p_51258_, p_51259_.setValue(WATERLOGGED, Boolean.TRUE).setValue(LIT, Boolean.FALSE), 3);
+			p_51257_.setBlock(p_51258_, p_51259_.setValue(WATERLOGGED, Boolean.valueOf(true)).setValue(LIT, Boolean.valueOf(false)), 3);
 			p_51257_.scheduleTick(p_51258_, p_51260_.getType(), p_51260_.getType().getTickDelay(p_51257_));
 			return true;
 		} else {
@@ -185,8 +179,8 @@ public class FungalCampfireBlock extends BaseEntityBlock implements SimpleWaterl
 
 	public void onProjectileHit(Level p_51244_, BlockState p_51245_, BlockHitResult p_51246_, Projectile p_51247_) {
 		BlockPos blockpos = p_51246_.getBlockPos();
-		if (!p_51244_.isClientSide && p_51247_.isOnFire() && p_51247_.mayInteract(p_51244_, blockpos) && !p_51245_.getValue(LIT) && !p_51245_.getValue(WATERLOGGED)) {
-			p_51244_.setBlock(blockpos, p_51245_.setValue(BlockStateProperties.LIT, Boolean.TRUE), 11);
+		if (p_51244_ instanceof ServerLevel serverLevel && p_51247_.isOnFire() && p_51247_.mayInteract(serverLevel, blockpos) && !p_51245_.getValue(LIT) && !p_51245_.getValue(WATERLOGGED)) {
+			p_51244_.setBlock(blockpos, p_51245_.setValue(BlockStateProperties.LIT, Boolean.valueOf(true)), 11);
 		}
 
 	}
@@ -201,15 +195,37 @@ public class FungalCampfireBlock extends BaseEntityBlock implements SimpleWaterl
 
 	}
 
-	public @NotNull FluidState getFluidState(BlockState p_51318_) {
+	public static boolean isSmokeyPos(Level p_51249_, BlockPos p_51250_) {
+		for(int i = 1; i <= 5; ++i) {
+			BlockPos blockpos = p_51250_.below(i);
+			BlockState blockstate = p_51249_.getBlockState(blockpos);
+			if (isLitCampfire(blockstate)) {
+				return true;
+			}
+
+			boolean flag = Shapes.joinIsNotEmpty(VIRTUAL_FENCE_POST, blockstate.getCollisionShape(p_51249_, blockpos, CollisionContext.empty()), BooleanOp.AND); // FORGE: Fix MC-201374
+			if (flag) {
+				BlockState blockstate1 = p_51249_.getBlockState(blockpos.below());
+				return isLitCampfire(blockstate1);
+			}
+		}
+
+		return false;
+	}
+
+	public static boolean isLitCampfire(BlockState p_51320_) {
+		return p_51320_.hasProperty(LIT) && p_51320_.is(BlockTags.CAMPFIRES) && p_51320_.getValue(LIT);
+	}
+
+	public FluidState getFluidState(BlockState p_51318_) {
 		return p_51318_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_51318_);
 	}
 
-	public @NotNull BlockState rotate(BlockState p_51295_, Rotation p_51296_) {
+	public BlockState rotate(BlockState p_51295_, Rotation p_51296_) {
 		return p_51295_.setValue(FACING, p_51296_.rotate(p_51295_.getValue(FACING)));
 	}
 
-	public @NotNull BlockState mirror(BlockState p_51292_, Mirror p_51293_) {
+	public BlockState mirror(BlockState p_51292_, Mirror p_51293_) {
 		return p_51292_.rotate(p_51293_.getRotation(p_51292_.getValue(FACING)));
 	}
 
@@ -223,7 +239,7 @@ public class FungalCampfireBlock extends BaseEntityBlock implements SimpleWaterl
 
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_152755_, BlockState p_152756_, BlockEntityType<T> p_152757_) {
-		if (p_152755_.isClientSide) {
+		if (!(p_152755_ instanceof ServerLevel)) {
 			return p_152756_.getValue(LIT) ? createTickerHelper(p_152757_, LirothBlockEntities.FUNGAL_CAMPFIRE, FungalCampfireBlockEntity::particleTick) : null;
 		} else {
 			return p_152756_.getValue(LIT) ? createTickerHelper(p_152757_, LirothBlockEntities.FUNGAL_CAMPFIRE, FungalCampfireBlockEntity::cookTick) : createTickerHelper(p_152757_, LirothBlockEntities.FUNGAL_CAMPFIRE, FungalCampfireBlockEntity::cooldownTick);

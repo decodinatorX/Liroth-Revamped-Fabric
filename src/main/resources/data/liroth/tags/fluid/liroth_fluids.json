@@ -1,6 +1,6 @@
 {
   "values": [
-    "liroth:liroth_fluid",
-    "liroth:flowing_liroth_fluid"
+    "liroth:liroth_fluid_still",
+    "liroth:liroth_fluid_flowing"
   ]
 }

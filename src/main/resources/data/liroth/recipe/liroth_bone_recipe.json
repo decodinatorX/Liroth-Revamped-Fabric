@@ -4,9 +4,7 @@
     "0"
   ],
   "key": {
-    "0": {
-      "item": "liroth:liroth_bone_block"
-    }
+    "0": "liroth:liroth_bone_block"
   },
   "result": {
     "id": "liroth:liroth_bone",

@@ -6,12 +6,8 @@
     "1"
   ],
   "key": {
-    "0": {
-      "item": "liroth:liroth_tear"
-    },
-    "1": {
-      "item": "liroth:liroth_gem_ingot"
-    }
+    "0": "liroth:liroth_tear",
+    "1": "liroth:liroth_gem_ingot"
   },
   "result": {
     "id": "liroth:embued_liroth_gem",

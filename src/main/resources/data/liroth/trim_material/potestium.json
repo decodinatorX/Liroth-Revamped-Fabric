@@ -1,9 +1,7 @@
 {
-  "asset_name": "potestium",
   "description": {
     "translate": "Potestium",
     "color": "#4800FF"
   },
-  "ingredient": "liroth:potestium_shard",
-  "item_model_index": 1
+  "palette_id": "liroth:trim/potestium"
 }

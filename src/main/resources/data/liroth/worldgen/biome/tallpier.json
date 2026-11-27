@@ -4,65 +4,15 @@
   "has_precipitation": true,
   "temperature_modifier": "frozen",
   "effects": {
-    "sky_color": 7730943,
-    "fog_color": 12779515,
-    "water_color": 4186596,
-    "water_fog_color": 338483,
-    "grass_color": 5621189,
-    "foliage_color": 3932160,
-    "grass_color_modifier": "none",
-    "ambient_sound": "minecraft:ambient.crimson_forest.loop",
-    "mood_sound": {
-      "sound": "minecraft:ambient.crimson_forest.mood",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2
-    },
-    "additions_sound": {
-      "sound": "minecraft:ambient.crimson_forest.additions",
-      "tick_chance": 0.0111
-    },
-    "music": {
-      "sound": "liroth:music.liroth.tallpier_biome",
-      "min_delay": 12000,
-      "max_delay": 24000,
-      "replace_current_music": true
-    },
-    "particle": {
-      "options": {
-        "type": "minecraft:crimson_spore"
-      },
-      "probability": 0.025
-    }
+    "water_color": "#3fe1e4",
+    "grass_color": "#55c5c5",
+    "foliage_color": "#3c0000",
+    "grass_color_modifier": "none"
   },
-  "spawners": {
-    "monster": [
-      {
-        "type": "liroth:pier_peep",
-        "weight": 100,
-        "minCount": 1,
-        "maxCount": 2
-      },
-      {
-        "type": "liroth:vile_shark",
-        "weight": 10,
-        "minCount": 1,
-        "maxCount": 2
-      }
-    ],
-    "creature": [],
-    "ambient": [],
-    "water_creature": [],
-    "water_ambient": [],
-    "misc": []
-  },
-  "spawn_costs": {},
-  "carvers": {
-    "air": [
-      "minecraft:cave",
-      "minecraft:canyon"
-    ]
-  },
+  "carvers": [
+    "minecraft:cave",
+    "minecraft:canyon"
+  ],
   "features": [
     [],
     [],
@@ -87,5 +37,74 @@
       "liroth:liroth_bone_tree"
     ],
     []
-  ]
+  ],
+  "attributes": {
+    "minecraft:visual/sky_color": "#75f6ff",
+    "minecraft:visual/fog_color": "#c2fffb",
+    "minecraft:visual/water_fog_color": "#052a33",
+    "minecraft:audio/ambient_sounds": {
+      "loop": "minecraft:ambient.crimson_forest.loop",
+      "mood": {
+        "sound": "minecraft:ambient.crimson_forest.mood",
+        "tick_delay": 6000,
+        "block_search_extent": 8,
+        "offset": 2
+      },
+      "additions": {
+        "sound": "minecraft:ambient.crimson_forest.additions",
+        "tick_chance": 0.0111
+      }
+    },
+    "minecraft:audio/background_music": {
+      "default": {
+        "sound": "liroth:music.liroth.tallpier_biome",
+        "min_delay": 12000,
+        "max_delay": 24000
+      }
+    },
+    "minecraft:visual/ambient_particles": {
+      "argument": [
+        {
+          "particle": {
+            "type": "minecraft:crimson_spore"
+          },
+          "probability": 0.025
+        }
+      ],
+      "modifier": "append"
+    },
+    "minecraft:gameplay/natural_mob_spawns": {
+      "argument": {
+        "spawn_costs": {},
+        "spawns_by_category": {
+          "monster": [
+            {
+              "type": "liroth:pier_peep",
+              "weight": 100,
+              "count": {
+                "type": "minecraft:uniform",
+                "min_inclusive": 1,
+                "max_inclusive": 2
+              }
+            },
+            {
+              "type": "liroth:vile_shark",
+              "weight": 10,
+              "count": {
+                "type": "minecraft:uniform",
+                "min_inclusive": 1,
+                "max_inclusive": 2
+              }
+            }
+          ],
+          "creature": [],
+          "ambient": [],
+          "water_creature": [],
+          "water_ambient": [],
+          "misc": []
+        }
+      },
+      "modifier": "overlay"
+    }
+  }
 }

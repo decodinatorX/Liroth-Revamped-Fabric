@@ -1,8 +1,6 @@
 {
   "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "liroth:charred_liroth_cobblestone"
-  },
+  "ingredient": "liroth:charred_liroth_cobblestone",
   "result": {
     "id": "liroth:charred_liroth_stone"
   },

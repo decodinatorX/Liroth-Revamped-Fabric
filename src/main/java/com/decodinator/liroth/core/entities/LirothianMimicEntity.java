@@ -3,21 +3,22 @@ package com.decodinator.liroth.core.entities;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Spider;
+import net.minecraft.world.entity.monster.spider.Spider;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib.animatable.GeoAnimatable;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.*;
-import software.bernie.geckolib.util.GeckoLibUtil;
+import com.geckolib.animatable.GeoAnimatable;
+import com.geckolib.animatable.instance.AnimatableInstanceCache;
+import com.geckolib.animation.AnimationController;
+import com.geckolib.animation.RawAnimation;
+import com.geckolib.animation.object.PlayState;
+import com.geckolib.animation.state.AnimationTest;
+import com.geckolib.util.GeckoLibUtil;
 
 public class LirothianMimicEntity extends Spider implements GeoAnimatable {
-    private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public LirothianMimicEntity(EntityType<? extends Spider> entity, Level level) {
         super(entity, level);
@@ -30,49 +31,45 @@ public class LirothianMimicEntity extends Spider implements GeoAnimatable {
     }
 
     @Override
-    protected @NotNull SoundEvent getAmbientSound() {
+    protected SoundEvent getAmbientSound() {
         return SoundEvents.HOGLIN_AMBIENT;
     }
 
     @Override
-    protected @NotNull SoundEvent getDeathSound() {
+    protected SoundEvent getDeathSound() {
         return SoundEvents.WOOD_BREAK;
     }
 
     @Override
-    protected @NotNull SoundEvent getHurtSound(DamageSource source) {
+    protected SoundEvent getHurtSound(DamageSource source) {
         return SoundEvents.WOOD_HIT;
     }
+
     private static final RawAnimation MIMIC_WALK = RawAnimation.begin().thenPlay("walk");
     private static final RawAnimation MIMIC_IDLE = RawAnimation.begin().thenPlay("idle");
 
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
-        if (!(swingTime > -0.15F && swingTime < 0.15F)) {
-            event.getController().setAnimation(MIMIC_WALK);
+    private PlayState predicate(AnimationTest<LirothianMimicEntity> event) {
+        if (this.getCurrentSwing() != null) {
+            event.setAnimation(MIMIC_WALK);
             return PlayState.CONTINUE;
         }
 
         if (event.isMoving()) {
-            event.getController().setAnimation(MIMIC_WALK);
+            event.setAnimation(MIMIC_WALK);
             return PlayState.CONTINUE;
         }
 
-        event.getController().setAnimation(MIMIC_IDLE);
+        event.setAnimation(MIMIC_IDLE);
         return PlayState.CONTINUE;
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar data) {
-        data.add(new AnimationController<>(this, "controller", 0, this::predicate));
+    public void registerControllers(com.geckolib.animatable.manager.AnimatableManager.ControllerRegistrar data) {
+        data.add(new AnimationController<>("controller", this::predicate));
     }
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.factory;
-    }
-
-    @Override
-    public double getTick(Object age) {
-        return ((Entity)age).tickCount;
+        return this.cache;
     }
 }

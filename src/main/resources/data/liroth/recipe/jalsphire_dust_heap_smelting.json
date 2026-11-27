@@ -2,9 +2,7 @@
   "type": "minecraft:smelting",
   "experience": 0,
   "cookingtime": 200,
-  "ingredient": {
-    "item": "liroth:jalsphire_dust_heap"
-  },
+  "ingredient": "liroth:jalsphire_dust_heap",
   "result": {
     "id": "liroth:jalsphire_gem"
   }

@@ -1,28 +1,11 @@
 {
   "has_precipitation": false,
-  "carvers": {
-    "air": []
-  },
+  "carvers": [],
   "downfall": 0,
   "effects": {
-    "fog_color": 10526880,
-    "grass_color": 4259912,
-    "foliage_color": 4259912,
-    "mood_sound": {
-      "block_search_extent": 8,
-      "offset": 2,
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000
-    },
-    "music": {
-      "max_delay": 24000,
-      "min_delay": 12000,
-      "replace_current_music": true,
-      "sound": "liroth:music.liroth.liroth_biome"
-    },
-    "sky_color": 11959039,
-    "water_color": 5980132,
-    "water_fog_color": 338483
+    "grass_color": "#410048",
+    "foliage_color": "#410048",
+    "water_color": "#5b3fe4"
   },
   "features": [
     [],
@@ -40,29 +23,60 @@
     ],
     []
   ],
-  "spawn_costs": {},
-  "spawners": {
-    "ambient": [],
-    "axolotls": [],
-    "creature": [],
-    "misc": [],
-    "monster": [
-      {
-        "type": "liroth:pier_peep",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 100
-      },
-      {
-        "type": "liroth:warp",
-        "maxCount": 4,
-        "minCount": 4,
-        "weight": 95
+  "temperature": 0.5,
+  "attributes": {
+    "minecraft:visual/sky_color": "#b67aff",
+    "minecraft:visual/fog_color": "#a0a0a0",
+    "minecraft:visual/water_fog_color": "#052a33",
+    "minecraft:audio/ambient_sounds": {
+      "mood": {
+        "block_search_extent": 8,
+        "offset": 2,
+        "sound": "minecraft:ambient.cave",
+        "tick_delay": 6000
       }
-    ],
-    "underground_water_creature": [],
-    "water_ambient": [],
-    "water_creature": []
-  },
-  "temperature": 0.5
+    },
+    "minecraft:audio/background_music": {
+      "default": {
+        "max_delay": 24000,
+        "min_delay": 12000,
+        "sound": "liroth:music.liroth.liroth_biome"
+      }
+    },
+    "minecraft:gameplay/natural_mob_spawns": {
+      "argument": {
+        "spawn_costs": {},
+        "spawns_by_category": {
+          "ambient": [],
+          "axolotls": [],
+          "creature": [],
+          "misc": [],
+          "monster": [
+            {
+              "type": "liroth:pier_peep",
+              "weight": 100,
+              "count": {
+                "type": "minecraft:uniform",
+                "min_inclusive": 1,
+                "max_inclusive": 2
+              }
+            },
+            {
+              "type": "liroth:warp",
+              "weight": 95,
+              "count": {
+                "type": "minecraft:uniform",
+                "min_inclusive": 4,
+                "max_inclusive": 4
+              }
+            }
+          ],
+          "underground_water_creature": [],
+          "water_ambient": [],
+          "water_creature": []
+        }
+      },
+      "modifier": "overlay"
+    }
+  }
 }

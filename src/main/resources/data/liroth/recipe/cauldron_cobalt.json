@@ -6,9 +6,7 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "liroth:lirothian_cobalt_ingot"
-    }
+    "#": "liroth:lirothian_cobalt_ingot"
   },
   "result": {
     "id": "minecraft:cauldron"

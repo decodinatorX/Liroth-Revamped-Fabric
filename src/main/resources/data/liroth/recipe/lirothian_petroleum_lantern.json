@@ -6,12 +6,8 @@
     "XXX"
   ],
   "key": {
-    "#": {
-      "item": "liroth:lirothian_petroleum_torch"
-    },
-    "X": {
-      "item": "minecraft:iron_nugget"
-    }
+    "#": "liroth:lirothian_petroleum_torch",
+    "X": "minecraft:iron_nugget"
   },
   "result": {
     "id": "liroth:lirothian_petroleum_lantern"

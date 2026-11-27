@@ -1,24 +1,26 @@
 package com.decodinator.liroth.core.features;
 
 import com.decodinator.liroth.core.registry.LirothBlocks;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.util.RandomSource;
 
-public class GleemstonePillarFeature extends Feature<NoneFeatureConfiguration> {
-    public GleemstonePillarFeature(Codec<NoneFeatureConfiguration> codec) {
-        super(codec);
+public final class GleemstonePillarFeature implements Feature {
+    public static final MapCodec<GleemstonePillarFeature> CODEC = MapCodec.unit(GleemstonePillarFeature::new);
+
+    @Override
+    public MapCodec<GleemstonePillarFeature> codec() {
+        return CODEC;
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-        LevelAccessor level = context.level();
-        BlockPos origin = context.origin();
+    public boolean place(WorldGenLevel level, ChunkGenerator chunkGenerator, RandomSource random, BlockPos origin) {
         if (!level.getBlockState(origin).isAir()) {
             return false;
         }

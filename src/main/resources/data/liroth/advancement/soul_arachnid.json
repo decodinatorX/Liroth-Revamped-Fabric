@@ -2,7 +2,7 @@
   "parent": "liroth:enter_liroth",
   "display": {
     "icon": {
-      "id": "liroth:soul_arachnid_spawn_egg"
+      "id": "liroth:liroth_soul_dust"
     },
     "title": {
       "translate": "liroth:advancements.story.soul_arachnid.title"
@@ -19,15 +19,13 @@
     "killed_soul_arachnid": {
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "predicate": {
-              "type": "liroth:soul_arachnid"
-            },
-            "entity": "this"
-          }
-        ]
+        "entity": {
+          "predicate": {
+            "minecraft:entity_type": "liroth:soul_arachnid"
+          },
+          "entity": "this",
+          "type": "minecraft:entity_properties"
+        }
       }
     }
   },

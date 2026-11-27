@@ -5,18 +5,10 @@
     "23"
   ],
   "key": {
-    "0": {
-      "item": "liroth:koolaw_planks"
-    },
-    "1": {
-      "item": "liroth:koolaw_planks"
-    },
-    "2": {
-      "item": "liroth:koolaw_planks"
-    },
-    "3": {
-      "item": "liroth:koolaw_planks"
-    }
+    "0": "liroth:koolaw_planks",
+    "1": "liroth:koolaw_planks",
+    "2": "liroth:koolaw_planks",
+    "3": "liroth:koolaw_planks"
   },
   "result": {
     "id": "liroth:koolaw_crafting_table",

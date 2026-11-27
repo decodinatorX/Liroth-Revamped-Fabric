@@ -3,13 +3,15 @@ package com.decodinator.liroth.core.blockentities;
 import com.decodinator.liroth.client.screens.QuantumExtractorScreenHandler;
 import com.decodinator.liroth.core.recipetypes.AbstractQuantumRecipe;
 import com.decodinator.liroth.core.registry.LirothBlockEntities;
+import com.mojang.serialization.Codec;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 
 import com.decodinator.liroth.core.blocks.QuantumExtractorBlock;
 import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -29,8 +31,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+
+import java.util.Map;
 
 public class QuantumExtractorBlockEntity extends BlockEntity implements MenuProvider, Container, WorldlyContainer {
     private static final int[] SLOTS_FOR_UP = new int[]{0};
@@ -80,7 +87,8 @@ public class QuantumExtractorBlockEntity extends BlockEntity implements MenuProv
             return 4;
         }
     };
-    private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
+    private static final Codec<Map<ResourceKey<Recipe<?>>, Integer>> RECIPES_USED_CODEC = Codec.unboundedMap(Recipe.KEY_CODEC, Codec.INT);
+    private final Object2IntOpenHashMap<ResourceKey<Recipe<?>>> recipesUsed = new Object2IntOpenHashMap<>();
     private final RecipeManager.CachedCheck<RecipeInput, ? extends AbstractQuantumRecipe> quickCheck;
 
 
@@ -98,45 +106,39 @@ public class QuantumExtractorBlockEntity extends BlockEntity implements MenuProv
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
+    public AbstractContainerMenu createMenu(int syncId, @NonNull Inventory inv, @NonNull Player player) {
         return new QuantumExtractorScreenHandler(syncId, inv, this, this.propertyDelegate);
     }
 
     @Override
-    public void loadAdditional(CompoundTag p_155025_, HolderLookup.Provider registries) {
-        super.loadAdditional(p_155025_, registries);
+    public void loadAdditional(@NonNull ValueInput input) {
+        super.loadAdditional(input);
         this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(p_155025_, this.inventory, registries);
-        this.burnTime = p_155025_.getInt("BurnTime");
-        this.cookTime = p_155025_.getInt("CookTime");
-        this.cookTimeTotal = p_155025_.getInt("CookTimeTotal");
+        ContainerHelper.loadAllItems(input, this.inventory);
+        this.burnTime = input.getIntOr("BurnTime", 0);
+        this.cookTime = input.getIntOr("CookTime", 0);
+        this.cookTimeTotal = input.getIntOr("CookTimeTotal", getCookTime());
         this.fuelTime = this.getFuelTime(this.inventory.get(1));
-        CompoundTag compoundtag = p_155025_.getCompound("RecipesUsed");
-
-        for(String s : compoundtag.getAllKeys()) {
-            this.recipesUsed.put(ResourceLocation.parse(s), compoundtag.getInt(s));
-        }
+        this.recipesUsed.clear();
+        this.recipesUsed.putAll(input.read("RecipesUsed", RECIPES_USED_CODEC).orElse(Map.of()));
     }
 
     @Override
-    protected void saveAdditional(CompoundTag p_187452_, HolderLookup.Provider registries) {
-        super.saveAdditional(p_187452_, registries);
-        p_187452_.putInt("BurnTime", this.burnTime);
-        p_187452_.putInt("CookTime", this.cookTime);
-        p_187452_.putInt("CookTimeTotal", this.cookTimeTotal);
-        ContainerHelper.saveAllItems(p_187452_, this.inventory, registries);
+    protected void saveAdditional(@NonNull ValueOutput output) {
+        super.saveAdditional(output);
+        output.putInt("BurnTime", this.burnTime);
+        output.putInt("CookTime", this.cookTime);
+        output.putInt("CookTimeTotal", this.cookTimeTotal);
+        ContainerHelper.saveAllItems(output, this.inventory);
         CompoundTag compoundtag = new CompoundTag();
-        this.recipesUsed.forEach((p_187449_, p_187450_) -> {
-            compoundtag.putInt(p_187449_.toString(), p_187450_);
-        });
-        p_187452_.put("RecipesUsed", compoundtag);
+        output.store("RecipesUsed", RECIPES_USED_CODEC, this.recipesUsed);
     }
 
     public static void playSound(Level world, BlockPos pos, SoundEvent sound) {
         world.playSound(null, pos, sound, SoundSource.BLOCKS, 1.0f, 1.0f);
     }
 
-    public static void serverTick(Level p_155014_, BlockPos p_155015_, BlockState p_155016_, QuantumExtractorBlockEntity p_155017_) {
+    public static void serverTick(ServerLevel p_155014_, BlockPos p_155015_, BlockState p_155016_, QuantumExtractorBlockEntity p_155017_) {
         boolean flag = p_155017_.isBurning();
         boolean flag1 = false;
         if (p_155017_.isBurning()) {
@@ -207,7 +209,7 @@ public class QuantumExtractorBlockEntity extends BlockEntity implements MenuProv
 
         AbstractQuantumRecipe quantumRecipe = recipe.value();
         ItemStack result = quantumRecipe.assemble(entity, registryAccess);
-        ItemStack bonus = quantumRecipe.getBonusItem().bonus;
+        ItemStack bonus = quantumRecipe.getBonusItem().getStack();
         return !result.isEmpty()
                 && canFitOutput(inv.get(2), result, maxStackSize)
                 && (bonus.isEmpty() || quantumRecipe.getBonusItem().percent <= 0
@@ -220,7 +222,7 @@ public class QuantumExtractorBlockEntity extends BlockEntity implements MenuProv
             AbstractQuantumRecipe quantumRecipe = p_155027_.value();
             addOutput(p_155028_, 2, quantumRecipe.assemble(this, registryAccess));
             assert level != null;
-            addOutput(p_155028_, 3, quantumRecipe.createBonus(level.random));
+            addOutput(p_155028_, 3, quantumRecipe.createBonus(level.getRandom()));
 
             itemstack.shrink(1);
             return true;
@@ -271,7 +273,7 @@ public class QuantumExtractorBlockEntity extends BlockEntity implements MenuProv
     }
 
     @Override
-    public boolean canPlaceItem(int p_58389_, ItemStack p_58390_) {
+    public boolean canPlaceItem(int p_58389_, @NonNull ItemStack p_58390_) {
         if (p_58389_ == 2 || p_58389_ == 3) {
             return false;
         } else if (p_58389_ != 1) {
@@ -326,18 +328,18 @@ public class QuantumExtractorBlockEntity extends BlockEntity implements MenuProv
         }
 
         if (p_58333_ == 0 && !bl) {
-            this.cookTimeTotal = getTotalCookTime(this.level, this);
+            this.cookTimeTotal = getTotalCookTime();
             this.cookTime = 0;
             this.setChanged();
         }
     }
 
-    private static int getTotalCookTime(Level p_222693_, QuantumExtractorBlockEntity p_222694_) {
+    private static int getTotalCookTime() {
         return 200;
     }
 
     @Override
-    public boolean stillValid(Player p_18946_) {
+    public boolean stillValid(@NonNull Player p_18946_) {
         assert this.level != null;
         if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
@@ -353,10 +355,11 @@ public class QuantumExtractorBlockEntity extends BlockEntity implements MenuProv
             inventory.set(i, ItemStack.EMPTY);
         }
 
+        assert this.level != null;
         Containers.dropContents(this.level, this.worldPosition, inventoryDrop);
     }
 
-    public int @NotNull [] getSlotsForFace(Direction p_58363_) {
+    public int @NotNull [] getSlotsForFace(@NonNull Direction p_58363_) {
         if (p_58363_ == Direction.DOWN) {
             return SLOTS_FOR_DOWN;
         } else {
@@ -364,18 +367,18 @@ public class QuantumExtractorBlockEntity extends BlockEntity implements MenuProv
         }
     }
 
-    public boolean canPlaceItemThroughFace(int p_58336_, ItemStack p_58337_, @Nullable Direction p_58338_) {
+    public boolean canPlaceItemThroughFace(int p_58336_, @NonNull ItemStack p_58337_, @Nullable Direction p_58338_) {
         return this.canPlaceItem(p_58336_, p_58337_);
     }
 
-    public boolean canTakeItemThroughFace(int p_58392_, ItemStack p_58393_, Direction p_58394_) {
+    public boolean canTakeItemThroughFace(int p_58392_, @NonNull ItemStack p_58393_, @NonNull Direction p_58394_) {
         return p_58394_ != Direction.DOWN || p_58392_ == 2 || p_58392_ == 3;
     }
 
     public void setRecipeUsed(@Nullable RecipeHolder<?> p_58345_) {
         if (p_58345_ != null) {
-            ResourceLocation resourcelocation = p_58345_.id();
-            this.recipesUsed.addTo(resourcelocation, 1);
+            ResourceKey<Recipe<?>> Identifier = p_58345_.id();
+            this.recipesUsed.addTo(Identifier, 1);
         }
     }
 }

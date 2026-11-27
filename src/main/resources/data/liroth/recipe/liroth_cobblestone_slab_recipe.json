@@ -4,15 +4,9 @@
     "012"
   ],
   "key": {
-    "0": {
-      "item": "liroth:liroth_cobblestone"
-    },
-    "1": {
-      "item": "liroth:liroth_cobblestone"
-    },
-    "2": {
-      "item": "liroth:liroth_cobblestone"
-    }
+    "0": "liroth:liroth_cobblestone",
+    "1": "liroth:liroth_cobblestone",
+    "2": "liroth:liroth_cobblestone"
   },
   "result": {
     "id": "liroth:liroth_cobblestone_slab",

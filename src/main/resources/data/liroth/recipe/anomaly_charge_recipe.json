@@ -7,12 +7,8 @@
     "000"
   ],
   "key": {
-    "0": {
-      "item": "liroth:jalsphire_dust"
-    },
-    "1": {
-      "item": "liroth:embued_liroth_gem"
-    }
+    "0": "liroth:jalsphire_dust",
+    "1": "liroth:embued_liroth_gem"
   },
   "result": {
     "id": "liroth:anomaly_charge",

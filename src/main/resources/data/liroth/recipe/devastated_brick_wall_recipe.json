@@ -5,24 +5,12 @@
     "345"
   ],
   "key": {
-    "0": {
-      "item": "liroth:devastated_bricks"
-    },
-    "1": {
-      "item": "liroth:devastated_bricks"
-    },
-    "2": {
-      "item": "liroth:devastated_bricks"
-    },
-    "3": {
-      "item": "liroth:devastated_bricks"
-    },
-    "4": {
-      "item": "liroth:devastated_bricks"
-    },
-    "5": {
-      "item": "liroth:devastated_bricks"
-    }
+    "0": "liroth:devastated_bricks",
+    "1": "liroth:devastated_bricks",
+    "2": "liroth:devastated_bricks",
+    "3": "liroth:devastated_bricks",
+    "4": "liroth:devastated_bricks",
+    "5": "liroth:devastated_bricks"
   },
   "result": {
     "id": "liroth:devastated_brick_wall",

@@ -6,33 +6,15 @@
     "678"
   ],
   "key": {
-    "0": {
-      "item": "liroth:jalsphire_gem"
-    },
-    "1": {
-      "item": "liroth:jalsphire_gem"
-    },
-    "2": {
-      "item": "liroth:jalsphire_gem"
-    },
-    "3": {
-      "item": "liroth:jalsphire_gem"
-    },
-    "4": {
-      "item": "liroth:jalsphire_gem"
-    },
-    "5": {
-      "item": "liroth:jalsphire_gem"
-    },
-    "6": {
-      "item": "liroth:jalsphire_gem"
-    },
-    "7": {
-      "item": "liroth:jalsphire_gem"
-    },
-    "8": {
-      "item": "liroth:jalsphire_gem"
-    }
+    "0": "liroth:jalsphire_gem",
+    "1": "liroth:jalsphire_gem",
+    "2": "liroth:jalsphire_gem",
+    "3": "liroth:jalsphire_gem",
+    "4": "liroth:jalsphire_gem",
+    "5": "liroth:jalsphire_gem",
+    "6": "liroth:jalsphire_gem",
+    "7": "liroth:jalsphire_gem",
+    "8": "liroth:jalsphire_gem"
   },
   "result": {
     "id": "liroth:jalsphire_gem_block",

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#minecraft:netherite_tool_materials",
+  "base": "minecraft:iron_nautilus_armor",
+  "result": {
+    "id": "liroth:lirothian_cobalt_nautilus_armor"
+  },
+  "template": "liroth:swap_upgrade_smithing_template"
+}

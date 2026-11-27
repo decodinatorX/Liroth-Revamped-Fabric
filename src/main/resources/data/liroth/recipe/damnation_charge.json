@@ -7,15 +7,9 @@
     "2 0"
   ],
   "key": {
-    "0": {
-      "item": "liroth:liroth_gem_ansalum_ingot"
-    },
-    "2": {
-      "item": "liroth:liroth_gem_lux_ingot"
-    },
-    "3": {
-      "item": "liroth:liroth_charge"
-    }
+    "0": "liroth:liroth_gem_ansalum_ingot",
+    "2": "liroth:liroth_gem_lux_ingot",
+    "3": "liroth:liroth_charge"
   },
   "result": {
     "id": "liroth:damnation_charge",

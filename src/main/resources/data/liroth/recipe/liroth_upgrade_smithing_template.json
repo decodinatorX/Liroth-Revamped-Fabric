@@ -6,15 +6,9 @@
     "###"
   ],
   "key": {
-    "I": {
-      "item": "minecraft:netherite_ingot"
-    },
-    "S": {
-      "item": "liroth:liroth_gem_ingot"
-    },
-    "#": {
-      "item": "liroth:liroth_stone"
-    }
+    "I": "minecraft:netherite_ingot",
+    "S": "liroth:liroth_gem_ingot",
+    "#": "liroth:liroth_stone"
   },
   "result": {
     "id": "liroth:liroth_upgrade_smithing_template",

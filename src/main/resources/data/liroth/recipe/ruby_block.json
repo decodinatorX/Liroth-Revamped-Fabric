@@ -6,9 +6,7 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "liroth:ruby_ingot"
-    }
+    "#": "liroth:ruby_ingot"
   },
   "result": {
     "id": "liroth:ruby_block"

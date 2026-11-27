@@ -6,12 +6,8 @@
     " I "
   ],
   "key": {
-    "C": {
-      "item": "minecraft:chest"
-    },
-    "I": {
-      "item": "liroth:lirothian_cobalt_ingot"
-    }
+    "C": "minecraft:chest",
+    "I": "liroth:lirothian_cobalt_ingot"
   },
   "result": {
     "id": "minecraft:hopper"

@@ -5,18 +5,10 @@
     "23"
   ],
   "key": {
-    "0": {
-      "item": "liroth:jalsphire_dust"
-    },
-    "1": {
-      "item": "liroth:jalsphire_dust"
-    },
-    "2": {
-      "item": "liroth:jalsphire_dust"
-    },
-    "3": {
-      "item": "liroth:jalsphire_dust"
-    }
+    "0": "liroth:jalsphire_dust",
+    "1": "liroth:jalsphire_dust",
+    "2": "liroth:jalsphire_dust",
+    "3": "liroth:jalsphire_dust"
   },
   "result": {
     "id": "liroth:jalsphire_dust_heap",

@@ -1,8 +1,6 @@
 {
   "type": "liroth:quantum_extraction",
-  "ingredient": {
-    "item": "liroth:potestium_shard"
-  },
+  "ingredient": "liroth:potestium_shard",
   "result": {
     "id": "liroth:ruby_ingot",
     "count": 1

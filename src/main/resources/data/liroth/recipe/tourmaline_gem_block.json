@@ -6,9 +6,7 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "liroth:tourmaline_ingot"
-    }
+    "#": "liroth:tourmaline_ingot"
   },
   "result": {
     "id": "liroth:tourmaline_block"

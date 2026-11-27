@@ -1,9 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "X": {
-      "item": "liroth:ruby_ingot"
-    }
+    "X": "liroth:ruby_ingot"
   },
   "pattern": [
     "XXX",

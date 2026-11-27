@@ -1,9 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "liroth:liroth_gem_block"
-    }
+    "liroth:liroth_gem_block"
   ],
   "result": {
     "id": "liroth:liroth_gem_ingot",

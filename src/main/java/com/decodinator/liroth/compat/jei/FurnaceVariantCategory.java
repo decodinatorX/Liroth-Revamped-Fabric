@@ -10,7 +10,7 @@ public abstract class FurnaceVariantCategory<T> implements IRecipeCategory<T> {
 	protected final IDrawableAnimated animatedFlame;
 
 	public FurnaceVariantCategory(IGuiHelper guiHelper) {
-		staticFlame = guiHelper.createDrawable(Constants.RECIPE_GUI_VANILLA, 82, 114, 14, 14);
+		staticFlame = guiHelper.createDrawable(JEILirothConstants.RECIPE_GUI_VANILLA, 82, 114, 14, 14);
 		animatedFlame = guiHelper.createAnimatedDrawable(staticFlame, 300, IDrawableAnimated.StartDirection.TOP, true);
 	}
 }

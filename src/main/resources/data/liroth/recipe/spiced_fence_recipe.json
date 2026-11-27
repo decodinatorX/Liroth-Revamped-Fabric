@@ -5,24 +5,12 @@
     "345"
   ],
   "key": {
-    "0": {
-      "item": "liroth:spiced_planks"
-    },
-    "1": {
-      "item": "minecraft:stick"
-    },
-    "2": {
-      "item": "liroth:spiced_planks"
-    },
-    "3": {
-      "item": "liroth:spiced_planks"
-    },
-    "4": {
-      "item": "minecraft:stick"
-    },
-    "5": {
-      "item": "liroth:spiced_planks"
-    }
+    "0": "liroth:spiced_planks",
+    "1": "minecraft:stick",
+    "2": "liroth:spiced_planks",
+    "3": "liroth:spiced_planks",
+    "4": "minecraft:stick",
+    "5": "liroth:spiced_planks"
   },
   "result": {
     "id": "liroth:spiced_fence",

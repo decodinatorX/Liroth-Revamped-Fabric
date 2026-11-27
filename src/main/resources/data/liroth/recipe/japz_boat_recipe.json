@@ -6,9 +6,7 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "liroth:japz_planks"
-    }
+    "#": "liroth:japz_planks"
   },
   "result": {
     "id": "liroth:japz_boat"

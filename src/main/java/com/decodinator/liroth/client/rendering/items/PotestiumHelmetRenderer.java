@@ -1,33 +1,34 @@
 package com.decodinator.liroth.client.rendering.items;
 
-import com.decodinator.liroth.client.LirothClient;
-import com.decodinator.liroth.client.models.items.PotestiumHelmetModel;
-import com.mojang.blaze3d.vertex.PoseStack;
+import com.decodinator.liroth.Liroth;
+import com.decodinator.liroth.core.items.PotestiumHelmItem;
 
-import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.resources.ResourceLocation;
+import com.geckolib.renderer.base.GeoRenderState;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
+import com.geckolib.model.DefaultedItemGeoModel;
+import com.geckolib.renderer.GeoArmorRenderer;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.item.Item;
 
-public class PotestiumHelmetRenderer implements ArmorRenderer {
-    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("liroth", "textures/models/armor/potestium_armor_helm.png");
-    private static PotestiumHelmetModel potestiumHelmetModel;
+import java.util.Set;
+
+// this one was weird cause i am not the surest of what the wornArmor thing does but I also don't wanna fuck anything up lmao
+
+public final class PotestiumHelmetRenderer<R extends HumanoidRenderState & GeoRenderState> extends GeoArmorRenderer<PotestiumHelmItem, R> {
     public PotestiumHelmetRenderer() {
-
+        super(new DefaultedItemGeoModel<>(Liroth.C.mk("armor/potestium_armor_helm")));
     }
-    @Override
-    public void render(PoseStack matrices, MultiBufferSource vertexConsumers, ItemStack stack, LivingEntity entity, EquipmentSlot slot, int light, HumanoidModel<LivingEntity> contextModel) {
-        if (potestiumHelmetModel == null) {
-        	potestiumHelmetModel = new PotestiumHelmetModel(Minecraft.getInstance().getEntityModels().bakeLayer(LirothClient.MODEL_POTESTIUM_HELMET_LAYER));;
-        }
 
-        contextModel.copyPropertiesTo(potestiumHelmetModel);
-        potestiumHelmetModel.setAllVisible(false);
-        potestiumHelmetModel.head.visible = slot == EquipmentSlot.HEAD;
-            ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, potestiumHelmetModel, TEXTURE);
+    @Override
+    public void addRenderData(PotestiumHelmItem animatable, RenderData relatedObject, R renderState, float partialTick) {
+        Set<Item> wornArmor = new ObjectOpenHashSet<>(4);
+        if (!(relatedObject.entity() instanceof ArmorStand)) {
+            for (EquipmentSlot slot : EquipmentSlot.values()) {
+                if (slot.getType() == EquipmentSlot.Type.HUMANOID_ARMOR)
+                    wornArmor.add(relatedObject.entity().getItemBySlot(slot).getItem());
+            }
+        }
     }
 }

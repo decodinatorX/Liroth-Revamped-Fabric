@@ -1,5 +1,6 @@
 package com.decodinator.liroth.core.features;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
@@ -8,20 +9,19 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public class ObsidianSpikeFeature extends Feature<NoneFeatureConfiguration> {
-   public ObsidianSpikeFeature(Codec<NoneFeatureConfiguration> p_66003_) {
-      super(p_66003_);
+public final class ObsidianSpikeFeature implements Feature {
+   public static final MapCodec<ObsidianSpikeFeature> CODEC = MapCodec.unit(ObsidianSpikeFeature::new);
+
+   @Override
+   public MapCodec<ObsidianSpikeFeature> codec() {
+      return CODEC;
    }
 
-   public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159882_) {
-      BlockPos blockpos = p_159882_.origin();
-      RandomSource randomsource = p_159882_.random();
+   @Override
+   public boolean place(WorldGenLevel worldgenlevel, ChunkGenerator chunkGenerator, RandomSource randomsource, BlockPos blockpos) {
 
-      WorldGenLevel worldgenlevel;
-      for(worldgenlevel = p_159882_.level(); worldgenlevel.isEmptyBlock(blockpos) && blockpos.getY() > worldgenlevel.getMinBuildHeight() + 2; blockpos = blockpos.below()) {
+      for (; worldgenlevel.isEmptyBlock(blockpos) && blockpos.getY() > worldgenlevel.getMinY() + 2; blockpos = blockpos.below()) {
       }
 
       if (!worldgenlevel.getBlockState(blockpos).is(BlockTags.STONE_ORE_REPLACEABLES)) {
@@ -45,13 +45,13 @@ public class ObsidianSpikeFeature extends Feature<NoneFeatureConfiguration> {
                   float f2 = (float)Mth.abs(j1) - 0.25F;
                   if ((i1 == 0 && j1 == 0 || !(f1 * f1 + f2 * f2 > f * f)) && (i1 != -l && i1 != l && j1 != -l && j1 != l || !(randomsource.nextFloat() > 0.75F))) {
                      BlockState blockstate = worldgenlevel.getBlockState(blockpos.offset(i1, k, j1));
-                     if (blockstate.isAir() || isDirt(blockstate) || blockstate.is(BlockTags.STONE_ORE_REPLACEABLES) || blockstate.is(BlockTags.DIRT)) {
+                     if (blockstate.isAir() || blockstate.is(BlockTags.STONE_ORE_REPLACEABLES) || blockstate.is(BlockTags.DIRT)) {
                         this.setBlock(worldgenlevel, blockpos.offset(i1, k, j1), Blocks.OBSIDIAN.defaultBlockState());
                      }
 
                      if (k != 0 && l > 1) {
                         blockstate = worldgenlevel.getBlockState(blockpos.offset(i1, -k, j1));
-                        if (blockstate.isAir() || isDirt(blockstate) || blockstate.is(BlockTags.STONE_ORE_REPLACEABLES) || blockstate.is(BlockTags.DIRT)) {
+                        if (blockstate.isAir() || blockstate.is(BlockTags.STONE_ORE_REPLACEABLES) || blockstate.is(BlockTags.DIRT)) {
                            this.setBlock(worldgenlevel, blockpos.offset(i1, -k, j1), Blocks.OBSIDIAN.defaultBlockState());
                         }
                      }
@@ -77,7 +77,7 @@ public class ObsidianSpikeFeature extends Feature<NoneFeatureConfiguration> {
 
                while(blockpos1.getY() > 50) {
                   BlockState blockstate1 = worldgenlevel.getBlockState(blockpos1);
-                  if (!blockstate1.isAir() && !isDirt(blockstate1) && !blockstate1.is(BlockTags.STONE_ORE_REPLACEABLES) && !blockstate1.is(BlockTags.DIRT) && !blockstate1.is(Blocks.GRASS_BLOCK)) {
+                  if (!blockstate1.isAir() && !blockstate1.is(BlockTags.STONE_ORE_REPLACEABLES) && !blockstate1.is(BlockTags.DIRT) && !blockstate1.is(Blocks.GRASS_BLOCK)) {
                      break;
                   }
 

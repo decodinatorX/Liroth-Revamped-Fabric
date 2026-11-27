@@ -10,7 +10,7 @@ import com.decodinator.liroth.core.recipetypes.SplitterRecipe;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.RecipeType;
 
 public class LirothRecipeTypes {
@@ -21,9 +21,11 @@ public class LirothRecipeTypes {
 	public static SimpleSplitterSerializer<AbstractSplitterRecipe> LIROTH_SPLITTING_S;
 	
 	public static void init() {
-		QUANTUM_EXTRACTION = Registry.register(BuiltInRegistries.RECIPE_TYPE, ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "quantum_extraction"), new RecipeType<AbstractQuantumRecipe>() {});
-		QUANTUM_EXTRACTION_S = Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "quantum_extraction"), new SimpleQuantumSerializer<>(QuantumRecipe::new, 200));
-		LIROTH_SPLITTING = Registry.register(BuiltInRegistries.RECIPE_TYPE, ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "liroth_splitting"), new RecipeType<AbstractSplitterRecipe>() {});
-		LIROTH_SPLITTING_S = Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "liroth_splitting"), new SimpleSplitterSerializer<>(SplitterRecipe::new, 200));
+		QUANTUM_EXTRACTION = Registry.register(BuiltInRegistries.RECIPE_TYPE, Identifier.fromNamespaceAndPath(Liroth.MOD_ID, "quantum_extraction"), new RecipeType<AbstractQuantumRecipe>() {});
+		QUANTUM_EXTRACTION_S = new SimpleQuantumSerializer<>(QuantumRecipe::new, 200);
+		Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, Identifier.fromNamespaceAndPath(Liroth.MOD_ID, "quantum_extraction"), QUANTUM_EXTRACTION_S.serializer());
+		LIROTH_SPLITTING = Registry.register(BuiltInRegistries.RECIPE_TYPE, Identifier.fromNamespaceAndPath(Liroth.MOD_ID, "liroth_splitting"), new RecipeType<AbstractSplitterRecipe>() {});
+		LIROTH_SPLITTING_S = new SimpleSplitterSerializer<>(SplitterRecipe::new, 200);
+		Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, Identifier.fromNamespaceAndPath(Liroth.MOD_ID, "liroth_splitting"), LIROTH_SPLITTING_S.serializer());
 		}
 }

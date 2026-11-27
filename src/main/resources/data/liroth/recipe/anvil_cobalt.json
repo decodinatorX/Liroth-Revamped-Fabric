@@ -6,12 +6,8 @@
     "iii"
   ],
   "key": {
-    "I": {
-      "item": "liroth:lirothian_cobalt_block"
-    },
-    "i": {
-      "item": "liroth:lirothian_cobalt_ingot"
-    }
+    "I": "liroth:lirothian_cobalt_block",
+    "i": "liroth:lirothian_cobalt_ingot"
   },
   "result": {
     "id": "liroth:lirothian_cobalt_anvil"

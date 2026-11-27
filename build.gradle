@@ -1,5 +1,5 @@
 plugins {
-	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
 	id 'maven-publish'
 }
 
@@ -7,13 +7,7 @@ def local_bclib = findProject(':BCLib') != null
 def local_wunderlib = findProject(':WunderLib') != null
 
 repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
 	maven { url 'https://maven.kosmx.dev/' }
-	maven { url "https://maven.dblsaiko.net/" }
     maven { url "https://maven.fabricmc.net/" }
     maven { url 'https://maven.blamejared.com' }
     maven { url "https://maven.shedaniel.me/" }
@@ -23,8 +17,8 @@ repositories {
     maven { url "https://hephaestus.dev/release" }
     maven { url 'https://jitpack.io' }
 	maven { url 'https://dvs1.progwml6.com/files/maven/' }
-	maven { url 'https://maven.blamejared.com/mezz/jei/' } // don't feel like removing this one lmfao
-	maven { url 'https://maven.blamejared.com/' } // for Patchouli
+	maven { url 'https://maven.blamejared.com/mezz/jei/' }
+	maven { url 'https://maven.blamejared.com/' }
 	maven { url 'https://modmaven.dev' }
 	maven { url 'https://api.modrinth.com/maven' }
     maven { url 'https://maven.terraformersmc.com' }
@@ -52,45 +46,80 @@ repositories {
 				url = "https://api.modrinth.com/maven"
 			}
 		}
-		// forRepositories(fg.repository) // Uncomment when using ForgeGradle
 		filter {
 			includeGroup "maven.modrinth"
 		}
 	}
+	exclusiveContent {
+		forRepository {
+			maven {
+				name = 'GeckoLib'
+				url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+			}
+		}
+		filter { includeGroupAndSubgroups('com.geckolib') }
+	}
 }
 
 dependencies {
-	// To change the versions see the gradle.properties file
 	minecraft ("com.mojang:minecraft:${project.minecraft_version}")
-    mappings loom.officialMojangMappings()
-	modImplementation ("net.fabricmc:fabric-loader:${project.loader_version}")
 
-	modImplementation "software.bernie.geckolib:geckolib-fabric-${minecraft_version}:4.9.3"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	// Fabric API. This is technically optional, but you probably want it anyway.
-	modImplementation ("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
-    modImplementation ('net.kyrptonaught:customportalapi:0.0.1-beta67-1.21') {exclude(group: "net.fabricmc.fabric-api")}
-	include ('net.kyrptonaught:customportalapi:0.0.1-beta67-1.21') {exclude(group: "net.fabricmc.fabric-api")}
+	implementation "maven.modrinth:8BmcQJ2H:kSxHvs99"
 
- 	// compile against the JEI API but do not include it at runtime
-  	modCompileOnlyApi("mezz.jei:jei-1.21.1-common-api:19.71.0.475") {exclude(group: "net.fabricmc.fabric-api")}
-  	modCompileOnlyApi("mezz.jei:jei-1.21.1-fabric-api:19.71.0.475") {exclude(group: "net.fabricmc.fabric-api")}
-  	// at runtime, use the full JEI jar for Fabric
-  	modRuntimeOnly("mezz.jei:jei-1.21.1-fabric:19.71.0.475") {exclude(group: "net.fabricmc.fabric-api")}
-	modLocalRuntime("net.mezzdev.config:mezz_config-1.21.1-fabric:0.7.1")
+	compileOnly "mezz.jei:jei-26.3-common-api:31.23.0.129"
+	compileOnly "mezz.jei:jei-26.3-fabric-api:31.23.0.129"
+	runtimeOnly "mezz.jei:jei-26.3-fabric:31.23.0.129"
 
-  	modCompileOnly("com.terraformersmc:modmenu:${project.mod_menu_version}") {exclude(group: "net.fabricmc.fabric-api")}
-  
-  	modApi("me.shedaniel.cloth:cloth-config-fabric:15.0.140") {exclude(group: "net.fabricmc.fabric-api")}
+	implementation "maven.modrinth:7bdKEtKC:JQZrBwiN" // BCLib: New Dawn 26.3.4-fabric
+	implementation "maven.modrinth:R8uGDQpB:H14sPcym" // WorldWeaver: New Dawn 26.3.6-fabric
+	implementation "maven.modrinth:HZmhgdJk:2PGLqTEO" // WunderLib: New Dawn 26.3.1-fabric
 
-	modImplementation ("vazkii.patchouli:Patchouli:1.21.1-93-FABRIC") {exclude(group: "net.fabricmc.fabric-api")}  //i really gotta clean above lmfao
-
-	modImplementation "org.betterx:bclib:21.0.13"
-	modImplementation "org.betterx:worldweaver:21.0.13"
-	modImplementation "de.ambertation:wunderlib:21.0.8"
-
-	modImplementation "maven.modrinth:YBz7DOs8:4pwapviY"
+	implementation "maven.modrinth:YBz7DOs8:tSrAp0gK"
 }
+
+configurations {
+	worldweaverMod
+	fabricApiMod
+}
+configurations.fabricApiMod.transitive = false
+
+dependencies {
+	worldweaverMod "maven.modrinth:R8uGDQpB:H14sPcym"
+	fabricApiMod "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+}
+
+def extractedWorldweaverLibraries = layout.buildDirectory.dir("generated/worldweaver-libraries")
+
+// Extract during Gradle configuration so IDE sync sees the API jars immediately.
+def worldweaverJar = configurations.worldweaverMod.singleFile
+project.sync {
+	from(zipTree(worldweaverJar)) {
+		include "META-INF/jars/*.jar"
+		eachFile { path = name }
+		includeEmptyDirs = false
+	}
+	into extractedWorldweaverLibraries
+}
+sourceSets.main.compileClasspath += files(fileTree(extractedWorldweaverLibraries) {
+	include "*.jar"
+})
+
+def extractedFabricApiLibraries = layout.buildDirectory.dir("generated/fabric-api-libraries")
+def fabricApiJar = configurations.fabricApiMod.singleFile
+project.sync {
+	from(zipTree(fabricApiJar)) {
+		include "META-INF/jars/*.jar"
+		eachFile { path = name }
+		includeEmptyDirs = false
+	}
+	into extractedFabricApiLibraries
+}
+sourceSets.main.compileClasspath += files(fileTree(extractedFabricApiLibraries) {
+	include "*.jar"
+})
 
 
 processResources {
@@ -102,33 +131,22 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
-	it.options.release = 21
+	it.options.release = 25
 }
 
 java {
-	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-	// if it is present.
-	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 }
 
-// configure the maven publication
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
 			from components.java
 		}
 	}
-
-	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
 	repositories {
-		// Add repositories to publish to here.
-		// Notice: This block does NOT have the same function as the block in the top level.
-		// The repositories here will be used for publishing your artifact, not for
-		// retrieving dependencies.
 	}
-	
+
 loom {
     accessWidenerPath = file("src/main/resources/liroth.accesswidener")
 	}

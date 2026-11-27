@@ -6,24 +6,12 @@
     "45"
   ],
   "key": {
-    "0": {
-      "item": "liroth:spiced_planks"
-    },
-    "1": {
-      "item": "liroth:spiced_planks"
-    },
-    "2": {
-      "item": "liroth:spiced_planks"
-    },
-    "3": {
-      "item": "liroth:spiced_planks"
-    },
-    "4": {
-      "item": "liroth:spiced_planks"
-    },
-    "5": {
-      "item": "liroth:spiced_planks"
-    }
+    "0": "liroth:spiced_planks",
+    "1": "liroth:spiced_planks",
+    "2": "liroth:spiced_planks",
+    "3": "liroth:spiced_planks",
+    "4": "liroth:spiced_planks",
+    "5": "liroth:spiced_planks"
   },
   "result": {
     "id": "liroth:spiced_door",

@@ -4,15 +4,9 @@
     "012"
   ],
   "key": {
-    "0": {
-      "item": "liroth:tallpier_planks"
-    },
-    "1": {
-      "item": "liroth:tallpier_planks"
-    },
-    "2": {
-      "item": "liroth:tallpier_planks"
-    }
+    "0": "liroth:tallpier_planks",
+    "1": "liroth:tallpier_planks",
+    "2": "liroth:tallpier_planks"
   },
   "result": {
     "id": "liroth:tallpier_slab",

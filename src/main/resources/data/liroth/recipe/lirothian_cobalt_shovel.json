@@ -6,12 +6,8 @@
     "#"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "X": {
-      "item": "liroth:lirothian_cobalt_ingot"
-    }
+    "#": "minecraft:stick",
+    "X": "liroth:lirothian_cobalt_ingot"
   },
   "result": {
     "id": "liroth:lirothian_cobalt_shovel"

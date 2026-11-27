@@ -2,7 +2,7 @@
   "parent": "liroth:enter_desolation",
   "display": {
     "icon": {
-      "id": "liroth:freakshow_spawn_egg"
+      "id": "liroth:liroth_bone"
     },
     "title": {
       "translate": "liroth:advancements.story.freakshow.title"
@@ -19,15 +19,13 @@
     "killed_freakshow": {
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "predicate": {
-              "type": "liroth:freakshow"
-            },
-            "entity": "this"
-          }
-        ]
+        "entity": {
+          "predicate": {
+            "minecraft:entity_type": "liroth:freakshow"
+          },
+          "entity": "this",
+          "type": "minecraft:entity_properties"
+        }
       }
     }
   },

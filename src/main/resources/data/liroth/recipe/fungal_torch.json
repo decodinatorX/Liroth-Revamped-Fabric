@@ -5,12 +5,8 @@
     " # "
   ],
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "!": {
-      "item": "liroth:damnation_fungus"
-    }
+    "#": "minecraft:stick",
+    "!": "liroth:damnation_fungus"
   },
   "result": {
     "id": "liroth:fungal_torch",

@@ -4,7 +4,7 @@
 	"parent": "block/cube_all",
 	"textures": {
 		"0": "liroth:block/haunted_throughfare_block",
-		"1": "liroth:item/jalsphire_ignitor",
+		"1": "liroth:block/jalsphire_ignitor",
 		"2": "liroth:block/haunted_throughfare_block_charge_slot",
 		"particle": "liroth:block/haunted_throughfare_block"
 	},

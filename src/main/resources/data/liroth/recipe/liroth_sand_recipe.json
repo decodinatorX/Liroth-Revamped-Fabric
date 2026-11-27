@@ -5,18 +5,10 @@
     "23"
   ],
   "key": {
-    "0": {
-      "item": "liroth:liroth_soul_dust"
-    },
-    "1": {
-      "item": "liroth:liroth_soul_dust"
-    },
-    "2": {
-      "item": "liroth:liroth_soul_dust"
-    },
-    "3": {
-      "item": "liroth:liroth_soul_dust"
-    }
+    "0": "liroth:liroth_soul_dust",
+    "1": "liroth:liroth_soul_dust",
+    "2": "liroth:liroth_soul_dust",
+    "3": "liroth:liroth_soul_dust"
   },
   "result": {
     "id": "liroth:liroth_soul_sand",

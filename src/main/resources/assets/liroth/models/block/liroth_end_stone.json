@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "liroth:blocks/liroth_end_stone",
-    "particle": "liroth:blocks/liroth_end_stone"
-  }
-}

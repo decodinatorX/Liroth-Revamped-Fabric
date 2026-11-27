@@ -1,9 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "liroth:tourmaline_block"
-    }
+    "liroth:tourmaline_block"
   ],
   "result": {
     "id": "liroth:tourmaline_ingot",

@@ -6,9 +6,7 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "liroth:lirothian_petroleum"
-    }
+    "#": "liroth:lirothian_petroleum"
   },
   "result": {
     "id": "liroth:lirothian_petroleum_block"

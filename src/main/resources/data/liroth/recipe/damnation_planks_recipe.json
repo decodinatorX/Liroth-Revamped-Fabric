@@ -4,9 +4,7 @@
     "0"
   ],
   "key": {
-    "0": {
-      "item": "liroth:damnation_log"
-    }
+    "0": "liroth:damnation_log"
   },
   "result": {
     "id": "liroth:damnation_planks",

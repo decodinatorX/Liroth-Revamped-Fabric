@@ -4,7 +4,7 @@
 	"parent": "block/cube_all",
 	"textures": {
 		"0": "liroth:block/charred_accessway_block",
-		"1": "liroth:item/damnation_charge",
+		"1": "liroth:block/damnation_charge",
 		"2": "liroth:block/charred_accessway_block_charger_slot",
 		"particle": "liroth:block/charred_accessway_block"
 	},

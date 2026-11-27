@@ -6,12 +6,8 @@
     "#W#"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "W": {
-      "item": "liroth:koolaw_planks"
-    }
+    "#": "minecraft:stick",
+    "W": "liroth:koolaw_planks"
   },
   "result": {
     "id": "liroth:koolaw_gate"

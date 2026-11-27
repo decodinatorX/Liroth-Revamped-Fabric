@@ -2,7 +2,7 @@
   "parent": "liroth:enter_liroth",
   "display": {
     "icon": {
-      "id": "liroth:skeletal_freak_spawn_egg"
+      "id": "liroth:liroth_bone"
     },
     "title": {
       "translate": "liroth:advancements.story.skeletal_freak.title"
@@ -19,15 +19,13 @@
     "killed_skeletal_freak": {
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "predicate": {
-              "type": "liroth:skeletal_freak"
-            },
-            "entity": "this"
-          }
-        ]
+        "entity": {
+          "predicate": {
+            "minecraft:entity_type": "liroth:skeletal_freak"
+          },
+          "entity": "this",
+          "type": "minecraft:entity_properties"
+        }
       }
     }
   },

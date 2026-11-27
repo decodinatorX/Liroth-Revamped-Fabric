@@ -4,7 +4,7 @@
 	"parent": "block/cube_all",
 	"textures": {
 		"0": "liroth:block/dimensional_communicator_top",
-		"1": "liroth:item/liroth_charge",
+		"1": "liroth:block/liroth_charge",
 		"2": "liroth:block/dimensional_communicator_top_charge_slot",
 		"particle": "liroth:block/dimensional_communicator_top"
 	},

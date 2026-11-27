@@ -4,9 +4,7 @@
     "0"
   ],
   "key": {
-    "0": {
-      "item": "liroth:koolaw_log"
-    }
+    "0": "liroth:koolaw_log"
   },
   "result": {
     "id": "liroth:koolaw_planks",

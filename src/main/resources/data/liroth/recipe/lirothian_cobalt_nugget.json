@@ -1,9 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "liroth:lirothian_cobalt_ingot"
-    }
+    "liroth:lirothian_cobalt_ingot"
   ],
   "result": {
     "id": "liroth:lirothian_cobalt_nugget",

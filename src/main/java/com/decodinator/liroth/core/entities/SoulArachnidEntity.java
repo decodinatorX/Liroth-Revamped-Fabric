@@ -1,58 +1,58 @@
 package com.decodinator.liroth.core.entities;
 
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Spider;
+import net.minecraft.world.entity.monster.spider.Spider;
 import net.minecraft.world.level.Level;
-import software.bernie.geckolib.animatable.GeoAnimatable;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.*;
-import software.bernie.geckolib.util.GeckoLibUtil;
+import com.geckolib.animatable.GeoAnimatable;
+import com.geckolib.animatable.instance.AnimatableInstanceCache;
+import com.geckolib.animation.AnimationController;
+import com.geckolib.animation.RawAnimation;
+import com.geckolib.animation.object.PlayState;
+import com.geckolib.animation.state.AnimationTest;
+import com.geckolib.util.GeckoLibUtil;
 
 public class SoulArachnidEntity extends Spider implements GeoAnimatable {
-    private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
-	public SoulArachnidEntity(EntityType<? extends Spider> entityType, Level world) {
-		super(entityType, world);
-	}
-	
+    public SoulArachnidEntity(EntityType<? extends Spider> entity, Level level) {
+        super(entity, level);
+    }
+
     public static AttributeSupplier.Builder createSoulArachnidAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 16.0).add(Attributes.MOVEMENT_SPEED, 0.3f);
+        return Monster.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 16)
+                .add(Attributes.MOVEMENT_SPEED, 0.3f);
     }
 
     private static final RawAnimation WALK = RawAnimation.begin().thenPlay("animation.soul_arachnid.walk");
     private static final RawAnimation IDLE = RawAnimation.begin().thenPlay("animation.soul_arachnid.idle");
 
-    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
-        if (!(swingTime > -0.15F && swingTime < 0.15F)) {
-            event.getController().setAnimation(WALK);
+    private PlayState predicate(AnimationTest<SoulArachnidEntity> event) {
+        if (this.getCurrentSwing() != null) {
+            event.setAnimation(WALK);
             return PlayState.CONTINUE;
         }
 
         if (event.isMoving()) {
-            event.getController().setAnimation(WALK);
+            event.setAnimation(WALK);
             return PlayState.CONTINUE;
         }
 
-        event.getController().setAnimation(IDLE);
+        event.setAnimation(IDLE);
         return PlayState.CONTINUE;
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar data) {
-        data.add(new AnimationController<>(this, "controller", 0, this::predicate));
+    public void registerControllers(com.geckolib.animatable.manager.AnimatableManager.ControllerRegistrar data) {
+        data.add(new AnimationController<>("controller", this::predicate));
     }
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.factory;
+        return this.cache;
     }
 
-    @Override
-    public double getTick(Object age) {
-        return ((Entity)age).tickCount;
-    }
 }

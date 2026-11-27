@@ -2,21 +2,24 @@ package com.decodinator.liroth.client.rendering.entities.projectiles;
 
 import com.decodinator.liroth.Liroth;
 import com.decodinator.liroth.core.entities.projectiles.LevoArrow;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.resources.ResourceLocation;
-
-@Environment(EnvType.CLIENT)
-public class LevoArrowRenderer extends ArrowRenderer<LevoArrow> {
-    public static final ResourceLocation SPECTRAL_ARROW_LOCATION = ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "textures/entity/projectiles/levo_arrow.png");
+import net.minecraft.client.renderer.entity.state.ArrowRenderState;
+import net.minecraft.resources.Identifier;
+public class LevoArrowRenderer extends ArrowRenderer<LevoArrow, ArrowRenderState> {
+    public static final Identifier SPECTRAL_ARROW_LOCATION = Identifier.fromNamespaceAndPath(Liroth.MOD_ID, "textures/entity/projectiles/levo_arrow.png");
 
     public LevoArrowRenderer(EntityRendererProvider.Context context) {
         super(context);
     }
 
-    public ResourceLocation getTextureLocation(LevoArrow entity) {
+    @Override
+    public ArrowRenderState createRenderState() {
+        return new ArrowRenderState();
+    }
+
+    @Override
+    protected Identifier getTextureLocation(ArrowRenderState state) {
         return SPECTRAL_ARROW_LOCATION;
     }
 }

@@ -4,8 +4,9 @@ import com.decodinator.liroth.core.blockentities.*;
 import com.decodinator.liroth.Liroth;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import java.util.Set;
 
 public class LirothBlockEntities {
     public static BlockEntityType<FungalCampfireBlockEntity> FUNGAL_CAMPFIRE;
@@ -16,16 +17,16 @@ public class LirothBlockEntities {
     public static void init() {
         LirothBlocks.ensureStaticallyLoaded();
         FUNGAL_CAMPFIRE = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
-                ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "fungal_campfire"),
-                BlockEntityType.Builder.of(FungalCampfireBlockEntity::new, LirothBlocks.FUNGAL_CAMPFIRE).build(null));
+                Identifier.fromNamespaceAndPath(Liroth.MOD_ID, "fungal_campfire"),
+                new BlockEntityType<>(FungalCampfireBlockEntity::new, Set.of(LirothBlocks.FUNGAL_CAMPFIRE)));
         LIROTHIAN_PETROLEUM_CAMPFIRE = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
-                ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "lirothian_petroleum_campfire"),
-                BlockEntityType.Builder.of(LirothianPetroleumCampfireBlockEntity::new, LirothBlocks.LIROTHIAN_PETROLEUM_CAMPFIRE).build(null));
+                Identifier.fromNamespaceAndPath(Liroth.MOD_ID, "lirothian_petroleum_campfire"),
+                new BlockEntityType<>(LirothianPetroleumCampfireBlockEntity::new, Set.of(LirothBlocks.LIROTHIAN_PETROLEUM_CAMPFIRE)));
         LIROTH_SPLITTER = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
-                ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "liroth_splitter"),
-                BlockEntityType.Builder.of(SplitterBlockEntity::new, LirothBlocks.LIROTH_SPLITTER).build(null));
+                Identifier.fromNamespaceAndPath(Liroth.MOD_ID, "liroth_splitter"),
+                new BlockEntityType<>(SplitterBlockEntity::new, Set.of(LirothBlocks.LIROTH_SPLITTER)));
         QUANTUM_EXTRACTOR = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
-                ResourceLocation.fromNamespaceAndPath(Liroth.MOD_ID, "quantum_extractor"),
-                BlockEntityType.Builder.of(QuantumBlockEntity::new, LirothBlocks.QUANTUM_EXTRACTOR).build(null));
+                Identifier.fromNamespaceAndPath(Liroth.MOD_ID, "quantum_extractor"),
+                new BlockEntityType<>(QuantumBlockEntity::new, Set.of(LirothBlocks.QUANTUM_EXTRACTOR)));
     }
 }

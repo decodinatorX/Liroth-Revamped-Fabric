@@ -6,20 +6,24 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 
-import net.minecraft.Util;
+import net.minecraft.util.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 
-public class LirothBoneClawFeature
-extends LirothSkeletonFeature {
-    public LirothBoneClawFeature(Codec<NoneFeatureConfiguration> codec) {
-        super(codec);
+public class LirothBoneClawFeature extends LirothSkeletonFeature {
+    public static final MapCodec<LirothBoneClawFeature> CODEC = MapCodec.unit(LirothBoneClawFeature::new);
+
+    @Override
+    public MapCodec<LirothBoneClawFeature> codec() {
+        return CODEC;
     }
 
     @Override

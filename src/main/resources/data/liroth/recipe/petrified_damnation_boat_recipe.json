@@ -6,9 +6,7 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "liroth:petrified_damnation_planks"
-    }
+    "#": "liroth:petrified_damnation_planks"
   },
   "result": {
     "id": "liroth:petrified_damnation_boat"

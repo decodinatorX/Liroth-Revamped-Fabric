@@ -1,9 +1,7 @@
 {
   "type": "minecraft:smelting",
   "group": "diamond",
-  "ingredient": {
-    "item": "liroth:quantum_diamond_ore"
-  },
+  "ingredient": "liroth:quantum_diamond_ore",
   "result": {
     "id": "liroth:quantum_diamond"
   },

@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
@@ -13,12 +13,13 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public class LirothBoneTreeFeature
-extends LirothSkeletonFeature {
-    public LirothBoneTreeFeature(Codec<NoneFeatureConfiguration> codec) {
-        super(codec);
+public class LirothBoneTreeFeature extends LirothSkeletonFeature {
+    public static final MapCodec<LirothBoneTreeFeature> CODEC = MapCodec.unit(LirothBoneTreeFeature::new);
+
+    @Override
+    public MapCodec<LirothBoneTreeFeature> codec() {
+        return CODEC;
     }
 
     @Override

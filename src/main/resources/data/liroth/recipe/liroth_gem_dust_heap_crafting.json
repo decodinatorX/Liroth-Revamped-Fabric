@@ -5,9 +5,7 @@
     "II"
   ],
   "key": {
-    "I": {
-      "item": "liroth:liroth_gem_nugget"
-    }
+    "I": "liroth:liroth_gem_nugget"
   },
   "result": {
     "id": "liroth:liroth_gem_raw",

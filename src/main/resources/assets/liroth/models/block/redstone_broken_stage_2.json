@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "liroth:blocks/redstone_block_bst2",
-    "particle": "liroth:blocks/redstone_block_bst2"
-  }
-}

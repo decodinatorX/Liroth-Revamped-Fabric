@@ -1,14 +1,8 @@
 {
   "type": "minecraft:smithing_transform",
-  "template": {
-    "item": "liroth:swap_upgrade_smithing_template"
-  },
-  "base": {
-    "item": "liroth:ruby_horse_armor"
-  },
-  "addition": {
-    "item": "minecraft:diamond"
-  },
+  "template": "liroth:swap_upgrade_smithing_template",
+  "base": "liroth:ruby_horse_armor",
+  "addition": "minecraft:diamond",
   "result": {
     "id": "minecraft:diamond_horse_armor"
   }

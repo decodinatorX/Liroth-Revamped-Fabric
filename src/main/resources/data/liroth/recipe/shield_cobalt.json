@@ -6,12 +6,8 @@
     " W "
   ],
   "key": {
-    "W": {
-      "tag": "minecraft:planks"
-    },
-    "o": {
-      "item": "liroth:lirothian_cobalt_ingot"
-    }
+    "W": "#minecraft:planks",
+    "o": "liroth:lirothian_cobalt_ingot"
   },
   "result": {
     "id": "minecraft:shield"

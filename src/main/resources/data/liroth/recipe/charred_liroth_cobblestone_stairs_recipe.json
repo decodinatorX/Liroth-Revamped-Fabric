@@ -6,24 +6,12 @@
     "678"
   ],
   "key": {
-    "0": {
-      "item": "liroth:charred_liroth_cobblestone"
-    },
-    "3": {
-      "item": "liroth:charred_liroth_cobblestone"
-    },
-    "4": {
-      "item": "liroth:charred_liroth_cobblestone"
-    },
-    "6": {
-      "item": "liroth:charred_liroth_cobblestone"
-    },
-    "7": {
-      "item": "liroth:charred_liroth_cobblestone"
-    },
-    "8": {
-      "item": "liroth:charred_liroth_cobblestone"
-    }
+    "0": "liroth:charred_liroth_cobblestone",
+    "3": "liroth:charred_liroth_cobblestone",
+    "4": "liroth:charred_liroth_cobblestone",
+    "6": "liroth:charred_liroth_cobblestone",
+    "7": "liroth:charred_liroth_cobblestone",
+    "8": "liroth:charred_liroth_cobblestone"
   },
   "result": {
     "id": "liroth:charred_liroth_cobblestone_stairs",

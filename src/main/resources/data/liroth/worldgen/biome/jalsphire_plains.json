@@ -3,50 +3,15 @@
   "downfall": 0.8,
   "has_precipitation": true,
   "effects": {
-    "sky_color": 8223487,
-    "fog_color": 13615871,
-    "water_color": 7028708,
-    "water_fog_color": 1967411,
-    "grass_color": 6697982,
-    "foliage_color": 6697982,
-    "mood_sound": {
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2
-    },
-    "music": {
-      "sound": "liroth:music.liroth.jalsphire",
-      "min_delay": 12000,
-      "max_delay": 24000,
-      "replace_current_music": true
-    }
+    "water_color": "#6b3fe4",
+    "grass_color": "#6633fe",
+    "foliage_color": "#6633fe"
   },
-  "spawners": {
-    "monster": [
-      {
-        "type": "liroth:prowler",
-        "weight": 10,
-        "minCount": 1,
-        "maxCount": 2
-      }
-    ],
-    "creature": [],
-    "ambient": [],
-    "axolotls": [],
-    "underground_water_creature": [],
-    "water_creature": [],
-    "water_ambient": [],
-    "misc": []
-  },
-  "spawn_costs": {},
-  "carvers": {
-    "air": [
-      "minecraft:cave",
-      "minecraft:cave_extra_underground",
-      "minecraft:canyon"
-    ]
-  },
+  "carvers": [
+    "minecraft:cave",
+    "minecraft:cave_extra_underground",
+    "minecraft:canyon"
+  ],
   "features": [
     [],
     [
@@ -61,7 +26,8 @@
     [],
     [],
     [
-      "liroth:jalsphire_ore"
+      "liroth:jalsphire_ore",
+      "liroth:jalsphire_deepslate_ore"
     ],
     [
       "liroth:pointed_jalsphire_crystal",
@@ -79,5 +45,51 @@
       "liroth:end_spike"
     ],
     []
-  ]
+  ],
+  "attributes": {
+    "minecraft:visual/sky_color": "#7d7aff",
+    "minecraft:visual/fog_color": "#cfc2ff",
+    "minecraft:visual/water_fog_color": "#1e0533",
+    "minecraft:audio/ambient_sounds": {
+      "mood": {
+        "sound": "minecraft:ambient.cave",
+        "tick_delay": 6000,
+        "block_search_extent": 8,
+        "offset": 2
+      }
+    },
+    "minecraft:audio/background_music": {
+      "default": {
+        "sound": "liroth:music.liroth.jalsphire",
+        "min_delay": 12000,
+        "max_delay": 24000
+      }
+    },
+    "minecraft:gameplay/natural_mob_spawns": {
+      "argument": {
+        "spawn_costs": {},
+        "spawns_by_category": {
+          "monster": [
+            {
+              "type": "liroth:prowler",
+              "weight": 10,
+              "count": {
+                "type": "minecraft:uniform",
+                "min_inclusive": 1,
+                "max_inclusive": 2
+              }
+            }
+          ],
+          "creature": [],
+          "ambient": [],
+          "axolotls": [],
+          "underground_water_creature": [],
+          "water_creature": [],
+          "water_ambient": [],
+          "misc": []
+        }
+      },
+      "modifier": "overlay"
+    }
+  }
 }

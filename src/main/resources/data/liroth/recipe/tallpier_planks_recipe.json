@@ -1,9 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "liroth:tallpier_log"
-    }
+    "liroth:tallpier_log"
   ],
   "result": {
     "id": "liroth:tallpier_planks",

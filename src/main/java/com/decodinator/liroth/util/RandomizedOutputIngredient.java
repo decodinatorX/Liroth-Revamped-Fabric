@@ -9,21 +9,32 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
+
+import java.util.Optional;
 
 public class RandomizedOutputIngredient {
-    public ItemStack bonus;
+
+    public Optional<ItemStackTemplate> bonus;
     public int percent;
 
-    public RandomizedOutputIngredient(int readInt, ItemStack readItem) {
-          this.percent = readInt;
-          this.bonus = readItem;
+    public RandomizedOutputIngredient(int readInt, Optional<ItemStackTemplate> readItem) {
+        this.percent = readInt;
+        this.bonus = readItem;
     }
 
-    public static final Codec<RandomizedOutputIngredient> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.INT.optionalFieldOf("percent", 0).forGetter(r -> r.percent), ItemStack.OPTIONAL_CODEC.optionalFieldOf("bonus", ItemStack.EMPTY).forGetter(r -> r.bonus)).apply(instance, RandomizedOutputIngredient::new));
+    public ItemStack getStack() {
+        return this.bonus.map(ItemStackTemplate::create).orElse(ItemStack.EMPTY);
+    }
+
+    public static final Codec<RandomizedOutputIngredient> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            Codec.INT.optionalFieldOf("percent", 0).forGetter(r -> r.percent),
+            ItemStackTemplate.CODEC.optionalFieldOf("bonus").forGetter(r -> r.bonus)
+    ).apply(instance, RandomizedOutputIngredient::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, RandomizedOutputIngredient> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.VAR_INT, r -> r.percent,
-            ItemStack.OPTIONAL_STREAM_CODEC, r -> r.bonus,
+            ByteBufCodecs.optional(ItemStackTemplate.STREAM_CODEC), r -> r.bonus,
             RandomizedOutputIngredient::new
     );
 }

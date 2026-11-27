@@ -1,5 +1,4 @@
 {
-
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "1 1",
@@ -7,12 +6,8 @@
     "1 1"
   ],
   "key": {
-    "0": {
-      "item": "minecraft:purpur_block"
-    },
-    "1": {
-      "item": "minecraft:quartz"
-    }
+    "0": "minecraft:purpur_block",
+    "1": "minecraft:quartz"
   },
   "result": {
     "id": "liroth:gateway_block",

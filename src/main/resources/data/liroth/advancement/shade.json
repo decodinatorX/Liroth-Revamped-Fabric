@@ -2,7 +2,7 @@
   "parent": "liroth:enter_escape",
   "display": {
     "icon": {
-      "id": "liroth:shade_spawn_egg"
+      "id": "minecraft:bedrock"
     },
     "title": {
       "translate": "liroth:advancements.story.shade.title"
@@ -19,15 +19,13 @@
     "killed_shade": {
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "predicate": {
-              "type": "liroth:shade"
-            },
-            "entity": "this"
-          }
-        ]
+        "entity": {
+          "predicate": {
+            "minecraft:entity_type": "liroth:shade"
+          },
+          "entity": "this",
+          "type": "minecraft:entity_properties"
+        }
       }
     }
   },

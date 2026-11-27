@@ -6,15 +6,9 @@
     "LLL"
   ],
   "key": {
-    "L": {
-      "tag": "minecraft:logs"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    },
-    "C": {
-      "item": "liroth:damnation_fungus"
-    }
+    "L": "#minecraft:logs",
+    "S": "minecraft:stick",
+    "C": "liroth:damnation_fungus"
   },
   "result": {
     "id": "liroth:fungal_campfire"

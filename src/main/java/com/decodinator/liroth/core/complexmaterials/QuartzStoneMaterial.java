@@ -27,12 +27,12 @@ public class QuartzStoneMaterial implements MaterialManager.Material {
 
         this.name = name;
         stone = LirothBlocks.SOULLESS_SOIL;
-        polished = LirothBlocks.registerBlock("chiseled_"+name+"_bricks", new BaseBlock.Stone(material));
-        pillar = LirothBlocks.registerBlock(name + "_pillar_block", new BaseRotatedPillarBlock.Stone(material));
-        bricks = LirothBlocks.registerBlock(name + "_bricks", new BaseBlock.Stone(material));
-        brickStairs = LirothBlocks.registerBlock(name + "_brick_stairs", new BaseStairsBlock.Stone(bricks));
-        brickSlab = LirothBlocks.registerBlock(name + "_brick_slab", new BaseSlabBlock.Stone(bricks));
-        brickWall = LirothBlocks.registerBlock(name + "_brick_wall", new BaseWallBlock.Stone(bricks));
+        polished = LirothBlocks.registerBlock("chiseled_"+name+"_bricks", () -> (new BaseBlock.Stone(material)));
+        pillar = LirothBlocks.registerBlock(name + "_pillar_block", () -> (new BaseRotatedPillarBlock.Stone(material)));
+        bricks = LirothBlocks.registerBlock(name + "_bricks", () -> (new BaseBlock.Stone(material)));
+        brickStairs = LirothBlocks.registerBlock(name + "_brick_stairs", () -> (new BaseStairsBlock.Stone(bricks)));
+        brickSlab = LirothBlocks.registerBlock(name + "_brick_slab", () -> (new BaseSlabBlock.Stone(bricks)));
+        brickWall = LirothBlocks.registerBlock(name + "_brick_wall", () -> (new BaseWallBlock.Stone(bricks)));
 
 
         MaterialManager.register(this);

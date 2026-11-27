@@ -6,30 +6,14 @@
     "678"
   ],
   "key": {
-    "0": {
-      "item": "liroth:damnation_planks"
-    },
-    "1": {
-      "item": "liroth:damnation_planks"
-    },
-    "2": {
-      "item": "liroth:damnation_planks"
-    },
-    "3": {
-      "item": "liroth:damnation_planks"
-    },
-    "5": {
-      "item": "liroth:damnation_planks"
-    },
-    "6": {
-      "item": "liroth:damnation_planks"
-    },
-    "7": {
-      "item": "liroth:damnation_planks"
-    },
-    "8": {
-      "item": "liroth:damnation_planks"
-    }
+    "0": "liroth:damnation_planks",
+    "1": "liroth:damnation_planks",
+    "2": "liroth:damnation_planks",
+    "3": "liroth:damnation_planks",
+    "5": "liroth:damnation_planks",
+    "6": "liroth:damnation_planks",
+    "7": "liroth:damnation_planks",
+    "8": "liroth:damnation_planks"
   },
   "result": {
     "id": "liroth:damnation_chest",

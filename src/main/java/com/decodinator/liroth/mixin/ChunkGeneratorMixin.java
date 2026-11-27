@@ -13,10 +13,10 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(ChunkGenerator.class)
 public abstract class ChunkGeneratorMixin {
     @Redirect(method = "applyBiomeDecoration", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/levelgen/WorldgenRandom;setDecorationSeed(JII)J"))
-    private long LirothianDimensionSeed(WorldgenRandom random, long seed, int x, int z, WorldGenLevel level, ChunkAccess chunk, StructureManager structureManager) {
+    private long LirothianDimensionSeed(WorldgenRandom random, long seed, int chunkX, int chunkZ, WorldGenLevel level, ChunkAccess chunk, StructureManager structureManager) {
         if ((Object) this instanceof LirothSeededChunkGenerator generator) {
             seed = generator.getDimensionSeed(level.getSeed());
         }
-        return random.setDecorationSeed(seed, x, z);
+        return random.setDecorationSeed(seed, chunkX, chunkZ);
     }
 }

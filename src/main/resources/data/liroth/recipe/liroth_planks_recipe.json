@@ -4,9 +4,7 @@
     "0"
   ],
   "key": {
-    "0": {
-      "item": "liroth:liroth_log"
-    }
+    "0": "liroth:liroth_log"
   },
   "result": {
     "id": "liroth:liroth_planks",

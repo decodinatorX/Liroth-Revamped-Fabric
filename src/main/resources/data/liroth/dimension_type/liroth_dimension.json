@@ -1,19 +1,54 @@
 {
-  "ultrawarm": false,
-  "natural": true,
-  "piglin_safe": false,
-  "respawn_anchor_works": false,
-  "bed_works": true,
-  "has_raids": true,
-  "has_skylight": true,
-  "has_ceiling": false,
-  "coordinate_scale": 1,
   "ambient_light": 0,
-  "logical_height": 384,
-  "effects": "minecraft:overworld",
-  "infiniburn": "#minecraft:infiniburn_overworld",
-  "min_y": -64,
+  "effects": "liroth:liroth_dimension",
+  "attributes": {
+    "minecraft:audio/ambient_sounds": {
+      "mood": {
+        "block_search_extent": 8,
+        "offset": 2,
+        "sound": "minecraft:ambient.cave",
+        "tick_delay": 6000
+      }
+    },
+    "minecraft:audio/background_music": {
+      "creative": {
+        "max_delay": 24000,
+        "min_delay": 12000,
+        "sound": "minecraft:music.creative"
+      }
+    },
+    "minecraft:gameplay/bed_rule": {
+      "can_set_spawn": "always",
+      "can_sleep": "when_dark",
+      "error_message": {
+        "translate": "block.minecraft.bed.no_sleep"
+      }
+    },
+    "minecraft:gameplay/nether_portal_spawns_piglin": false,
+    "minecraft:gameplay/respawn_anchor_works": true,
+    "minecraft:gameplay/straw_bed_rule": {
+      "can_set_spawn": "never",
+      "can_sleep": "when_dark",
+      "destroy_on_leave": true,
+      "error_message": {
+        "translate": "block.minecraft.bed.no_sleep"
+      }
+    }
+  },
+  "coordinate_scale": 1,
+  "default_clock": "minecraft:overworld",
+  "has_ceiling": false,
+  "has_ender_dragon_fight": false,
+  "has_skylight": true,
   "height": 384,
-  "monster_spawn_light_level": 7,
-  "monster_spawn_block_light_limit": 0
+  "infiniburn": "#minecraft:infiniburn_overworld",
+  "logical_height": 384,
+  "min_y": -64,
+  "monster_spawn_block_light_limit": 0,
+  "monster_spawn_light_level": {
+    "type": "minecraft:uniform",
+    "max_inclusive": 7,
+    "min_inclusive": 0
+  },
+  "timelines": "#minecraft:in_overworld"
 }

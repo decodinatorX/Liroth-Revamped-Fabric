@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#minecraft:netherite_tool_materials",
+  "base": "liroth:liroth_nautilus_armor",
+  "result": {
+    "id": "liroth:quantum_liroth_nautilus_armor"
+  },
+  "template": "liroth:quantum_upgrade_smithing_template"
+}

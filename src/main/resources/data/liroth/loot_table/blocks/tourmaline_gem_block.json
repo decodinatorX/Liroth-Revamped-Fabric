@@ -6,14 +6,12 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "liroth:tourmaline_gem_block"
+          "name": "liroth:tourmaline_block"
         }
       ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ]
+      "condition": {
+        "type": "minecraft:survives_explosion"
+      }
     }
   ]
 }

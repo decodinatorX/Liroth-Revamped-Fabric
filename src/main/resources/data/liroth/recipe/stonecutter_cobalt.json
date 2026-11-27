@@ -5,12 +5,8 @@
     "###"
   ],
   "key": {
-    "I": {
-      "item": "liroth:lirothian_cobalt_ingot"
-    },
-    "#": {
-      "item": "minecraft:stone"
-    }
+    "I": "liroth:lirothian_cobalt_ingot",
+    "#": "minecraft:stone"
   },
   "result": {
     "id": "minecraft:stonecutter"

@@ -1,9 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "liroth:ruby_block"
-    }
+    "liroth:ruby_block"
   ],
   "result": {
     "id": "liroth:ruby_ingot",

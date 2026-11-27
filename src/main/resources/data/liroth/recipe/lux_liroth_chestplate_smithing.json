@@ -1,14 +1,8 @@
 {
   "type": "minecraft:smithing_transform",
-  "template": {
-    "item": "liroth:liroth_upgrade_smithing_template"
-  },
-  "base": {
-    "item": "liroth:liroth_gem_chestplate"
-  },
-  "addition": {
-    "item": "liroth:liroth_gem_lux_ingot"
-  },
+  "template": "liroth:liroth_upgrade_smithing_template",
+  "base": "liroth:liroth_gem_chestplate",
+  "addition": "liroth:liroth_gem_lux_ingot",
   "result": {
     "id": "liroth:liroth_gem_lux_chestplate"
   }

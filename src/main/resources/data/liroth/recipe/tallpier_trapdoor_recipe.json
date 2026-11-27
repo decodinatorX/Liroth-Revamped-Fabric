@@ -5,24 +5,12 @@
     "345"
   ],
   "key": {
-    "0": {
-      "item": "liroth:tallpier_planks"
-    },
-    "1": {
-      "item": "liroth:tallpier_planks"
-    },
-    "2": {
-      "item": "liroth:tallpier_planks"
-    },
-    "3": {
-      "item": "liroth:tallpier_planks"
-    },
-    "4": {
-      "item": "liroth:tallpier_planks"
-    },
-    "5": {
-      "item": "liroth:tallpier_planks"
-    }
+    "0": "liroth:tallpier_planks",
+    "1": "liroth:tallpier_planks",
+    "2": "liroth:tallpier_planks",
+    "3": "liroth:tallpier_planks",
+    "4": "liroth:tallpier_planks",
+    "5": "liroth:tallpier_planks"
   },
   "result": {
     "id": "liroth:tallpier_trapdoor",

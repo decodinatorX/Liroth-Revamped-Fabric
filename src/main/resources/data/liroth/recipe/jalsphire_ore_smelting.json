@@ -2,9 +2,7 @@
   "type": "minecraft:smelting",
   "experience": 5,
   "cookingtime": 200,
-  "ingredient": {
-    "item": "liroth:jalsphire_stone_ore"
-  },
+  "ingredient": "liroth:jalsphire_stone_ore",
   "result": {
     "id": "liroth:jalsphire_gem"
   }

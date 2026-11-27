@@ -2,18 +2,19 @@ package com.decodinator.liroth.core.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.FungusBlock;
+import net.minecraft.world.level.block.NetherFungusBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 
-public class CustomFungalPlant extends FungusBlock {
-    public Block floorBlock;
+public class CustomFungalPlant extends NetherFungusBlock {
+    private final Block floorBlock;
 
-    public CustomFungalPlant(BlockBehaviour.Properties settings, ResourceKey<ConfiguredFeature<?, ?>> feature, Block requiredBlock, Block floor) {
-        super(feature, requiredBlock, settings);
+    public CustomFungalPlant(BlockBehaviour.Properties settings, ResourceKey<Feature> feature, Block requiredBlock, Block floor) {
+        super(feature, requiredBlock, BlockTags.SUPPORTS_CRIMSON_FUNGUS, settings);
         this.floorBlock = floor;
     }
 
